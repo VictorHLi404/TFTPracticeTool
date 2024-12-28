@@ -43,7 +43,6 @@ public class DragAndDrop : MonoBehaviour
         }
         
     }
-
     protected UnityEngine.Vector3 getMouseWorldPosition(UnityEngine.Vector2 currentMousePosition) {
         UnityEngine.Vector3 adjustedWorldPosition = Camera.main.ScreenToWorldPoint(currentMousePosition);
         adjustedWorldPosition.z = -1; // some fucked shit because you need to reset the z distance

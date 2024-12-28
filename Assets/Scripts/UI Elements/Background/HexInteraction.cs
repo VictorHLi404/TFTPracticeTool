@@ -2,7 +2,11 @@ using UnityEngine;
 
 public class HexInteraction : MonoBehaviour
 {
-    private SpriteRenderer spriteRenderer;
+    private SpriteRenderer spriteRenderer; // reference to sprite renderer component
+
+    private bool isOccupied = false; // variable to manage whether a champion is currently occupying the slot
+    
+
     // TODO: IMPLEMENT A COLLISION FEATURE WHERE THE HEX SHOULD "KNOW" WHEN A CHAMPION HAS BEEN PLACED IN SLOT AND CAN STORE ITS DATA ACCORDINGLY
     private void Start()
     {
