@@ -19,9 +19,10 @@ public static class DatabaseBuilder {
     private static string defaultBagSizesCSVFile = @"Assets\Scripts\DatabaseBuilder\CSVFiles\DefaultBagSizes.csv";
     private static string traitLevelsCSVFile = @"Assets\Scripts\DatabaseBuilder\CSVFiles\TraitLevels.csv";
 
-    public static void generateNewDatabase() { // generate a brand new database
+    public static void generateNewDatabase() { // generate a brand new database if one does not exist yet
         using (var connection = new SqliteConnection(dbName)) {
             connection.Open();
+            connection.Close();
         }
     }
 
@@ -30,13 +31,13 @@ public static class DatabaseBuilder {
         using (var connection = new SqliteConnection(dbName)) { // add to champion table
             connection.Open();
             using (var command = connection.CreateCommand()) { // generate the champion table
-                command.CommandText = "CREATE TABLE IF NOT EXISTS Champions (DatabaseID INT, ChampionName VARCHAR (20), Cost INT, Trait1 VARCHAR (20), Trait2 VARCHAR (20), Trait3 VARCHAR (20), ShopIcon VARCHAR(20), ChampionIcon VARCHAR(20));";
+                command.CommandText = "CREATE TABLE IF NOT EXISTS Champions (DatabaseID VARCHAR (20), ChampionName VARCHAR (20), Cost VARCHAR (20), Trait1 VARCHAR (20), Trait2 VARCHAR (20), Trait3 VARCHAR (20), ShopIconName VARCHAR(20), ChampionIconName VARCHAR(20));";
                 command.ExecuteNonQuery();
             }
             foreach (List<string> championData in dataPackage) {
                 using (var command = connection.CreateCommand()) {
                     string formattedValue = generateFormattedValueForSQL(championData);
-                    command.CommandText = "INSERT INTO Champions (DatabaseID, ChampionName, Cost, Trait1, Trait2, Trait3, ShopIcon, ChampionIcon) VALUES " + formattedValue; 
+                    command.CommandText = "INSERT INTO Champions (DatabaseID, ChampionName, Cost, Trait1, Trait2, Trait3, ShopIconName, ChampionIconName) VALUES " + formattedValue; 
                     command.ExecuteNonQuery();
                 }
             }
@@ -49,7 +50,7 @@ public static class DatabaseBuilder {
         using (var connection = new SqliteConnection(dbName)) { // add to champion table
             connection.Open();
             using (var command = connection.CreateCommand()) { // generate the champion table
-                command.CommandText = "CREATE TABLE IF NOT EXISTS ShopOdds (Levels INT, [1Cost] INT, [2Cost] INT, [3Cost] INT,[4Cost] INT, [5Cost] INT);";
+                command.CommandText = "CREATE TABLE IF NOT EXISTS ShopOdds (Levels VARCHAR (20), [1Cost] VARCHAR (20), [2Cost] VARCHAR (20), [3Cost] VARCHAR (20), [4Cost] VARCHAR (20), [5Cost] VARCHAR (20));";
                 command.ExecuteNonQuery();
             }
             foreach (List<string> levelData in dataPackage) {
@@ -67,7 +68,7 @@ public static class DatabaseBuilder {
         using (var connection = new SqliteConnection(dbName)) { // add to champion table
             connection.Open();
             using (var command = connection.CreateCommand()) { // generate the champion table
-                command.CommandText = "CREATE TABLE IF NOT EXISTS DefaultBagSizes (Cost INT, BagSize INT);";
+                command.CommandText = "CREATE TABLE IF NOT EXISTS DefaultBagSizes (Cost VARCHAR (20), BagSize VARCHAR (20));";
                 command.ExecuteNonQuery();
             }
             foreach (List<string> bagData in dataPackage) {

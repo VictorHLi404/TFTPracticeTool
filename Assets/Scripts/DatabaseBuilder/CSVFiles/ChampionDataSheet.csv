@@ -1,4 +1,4 @@
-DatabaseID,ChampionName,Cost,Trait1,Trait2,Trait3,ShopIcon,ChampionIcon
+DatabaseID,ChampionName,Cost,Trait1,Trait2,Trait3,ShopIconName,ChampionIconName
 1,Lux,1,Academy,Sorcerer,,,
 2,Zyra,1,Experiment,Sorcerer,,,
 3,Vex,1,Rebel,Visionary,,,

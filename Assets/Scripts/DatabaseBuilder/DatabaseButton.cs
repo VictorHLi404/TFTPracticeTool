@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using static DatabaseAPI;
 public class DatabaseButton : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -10,7 +10,7 @@ public class DatabaseButton : MonoBehaviour
     }
 
     private void OnMouseDown() {
-        DatabaseBuilder.generateNewDatabase();
+        /*DatabaseBuilder.generateNewDatabase();
         DatabaseBuilder.buildChampionTable();
         Debug.Log("Champion Table generated!");
         DatabaseBuilder.buildShopOdds();
@@ -18,7 +18,9 @@ public class DatabaseButton : MonoBehaviour
         DatabaseBuilder.buildDefaultBagSizes();
         Debug.Log("Default Bag Sizes generated!");
         DatabaseBuilder.buildTraitLevels();
-        Debug.Log("Trait Levels generated!");
+        Debug.Log("Trait Levels generated!");*/
+        UnitData testRun = DatabaseAPI.getUnitData("Violet");
+        Debug.Log(testRun);
     }
 
     // Update is called once per frame
