@@ -22,12 +22,12 @@ public class Player
     // Methods
     public void UpdateGold(int amount)
     {
-        Gold += amount;
+        this.Gold += amount;
     }
 
     public void AdvanceStage()
     {
-        Stage++;
-        Round = 1; // Resest round to 1 everytime stage is increased
+        this.Stage++;
+        this.Round = 1; // Resest round to 1 everytime stage is increased
     }
 }
