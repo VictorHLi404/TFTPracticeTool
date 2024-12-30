@@ -29,10 +29,6 @@ public class ChampionInteraction : DragAndDrop
         }
     }
 
-    private void Update() {
-
-    }
-
     private void OnCollisionEnter2D(Collision2D collisionObject) {
         Debug.Log("ENTERED A NEW TILE");
         currentLocationCollider = collisionObject.gameObject;
@@ -44,6 +40,12 @@ public class ChampionInteraction : DragAndDrop
     }
 
     protected override bool validateDropLocation() {
+        // multiple things to check:
+        // is the unit even hovering over something?
+        // is the space currently occupied by another object?
+        if (currentLocationCollider == null) {
+            return false;
+        }
         return currentLocationCollider != null;
     }
 
