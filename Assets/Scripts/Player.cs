@@ -2,32 +2,32 @@ using System;
 
 public class Player
 {
-    // Properties
-    public int Level { get; set; }
-    public int Gold { get; set; }
-    public float Time { get; set; }
-    public int Stage { get; set; }
-    public int Round { get; set; }
 
+    public int level { get; set; }
+    public int gold { get; set; }
+    public float time { get; set; }
+    public int stage { get; set; }
+    public int round { get; set; }
+    
     // Constructors
     public Player(int level, int gold, float time, int stage, int round)
     {
-        this.Level = level;
-        this.Gold = gold;
-        this.Time = time;
-        this.Stage = stage;
-        this.Round = round;
+        this.level = level;
+        this.gold = gold;
+        this.time = time;
+        this.stage = stage;
+        this.round = round;
     }
 
     // Methods
     public void UpdateGold(int amount)
     {
-        this.Gold += amount;
+        this.gold += amount;
     }
 
     public void AdvanceStage()
     {
-        this.Stage++;
-        this.Round = 1; // Resest round to 1 everytime stage is increased
+        this.stage++;
+        this.round = 1; // Reset round to 1 every time stage is increased
     }
 }
