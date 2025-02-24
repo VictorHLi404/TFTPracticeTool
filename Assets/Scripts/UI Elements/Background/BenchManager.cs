@@ -7,7 +7,6 @@ public class BenchManager : MonoBehaviour
     public float slotWidth = 1.0f;    // Width of each slot
     public float slotHeight = 1.0f;   // Height of each slot
     public float spacing = 0.2f;      // Spacing between bench slots
-    public float verticalOffset = 1.2f; // Vertical offset from the grid (shifted slightly up)
     public GameObject benchSlotPrefab; // Prefab for the bench slots
 
     private void Start()
@@ -27,8 +26,8 @@ public class BenchManager : MonoBehaviour
 
         // Calculate total bench width
         float benchWidth = (benchSlots - 1) * slotSpacing + slotWidth;
-        float benchOriginX = -benchWidth / 2f + (slotWidth / 2f);
-        float benchOriginY = -verticalOffset; // Vertical offset (adjusted upwards)
+        float benchOriginX = transform.position.x;
+        float benchOriginY = transform.position.y;
 
         for (int i = 0; i < benchSlots; i++)
         {
