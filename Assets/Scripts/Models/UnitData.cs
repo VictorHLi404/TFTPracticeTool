@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 
 public class UnitData { // a data class that holds all the necessary information needed for a given unit
 
@@ -38,6 +39,9 @@ public class UnitData { // a data class that holds all the necessary information
     }
     
     public bool isDummy() {
+        /*
+        If the unit data is a "dummy", e.g not an actual champion for the purposes of having an empty shop, return so
+        */
         return unitName == null;
     }
 

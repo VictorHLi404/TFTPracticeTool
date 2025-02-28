@@ -13,7 +13,7 @@ public static class DatabaseBuilder {
     // contains the functionality needed to build the champion database, shop odds, bag sizes, and trait levels + names
     // all game related stuff located in 
 
-    private static string dbName = @"Data Source=Assets\Scripts\CRUD\Resources.db";
+    private static string dbName = @"Data Source=Assets\Scripts\CRUD\BaseGameInformation.db";
     private static string championCSVFile = @"Assets\Scripts\CRUD\CSVFiles\ChampionDataSheet.csv";
     private static string shopOddsCSVFile = @"Assets\Scripts\CRUD\CSVFiles\ShopOdds.csv";
     private static string defaultBagSizesCSVFile = @"Assets\Scripts\CRUD\CSVFiles\DefaultBagSizes.csv";

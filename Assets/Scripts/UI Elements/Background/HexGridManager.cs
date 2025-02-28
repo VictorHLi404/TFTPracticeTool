@@ -14,10 +14,6 @@ public class HexGridManager : MonoBehaviour
 
     [Header("Tile Settings")]
     public GameObject tileToGenerate; // Prefab for the tile
-
-    [Header("Alignment Settings")]
-    public float verticalShift = 0f; // Vertical shift to move the grid upwards
-
     private void Start()
     {
         if (tileToGenerate == null)

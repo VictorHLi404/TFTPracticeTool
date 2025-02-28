@@ -4,9 +4,9 @@ public class BenchManager : MonoBehaviour
 {
     [Header("Bench Settings")]
     public int benchSlots = 9;         // Number of bench slots
-    public float slotWidth = 1.0f;    // Width of each slot
-    public float slotHeight = 1.0f;   // Height of each slot
-    public float spacing = 0.2f;      // Spacing between bench slots
+    public float slotWidth = 60f;    // Width of each slot
+    public float slotHeight = 60f;   // Height of each slot
+    public float spacing = 25f;      // Spacing between bench slots
     public GameObject benchSlotPrefab; // Prefab for the bench slots
 
     private void Start()

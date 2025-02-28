@@ -15,7 +15,7 @@ using System.Security.Cryptography;
 public static class DatabaseAPI {
     // class that reads from databases to provide data as needed.
     // generates data objects (units, traits, etc) 
-    private static string dbName = @"Data Source=Assets\Scripts\CRUD\Resources.db";
+    private static string dbName = @"Data Source=Assets\Scripts\CRUD\BaseGameInformation.db";
 
     public static UnitData getUnitData(string championName) {
         // given a champion name (MUST MATCH THAT FOUND INSIDE OF SQL DB STRICTLY), return a UnitData object of that champion.
