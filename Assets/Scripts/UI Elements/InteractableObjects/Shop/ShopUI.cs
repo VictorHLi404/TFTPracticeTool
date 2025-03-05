@@ -16,30 +16,29 @@ public class ShopUI : MonoBehaviour {
     public float buttonYSpacing = 35f;
     [Header("Shop Settings")]
     public GameObject shopSlotPrefab; // Prefab for the shop slot tile
-    public GameObject rerollButtonPrefab; 
-    public GameObject XPButtonPrefab; 
-    
-    public GameObject textFieldPrefab; // prefab for text fields
 
+    private GameObject XPButton;
+    private GameObject rerollButton;
     private Shop shop;
-    private Player player;
-
     private GameObject[] shopItemArray = new GameObject[5];
 
 
     private void Start()
     {
-        if (shopSlotPrefab == null || rerollButtonPrefab == null || XPButtonPrefab == null) {
-            Debug.LogError("Tile prefab not assigned. Please assign it in the inspector.");
-            return;
-        }
         shop = new Shop();
         shop.generateShop();
-        player = new Player(7, 50, 40, 4, 2);
-        GenerateShopUI();
+        GenerateButtons();
+        GenerateShopItems();
     }
 
-    private void GenerateShopUI() {
+    private void GenerateButtons() {
+        rerollButton = transform.GetChild(0).gameObject;
+        XPButton = transform.GetChild(1).gameObject;
+        rerollButton.GetComponent<RerollButton>().setParentShop(this);
+        XPButton.GetComponent<XPButton>().setParentShop(this);
+    }
+
+    private void GenerateShopItems() {
 
         float slotSpacing = slotWidth + spacing; // Horizontal spacing between slots
 
@@ -47,23 +46,37 @@ public class ShopUI : MonoBehaviour {
         float benchWidth = (shopSlots - 1) * slotSpacing + slotWidth;
         float benchOriginX = -benchWidth / 200f + (slotWidth / 200f) - 237f;
         float benchOriginY = transform.position.y - 20f; // Vertical offset (adjusted upwards)
+        float benchOriginZ = transform.position.z;
 
-        for (int i = 0; i < shopSlots; i++)
-        {
+        for (int i = 0; i < shopSlots; i++) {
             // Calculate the position of each bench slot
             float xPos = i * slotSpacing + benchOriginX;
             float yPos = benchOriginY;
-            Debug.Log($"{xPos}, {yPos}");
             
             // Instantiate the bench slot
 
-            GameObject newShopSlot = Instantiate(shopSlotPrefab, new Vector3(xPos, yPos, this.transform.position.z-10), Quaternion.identity, transform);
+            GameObject newShopSlot = Instantiate(shopSlotPrefab, new Vector3(xPos, yPos, benchOriginZ-10), Quaternion.identity, transform);
             shopItemArray[i] = newShopSlot;
             ShopItem slotData = newShopSlot.GetComponents<ShopItem>()[0];
             slotData.updateChampion(shop.currentShop[i]);
+            slotData.setParentShop(this);
         }
-        Instantiate(XPButtonPrefab, new Vector3(benchOriginX - slotWidth - buttonXSpacing, benchOriginY + buttonYSpacing, 0), Quaternion.identity, transform);
-        Instantiate(rerollButtonPrefab, new Vector3(benchOriginX - slotWidth - buttonXSpacing, benchOriginY - buttonYSpacing, 0), Quaternion.identity, transform);
-        Instantiate(textFieldPrefab, new Vector3(benchOriginX, benchOriginY, -1), Quaternion.identity, transform);
+    }
+
+    public void rerollShop() {
+        if (shop.generateShop()) {
+            for (int i = 0; i < shopSlots; i++) {
+                ShopItem slotData = shopItemArray[i].GetComponents<ShopItem>()[0];
+                slotData.updateChampion(shop.currentShop[i]);
+            }
+        }
+    }
+
+    public void buyXP() {
+        shop.buyXP();
+    }
+
+    public bool buyChampion(UnitData champion) {
+        return shop.buyChampion(champion);
     }
 }

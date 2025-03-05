@@ -1,8 +1,10 @@
 using System;
+using System.Collections.Generic;
+using UnityEngine.Rendering;
 
 public class Player
 {
-
+    private Dictionary<int, int> xp_mapping = new Dictionary<int, int>();
     public Player(int level, int gold, float time, int stage, int round) {
         this.level = level;
         this.gold = gold;
@@ -30,5 +32,9 @@ public class Player
     {
         this.stage++;
         this.round = 1; // Reset round to 1 every time stage is increased
+    }
+
+    public void buyXP(int xpAmount) {
+
     }
 }

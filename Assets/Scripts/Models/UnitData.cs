@@ -38,6 +38,14 @@ public class UnitData { // a data class that holds all the necessary information
         return false;
     }
     
+
+    public void setToDummy() {
+        /*
+        set the unit data to a blank value.
+        */
+        unitName = null;
+    }
+    
     public bool isDummy() {
         /*
         If the unit data is a "dummy", e.g not an actual champion for the purposes of having an empty shop, return so

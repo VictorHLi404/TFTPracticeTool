@@ -8,9 +8,11 @@ public class ShopItem : MonoBehaviour {
     /// generate layer dep
     /// 
     
-    UnitData champion;
-    GameObject border;
-    GameObject championIcon;
+    private UnitData champion;
+    private GameObject border;
+    private GameObject championIcon;
+
+    private ShopUI parentShop;
 
     public void Start() {
         this.border = transform.GetChild(0).gameObject;
@@ -19,16 +21,19 @@ public class ShopItem : MonoBehaviour {
 
     public ShopItem() {
         this.champion = null;
-
     }
 
     public ShopItem(UnitData _champion) {
         this.champion = _champion;
     }
 
-    public void updateChampion(UnitData newChampion) {
-        this.champion = newChampion;
+    public void setParentShop(ShopUI _parentShop) {
+        this.parentShop = _parentShop;
+    }
 
+    public void updateChampion(UnitData newChampion) {
+        enableInteraction(true);
+        this.champion = newChampion;
         this.border = transform.GetChild(0).gameObject;
         this.border.GetComponent<Border>().updateColor(newChampion);
 
@@ -38,6 +43,20 @@ public class ShopItem : MonoBehaviour {
         this.championIcon = transform.GetChild(2).gameObject;
         this.championIcon.GetComponent<ChampionShopIcon>().updateChampionImage(newChampion);
 
+    }
+
+    private void enableInteraction(bool state) {
+        gameObject.SetActive(state);
+    }
+
+    public void purchaseChampion() {
+        if (parentShop.buyChampion(champion)) {
+            enableInteraction(false);
+        }
+    }
+
+    public void OnMouseDown() {
+        purchaseChampion();
     }
 
 }
