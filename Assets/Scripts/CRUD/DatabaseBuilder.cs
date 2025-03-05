@@ -19,11 +19,27 @@ public static class DatabaseBuilder {
     private static string defaultBagSizesCSVFile = @"Assets\Scripts\CRUD\CSVFiles\DefaultBagSizes.csv";
     private static string traitLevelsCSVFile = @"Assets\Scripts\CRUD\CSVFiles\TraitLevels.csv";
 
+    private static string XPLevelsCSVFile = @"Assets\Scripts\CRUD\CSVFiles\XPLevels.csv";
+
     public static void generateNewDatabase() { // generate a brand new database if one does not exist yet
         using (var connection = new SqliteConnection(dbName)) {
             connection.Open();
             connection.Close();
         }
+    }
+
+    public static void initializeDatabase() {
+        generateNewDatabase();
+        buildChampionTable();
+        Debug.Log("Champion Table generated!");
+        buildShopOdds();
+        Debug.Log("Shop Odds generated!");
+        buildDefaultBagSizes();
+        Debug.Log("Default Bag Sizes generated!");
+        buildTraitLevels();
+        Debug.Log("Trait Levels generated!");
+        buildXPLevels();
+        Debug.Log("XP levels built!");
     }
 
     public static void buildChampionTable() { // a function to generate a new champion table based off of a csv file
@@ -94,6 +110,25 @@ public static class DatabaseBuilder {
                 using (var command = connection.CreateCommand()) {
                     string formattedValue = generateFormattedValueForSQL(traitData);
                     command.CommandText = "INSERT INTO TraitLevels (TraitName, Tier1, Tier2, Tier3, Tier4, Tier5) VALUES " + formattedValue; 
+                    command.ExecuteNonQuery();
+                }
+            }
+            connection.Close();
+        }
+    }
+
+    public static void buildXPLevels() {
+        List<List<string>> dataPackage = convertCSVFileTo2DList(XPLevelsCSVFile); // generate 2d list from csv file
+        using (var connection = new SqliteConnection(dbName)) { // add to champion table
+            connection.Open();
+            using (var command = connection.CreateCommand()) { // generate the champion table
+                command.CommandText = "CREATE TABLE IF NOT EXISTS XPLevels (Level VARCHAR(20), XPRequirement VARCHAR(20));";
+                command.ExecuteNonQuery();
+            }
+            foreach (List<string> XPData in dataPackage) {
+                using (var command = connection.CreateCommand()) {
+                    string formattedValue = generateFormattedValueForSQL(XPData);
+                    command.CommandText = "INSERT INTO XPLevels (Level, XPRequirement) VALUES " + formattedValue; 
                     command.ExecuteNonQuery();
                 }
             }

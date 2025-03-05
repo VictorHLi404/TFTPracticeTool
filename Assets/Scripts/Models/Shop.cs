@@ -14,6 +14,7 @@ public class Shop {
     public List<UnitData> currentShop; // list of current champions available in the shop
 
     public Shop() {
+        DatabaseBuilder.initializeDatabase();
         this.champions = DatabaseAPI.getAllUnitData();
         this.championBagSizes = new Dictionary<UnitData, int>();
         foreach (UnitData champion in champions) {
