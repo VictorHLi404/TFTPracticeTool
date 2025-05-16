@@ -5,8 +5,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ShopItem : MonoBehaviour {
-    /// generate layer dep
-    /// 
     
     private UnitData champion;
     private GameObject border;
