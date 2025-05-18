@@ -7,18 +7,19 @@ public class DatabaseButton : MonoBehaviour
     // assign to a random button to rebuild the database from given csv files
     void Start()
     {
-        
+
     }
 
-    private void OnMouseDown() {
+    private void OnMouseDown()
+    {
         Shop newShop = new Shop();
-        newShop.generateShop();
+        newShop.generateShop(false);
 
-    } 
+    }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

@@ -23,22 +23,34 @@ public class Shop
             championBagSizes[champion] = DatabaseAPI.getBagSize(champion);
         }
         this.levelOdds = DatabaseAPI.getShopOdds();
-        this.playerData = new Player(7, 0, 50, 40, 4, 2, DatabaseAPI.getLevelMapping());
+        this.playerData = new Player(6, 0, 40, 40, 4, 2, DatabaseAPI.getLevelMapping());
     }
 
-    public bool generateShop()
+    /// <summary>
+    ///Given the players current level and if they have enough gold,
+    ///generate a shop of 5 characters for the player to see in the currentShop list.
+    ///Return true/false depending on if this action is successful.
+    /// </summary>
+    /// <param name="isStartingShop"> take in a bool related to if this is a starting shop or not, i.e whether to charge the player money</param>
+    /// <returns></returns>
+    public bool generateShop(bool isStartingShop)
     {
         /*
         Given the players current level and if they have enough gold,
          generate a shop of 5 characters for the player to see in the currentShop list.
         Return true/false depending on if this action is successful.
         */
-
-        if (playerData.gold < 2)
+        if (!isStartingShop)
         {
-            return false;
+            if (playerData.gold < 2)
+            {
+                return false;
+            }
+            else
+            {
+                playerData.gold -= 2;
+            }
         }
-        playerData.gold -= 2;
 
         List<int> currentOdds = levelOdds[playerData.level];
         List<UnitData> newShop = new List<UnitData>();
@@ -109,10 +121,10 @@ public class Shop
     /// <summary>
     /// Return the player's current level and XP in a format that can be consumed by the shopUI.
     /// </summary>
-    /// <returns>An array containing [current level, current xp, current level XP cap] </returns>
-    public (int level, int xp, int xpCap) getLevelData()
+    /// <returns>An array containing [current level, current xp, current level XP cap, current gold] </returns>
+    public (int level, int xp, int xpCap, int gold) getDisplayData()
     {
-        return playerData.getLevelData();
+        return playerData.getDisplayData();
     }
 
     public bool buyChampion(UnitData champion)

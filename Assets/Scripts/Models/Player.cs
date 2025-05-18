@@ -70,15 +70,15 @@ public class Player
     /// <returns>
     /// A tuple containing the (level, xp, xpCap).
     /// </returns>
-    public (int level, int xp, int xpCap) getLevelData()
+    public (int level, int xp, int xpCap, int gold) getDisplayData()
     {
         if (level > 9)
         {   // maxed out
-            return (10, 0, 0);
+            return (10, 0, 0, gold);
         }
         else
         {
-            return (level, xp, levelMapping[level + 1]);
+            return (level, xp, levelMapping[level + 1], gold);
         }
     }
 

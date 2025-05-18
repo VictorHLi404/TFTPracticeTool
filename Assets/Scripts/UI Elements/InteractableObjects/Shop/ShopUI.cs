@@ -18,6 +18,7 @@ public class ShopUI : MonoBehaviour
     private GameObject rerollButton;
     private GameObject levelTextField;
     private GameObject XPTextField;
+    private GameObject GoldTextField;
     private GameObject XPBar;
     private Shop shop;
     private GameObject[] shopItemArray = new GameObject[5];
@@ -25,7 +26,7 @@ public class ShopUI : MonoBehaviour
     private void Start()
     {
         shop = new Shop();
-        shop.generateShop();
+        shop.generateShop(true);
         GenerateButtons();
         GenerateDisplayElements();
         GenerateShopItems();
@@ -50,20 +51,22 @@ public class ShopUI : MonoBehaviour
         levelTextField = transform.Find("LevelTextField").gameObject;
         XPTextField = transform.Find("XPTextField").gameObject;
         XPBar = transform.Find("XPBarFill").gameObject;
-        updateXPDisplays();
+        GoldTextField = transform.Find("GoldTextField").gameObject;
+        updateDisplays();
     }
     /// <summary>
     /// Helper method to update XP displays. call the info gathering method from shop and then update accordingly. 
     /// </summary>
-    public void updateXPDisplays()
+    public void updateDisplays()
     {
-        (int level, int xp, int xpCap) = shop.getLevelData();
+        (int level, int xp, int xpCap, int gold) = shop.getDisplayData();
         levelTextField.GetComponent<TextMeshPro>().text = $"Lvl. {level}";
         XPTextField.GetComponent<TextMeshPro>().text = $"{xp}/{xpCap}";
+        GoldTextField.GetComponent<TextMeshPro>().text = $"{gold}";
+
         float XPBarMaxLength = transform.Find("XPBarBackground").transform.localScale.x;
         float XPBarDefaultX = transform.Find("XPBarBackground").transform.localPosition.x - (XPBarMaxLength / 2);
         float newXPBarLength = XPBarMaxLength * ((float)xp / (float)xpCap);
-        Debug.Log($"{XPBarMaxLength}, {newXPBarLength}");
         XPBar.transform.localScale = new Vector3(newXPBarLength, XPBar.transform.localScale.y, XPBar.transform.localScale.z);
         XPBar.transform.localPosition = new Vector3(newXPBarLength / 2 + XPBarDefaultX, XPBar.transform.localPosition.y, XPBar.transform.localPosition.z);
     }
@@ -102,13 +105,14 @@ public class ShopUI : MonoBehaviour
     /// </summary>
     public void rerollShop()
     {
-        if (shop.generateShop())
+        if (shop.generateShop(false))
         {
             for (int i = 0; i < shopSlots; i++)
             {
                 ShopItem slotData = shopItemArray[i].GetComponents<ShopItem>()[0];
                 slotData.updateChampion(shop.currentShop[i]);
             }
+            updateDisplays();
         }
     }
 
@@ -120,12 +124,9 @@ public class ShopUI : MonoBehaviour
     {
         if (shop.buyXP())
         {
-            updateXPDisplays();
+            updateDisplays();
         }
     }
-
-
-
 
     /// <summary>
     /// 1. remove that champion from the current shop by making a parent call. 
@@ -135,6 +136,14 @@ public class ShopUI : MonoBehaviour
     /// <returns></returns>
     public bool buyChampion(UnitData champion)
     {
-        return shop.buyChampion(champion);
+        if (shop.buyChampion(champion))
+        {
+            updateDisplays();
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
