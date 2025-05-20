@@ -122,9 +122,11 @@ public class Shop
     /// Return the player's current level and XP in a format that can be consumed by the shopUI.
     /// </summary>
     /// <returns>An array containing [current level, current xp, current level XP cap, current gold] </returns>
-    public (int level, int xp, int xpCap, int gold) getDisplayData()
+    public (int level, int xp, int xpCap, int gold, List<int> shopOdds) getDisplayData()
     {
-        return playerData.getDisplayData();
+        (int level, int xp, int xpCap, int gold) = playerData.getDisplayData();
+        List<int> shopOdds = levelOdds[level];
+        return (level, xp, xpCap, gold, shopOdds);
     }
 
     public bool buyChampion(UnitData champion)

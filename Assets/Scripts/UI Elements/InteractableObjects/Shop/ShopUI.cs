@@ -1,4 +1,7 @@
+using System.Collections.Generic;
+using NUnit.Framework.Internal;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ShopUI : MonoBehaviour
@@ -18,8 +21,9 @@ public class ShopUI : MonoBehaviour
     private GameObject rerollButton;
     private GameObject levelTextField;
     private GameObject XPTextField;
-    private GameObject GoldTextField;
     private GameObject XPBar;
+    private GameObject GoldTextField;
+    private GameObject ShopOddsTextField;
     private Shop shop;
     private GameObject[] shopItemArray = new GameObject[5];
 
@@ -52,23 +56,40 @@ public class ShopUI : MonoBehaviour
         XPTextField = transform.Find("XPTextField").gameObject;
         XPBar = transform.Find("XPBarFill").gameObject;
         GoldTextField = transform.Find("GoldTextField").gameObject;
-        updateDisplays();
+        ShopOddsTextField = transform.Find("ShopOddsTextField").gameObject;
+        UpdateDisplays();
     }
+
     /// <summary>
-    /// Helper method to update XP displays. call the info gathering method from shop and then update accordingly. 
+    /// Helper method to update player stat displays. call the info gathering method from shop and then update accordingly. 
     /// </summary>
-    public void updateDisplays()
+    public void UpdateDisplays()
     {
-        (int level, int xp, int xpCap, int gold) = shop.getDisplayData();
+        (int level, int xp, int xpCap, int gold, List<int> levelOdds) = shop.getDisplayData();
         levelTextField.GetComponent<TextMeshPro>().text = $"Lvl. {level}";
         XPTextField.GetComponent<TextMeshPro>().text = $"{xp}/{xpCap}";
         GoldTextField.GetComponent<TextMeshPro>().text = $"{gold}";
+        UpdateShopOddsDisplay(levelOdds);
 
         float XPBarMaxLength = transform.Find("XPBarBackground").transform.localScale.x;
         float XPBarDefaultX = transform.Find("XPBarBackground").transform.localPosition.x - (XPBarMaxLength / 2);
         float newXPBarLength = XPBarMaxLength * ((float)xp / (float)xpCap);
         XPBar.transform.localScale = new Vector3(newXPBarLength, XPBar.transform.localScale.y, XPBar.transform.localScale.z);
         XPBar.transform.localPosition = new Vector3(newXPBarLength / 2 + XPBarDefaultX, XPBar.transform.localPosition.y, XPBar.transform.localPosition.z);
+    }
+
+    /// <summary>
+    /// Helper method to update the shop odds display. Takes in a list of shop odds where the index corresponds
+    /// to the appropriate unit cost.
+    /// </summary>
+    /// <param name="levelOdds">List of odds for a unit cost.</param>
+    public void UpdateShopOddsDisplay(List<int> levelOdds)
+    {
+        for (int i = 1; i <= 5; i++)
+        {
+            string textFieldName = $"{i}CostOddsTextField";
+            ShopOddsTextField.transform.Find(textFieldName).GetComponent<TextMeshPro>().text = $"{levelOdds[i - 1]}%";
+        }
     }
     /// <summary>
     /// Instantiate the shop UI elements. 
@@ -112,7 +133,7 @@ public class ShopUI : MonoBehaviour
                 ShopItem slotData = shopItemArray[i].GetComponents<ShopItem>()[0];
                 slotData.updateChampion(shop.currentShop[i]);
             }
-            updateDisplays();
+            UpdateDisplays();
         }
     }
 
@@ -124,7 +145,7 @@ public class ShopUI : MonoBehaviour
     {
         if (shop.buyXP())
         {
-            updateDisplays();
+            UpdateDisplays();
         }
     }
 
@@ -138,7 +159,7 @@ public class ShopUI : MonoBehaviour
     {
         if (shop.buyChampion(champion))
         {
-            updateDisplays();
+            UpdateDisplays();
             return true;
         }
         else
