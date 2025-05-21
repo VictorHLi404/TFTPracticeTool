@@ -48,7 +48,7 @@ public class ShopItem : MonoBehaviour
         costTextField.GetComponent<TextMeshPro>().text = $"{newChampion.Cost}";
 
         this.championIcon = transform.Find("ChampionIcon").gameObject;
-        championIcon.GetComponent<ChampionShopIcon>().updateChampionImage(newChampion);
+        championIcon.GetComponent<ChampionIcon>().updateChampionImage(newChampion);
 
     }
 

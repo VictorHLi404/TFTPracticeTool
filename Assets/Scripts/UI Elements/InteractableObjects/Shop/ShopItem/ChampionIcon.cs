@@ -1,8 +1,10 @@
 using UnityEngine;
 
-public class ChampionShopIcon : MonoBehaviour {
+public class ChampionIcon : MonoBehaviour
+{
 
-    public void updateChampionImage(UnitData champion) {
+    public void updateChampionImage(UnitData champion)
+    {
         /*
         Given the unitdata of a champion, extract its name, and replace sprite of image.
         */

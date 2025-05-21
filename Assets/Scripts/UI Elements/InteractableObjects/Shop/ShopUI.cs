@@ -7,6 +7,7 @@ using UnityEngine;
 public class ShopUI : MonoBehaviour
 {
 
+    [Header("Shop Settings")]
     public int shopSlots = 5; // number of shop slots
     public float slotWidth = 150f;  // Exact width of the hex tile
     public float slotHeight = 100f; // Exact height of the hex tile 
@@ -14,9 +15,8 @@ public class ShopUI : MonoBehaviour
 
     public float buttonXSpacing = 30f;
     public float buttonYSpacing = 35f;
-    [Header("Shop Settings")]
-    public GameObject shopSlotPrefab; // Prefab for the shop slot tile
 
+    public GameObject shopSlotPrefab; // Prefab for the shop slot tile
     private GameObject XPButton;
     private GameObject rerollButton;
     private GameObject levelTextField;
@@ -26,6 +26,9 @@ public class ShopUI : MonoBehaviour
     private GameObject ShopOddsTextField;
     private Shop shop;
     private GameObject[] shopItemArray = new GameObject[5];
+
+    [Header("UI Reference Objects")]
+    public GameObject benchManager;
 
     private void Start()
     {
@@ -160,6 +163,7 @@ public class ShopUI : MonoBehaviour
         if (shop.buyChampion(champion))
         {
             UpdateDisplays();
+
             return true;
         }
         else
