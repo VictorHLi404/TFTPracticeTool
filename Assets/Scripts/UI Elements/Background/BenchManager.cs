@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BenchManager : MonoBehaviour
@@ -7,7 +8,10 @@ public class BenchManager : MonoBehaviour
     public float slotWidth = 60f;    // Width of each slot
     public float slotHeight = 60f;   // Height of each slot
     public float spacing = 25f;      // Spacing between bench slots
-    public GameObject benchSlotPrefab; // Prefab for the bench slots
+    public GameObject benchSlotPrefab; // Prefab for the bench slots.
+
+    private Bench bench;
+    private List<GameObject> benchSlotObjects;
 
     private void Start()
     {
@@ -17,10 +21,11 @@ public class BenchManager : MonoBehaviour
             return;
         }
 
-        GenerateBench();
+        GenerateBenchElements();
+        this.bench = new Bench();
     }
 
-    private void GenerateBench()
+    private void GenerateBenchElements()
     {
         float slotSpacing = slotWidth + spacing; // Horizontal spacing between slots
 
@@ -35,8 +40,49 @@ public class BenchManager : MonoBehaviour
             float xPos = i * slotSpacing + benchOriginX;
             float yPos = benchOriginY;
 
-            // Instantiate the bench slot
-            Instantiate(benchSlotPrefab, new Vector3(xPos, yPos, 0), Quaternion.identity, transform);
+            // Instantiate the bench slot and add to the list
+            benchSlotObjects.Add(Instantiate(benchSlotPrefab, new Vector3(xPos, yPos, 0), Quaternion.identity, transform));
         }
+    }
+
+    /// <summary>
+    /// A method that validates whether a champion can be added to the bench or not based off of the total count.
+    /// Called by the internal unit slot for drag and drop, and by ShopUI for spawnign in elements.
+    /// </summary>
+    /// <returns>Whether this action was done sucessfully or not.</returns>
+    public bool AddToBench()
+    {
+        if (bench.CanUnitBePlaced())
+        {
+            /// add to the internal list
+            bench.AddUnit();
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// A method that, given a champion object, spawns in an appropriate champion entity object
+    /// at the leftmost position on the bench.
+    /// </summary>
+    /// <returns></returns>
+    public bool placeInBench()
+    {
+        foreach (GameObject benchSlot in benchSlotObjects)
+        {
+            if (benchSlot.)
+        }
+    }
+
+    /// <summary>
+    /// A method that 
+    /// </summary>
+    /// <returns></returns>
+    public bool removeFromBench()
+    {
+
     }
 }

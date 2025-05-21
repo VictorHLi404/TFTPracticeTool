@@ -155,20 +155,39 @@ public class ShopUI : MonoBehaviour
     /// <summary>
     /// 1. remove that champion from the current shop by making a parent call. 
     /// 2. (TODO) create an instance of the champion on the bench
+    /// FLIP THE ORDER: BENCH COMES FIRST, THEN SHOP
     /// </summary>
     /// <param name="champion"></param>
     /// <returns></returns>
     public bool buyChampion(UnitData champion)
     {
+        BenchManager bench = benchManager.GetComponent<BenchManager>();
+        if (!bench.AddToBench())
+        { // no space on bench
+            return false;
+        }
+        if (!shop.buyChampion(champion))
+        { // no money
+            return false;
+        }
+        // from here, known FACT that champion can be purchased successfully
+
+        /*
+        // bench 
         if (shop.buyChampion(champion))
         {
             UpdateDisplays();
+            BenchManager bench = benchManager.GetComponent<BenchManager>();
+            if (!bench.AddToBench())
+            {
+                return false;
+            }
 
             return true;
         }
         else
         {
             return false;
-        }
+        } */
     }
 }
