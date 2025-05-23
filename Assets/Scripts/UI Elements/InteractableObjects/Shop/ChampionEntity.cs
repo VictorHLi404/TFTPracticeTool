@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System;
 
 /// <summary>
 /// A class to represent a single champion entity on the board.
@@ -14,9 +15,9 @@ public class ChampionEntity : ChampionInteraction
     private GameObject championIcon;
 
     private GameObject itemDisplay;
-    public new void Start()
+    public new void Awake()
     {
-        base.Start();
+        base.Awake();
         this.border = transform.Find("Border").gameObject;
         this.championNameField = transform.Find("ChampionNameField").gameObject;
         this.championIcon = transform.Find("ChampionIcon").gameObject;
@@ -33,21 +34,41 @@ public class ChampionEntity : ChampionInteraction
         championNameField.GetComponent<TextMeshPro>().text = champion.UnitName;
         championIcon.GetComponent<ChampionIcon>().updateChampionImage(champion);
         int starLevel = champion.starLevel;
-        SpriteRenderer spriteRenderer = border.GetComponent<SpriteRenderer>();
+        SpriteRenderer borderSpriteRenderer = border.GetComponent<SpriteRenderer>();
         if (starLevel == 1) // bronze
         {
-            spriteRenderer.color = new Color(0.8f, 0.5f, 0.2f, 1f);
+            borderSpriteRenderer.color = new Color(0.8f, 0.5f, 0.2f, 1f);
         }
         else if (starLevel == 2) // silver
         {
-            spriteRenderer.color = new Color(0.75f, 0.75f, 0.75f, 1f);
+            borderSpriteRenderer.color = new Color(0.75f, 0.75f, 0.75f, 1f);
         }
         else // gold
         {
-            spriteRenderer.color = new Color(1f, 0.84f, 0f, 1f);
+            borderSpriteRenderer.color = new Color(1f, 0.84f, 0f, 1f);
         }
+        SpriteRenderer championSpriteRenderer = championIcon.GetComponent<SpriteRenderer>();
+        championSpriteRenderer.sprite = CropSprite(championSpriteRenderer.sprite);
     }
 
+    public Sprite CropSprite(Sprite originalSprite)
+    {
+        Texture2D originalTexture = originalSprite.texture;
 
+        // Create a new sprite from part of the texture
+        Sprite croppedSprite = Sprite.Create(
+            originalTexture,
+        new Rect(
+            x: originalTexture.width * 2 / 5, // Start at middle
+            y: 0,                 // From bottom
+            width: originalTexture.width * 3 / 5,
+            height: originalTexture.height
+        ),
+            new Vector2(0.2f, 0.5f), // Pivot
+            originalSprite.pixelsPerUnit
+        );
+
+        return croppedSprite;
+    }
 
 }

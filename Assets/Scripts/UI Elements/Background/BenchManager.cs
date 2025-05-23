@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,13 +6,15 @@ public class BenchManager : MonoBehaviour
 {
     [Header("Bench Settings")]
     public int benchSlots = 9;         // Number of bench slots
-    public float slotWidth = 60f;    // Width of each slot
+    public float slotWidth = 1.25f;    // Width of each slot
     public float slotHeight = 60f;   // Height of each slot
-    public float spacing = 25f;      // Spacing between bench slots
+    public float spacing = 0.375f;      // Spacing between bench slots
     public GameObject benchSlotPrefab; // Prefab for the bench slots.
+    public GameObject championPrefab;
 
     private Bench bench;
-    private List<GameObject> benchSlotObjects;
+    private List<GameObject> benchSlotObjects = new List<GameObject>();
+    private List<(float x, float y)> benchSlotCoordinates = new List<(float x, float y)>();
 
     private void Start()
     {
@@ -37,11 +40,13 @@ public class BenchManager : MonoBehaviour
         for (int i = 0; i < benchSlots; i++)
         {
             // Calculate the position of each bench slot
-            float xPos = i * slotSpacing + benchOriginX;
+            float xPos = i * slotSpacing;
             float yPos = benchOriginY;
-
             // Instantiate the bench slot and add to the list
-            benchSlotObjects.Add(Instantiate(benchSlotPrefab, new Vector3(xPos, yPos, 0), Quaternion.identity, transform));
+            GameObject newBenchSlot = Instantiate(benchSlotPrefab, transform);
+            newBenchSlot.transform.localPosition = new Vector3(xPos, 0, 0);
+            benchSlotObjects.Add(newBenchSlot);
+            benchSlotCoordinates.Add((xPos, 0));
         }
     }
 
@@ -69,12 +74,23 @@ public class BenchManager : MonoBehaviour
     /// at the leftmost position on the bench.
     /// </summary>
     /// <returns></returns>
-    public bool placeInBench()
+    public bool placeInBench(Champion newChampion)
     {
-        foreach (GameObject benchSlot in benchSlotObjects)
+        for (int i = 0; i < benchSlotObjects.Count; i++)
         {
-            if (benchSlot.)
+            UnitSlot unitSlot = benchSlotObjects[i].GetComponent<UnitSlot>();
+            if (unitSlot.isEmpty())
+            {
+                (float xPos, float yPos) = benchSlotCoordinates[i];
+                GameObject newChampionInstance = Instantiate(championPrefab, transform);
+                newChampionInstance.GetComponent<ChampionEntity>().Initialize(newChampion);
+                newChampionInstance.transform.localPosition = new Vector3(xPos, yPos, 0);
+                unitSlot.placeChampionInSlot(newChampion);
+                return true;
+            }
         }
+        Debug.Log("BENCH IS FULL");
+        return false;
     }
 
     /// <summary>
@@ -83,6 +99,7 @@ public class BenchManager : MonoBehaviour
     /// <returns></returns>
     public bool removeFromBench()
     {
+        return false;
 
     }
 }

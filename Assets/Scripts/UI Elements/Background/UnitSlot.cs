@@ -12,12 +12,14 @@ using UnityEngine;
 /// </summary>
 public class UnitSlot : MonoBehaviour
 {
+    public UnitManager parentManager; // reference to either a bench slot manager or 
     public bool isBenchSlot;
     public float xCenter, yCenter;
+
     [Header("Hex Dimensions")]
     public float hexWidth;
 
-    public Champion championInSlot;
+    private Champion championInSlot;
 
     public void Start()
     {
@@ -30,5 +32,14 @@ public class UnitSlot : MonoBehaviour
         this.isBenchSlot = isBenchSlot;
     }
 
+    public bool isEmpty()
+    {
+        return championInSlot == null;
+    }
+
+    public void placeChampionInSlot(Champion newChampion)
+    {
+        championInSlot = newChampion;
+    }
 
 }

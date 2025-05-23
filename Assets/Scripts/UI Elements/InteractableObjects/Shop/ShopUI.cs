@@ -164,30 +164,18 @@ public class ShopUI : MonoBehaviour
         BenchManager bench = benchManager.GetComponent<BenchManager>();
         if (!bench.AddToBench())
         { // no space on bench
+            Debug.Log("NO SPACE ON BENCH!");
             return false;
         }
         if (!shop.buyChampion(champion))
         { // no money
+            Debug.Log("TOO POOR!");
             return false;
         }
-        // from here, known FACT that champion can be purchased successfully
+        Champion newChampion = new Champion(1, champion);
+        bench.placeInBench(newChampion);
+        UpdateDisplays();
 
-        /*
-        // bench 
-        if (shop.buyChampion(champion))
-        {
-            UpdateDisplays();
-            BenchManager bench = benchManager.GetComponent<BenchManager>();
-            if (!bench.AddToBench())
-            {
-                return false;
-            }
-
-            return true;
-        }
-        else
-        {
-            return false;
-        } */
+        return true;
     }
 }

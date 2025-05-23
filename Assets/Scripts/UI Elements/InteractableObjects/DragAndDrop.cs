@@ -18,7 +18,7 @@ public class DragAndDrop : MonoBehaviour
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    protected void Start()
+    protected void Awake()
     {
         mousePosition = InputSystem.actions.FindAction("MousePointer"); // access the mouse pointer for input
         UpdatePickupCoords(transform.position); // set the first default return location for the object

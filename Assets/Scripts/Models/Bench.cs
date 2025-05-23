@@ -2,6 +2,7 @@
 using System;
 using Unity.VisualScripting.ReorderableList;
 using UnityEngine.Rendering.Universal.Internal;
+using UnityEngine;
 
 /// <summary>
 /// A class representing the player's bench. Contains references to all of the champions inside of it
@@ -11,6 +12,11 @@ using UnityEngine.Rendering.Universal.Internal;
 /// </summary>
 public class Bench : UnitManager
 {
+    public Bench()
+    {
+        maxUnitCount = 8;
+    }
+
     public override void AddUnit()
     {
         currentUnitCount++;
@@ -23,6 +29,7 @@ public class Bench : UnitManager
 
     public override bool CanUnitBePlaced()
     {
+        Debug.Log($"{currentUnitCount}, {maxUnitCount}");
         return currentUnitCount <= maxUnitCount;
     }
 }

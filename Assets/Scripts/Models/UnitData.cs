@@ -4,14 +4,19 @@ using Unity.VisualScripting;
 
 public class UnitData
 { // a data class that holds all the necessary information needed for a given unit
+    // A reference for the row number it holds in the DB
+    public int databaseID { get; set; }
+    // Name of the unit
+    public string unitName { get; set; }
+    // The traits the champion holds
+    public List<string> unitTraits { get; set; }
+    // How much the champion costs
+    public int cost { get; set; }
+    // Reference to shop icon image name
+    public string shopIconName { get; set; } = "";
 
-    // NOTE: distinct from an actual unit trait / how a unit behaves on the field; read only data class 
-    protected int databaseID; // a reference for the row number it holds in the db
-    protected string unitName; // name of the unit
-    protected List<string> unitTraits; // the traits the champion holds
-    protected int cost; // how much the champion costs
-    protected string shopIconName = ""; // reference to shop icon image name
-    protected string championIconName = ""; // reference to champion icon image name
+    // Reference to champion icon image name
+    public string championIconName { get; set; } = "";
 
     public UnitData(int _databaseID, string _unitName, List<string> _unitTraits, int _cost, string _shopIconName, string _championIconName)
     {
