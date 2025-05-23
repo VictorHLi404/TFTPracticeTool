@@ -14,7 +14,7 @@ public class Bench : UnitManager
 {
     public Bench()
     {
-        maxUnitCount = 8;
+        maxUnitCount = 9;
     }
 
     public override void AddUnit()
@@ -29,7 +29,6 @@ public class Bench : UnitManager
 
     public override bool CanUnitBePlaced()
     {
-        Debug.Log($"{currentUnitCount}, {maxUnitCount}");
-        return currentUnitCount <= maxUnitCount;
+        return currentUnitCount + 1 <= maxUnitCount;
     }
 }

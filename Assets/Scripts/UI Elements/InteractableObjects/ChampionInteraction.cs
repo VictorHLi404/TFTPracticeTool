@@ -49,12 +49,15 @@ public class ChampionInteraction : DragAndDrop
     {
         // multiple things to check:
         // is the unit even hovering over something?
-        // is the space currently occupied by another object?
+        // TODO is the space currently occupied by another object? assuming its a hex
         if (currentLocationCollider == null)
         {
             return false;
         }
-        return currentLocationCollider != null;
+        else
+        {
+            return !currentLocationCollider.GetComponent<UnitSlot>().isEmpty();
+        }
     }
 
     protected override Vector3 getDropLocationCoords()
