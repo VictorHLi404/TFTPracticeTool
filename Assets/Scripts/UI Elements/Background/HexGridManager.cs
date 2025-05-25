@@ -57,7 +57,7 @@ public class HexGridManager : MonoBehaviour
 
                 // Instantiate the tile at the calculated position
                 GameObject newTile = Instantiate(tileToGenerate, new Vector3(xPos, yPos, 0), Quaternion.identity, transform);
-
+                newTile.GetComponent<UnitSlot>().Initialize(false);
                 // Optionally, add customization (e.g., color) here
             }
         }

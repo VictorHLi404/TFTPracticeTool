@@ -278,7 +278,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8470286362482689915, guid: 7952c07479473824f90b739236396fa5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 8470286362482689915, guid: 7952c07479473824f90b739236396fa5, type: 3}
       propertyPath: m_LocalRotation.w
@@ -307,6 +307,14 @@ PrefabInstance:
     - target: {fileID: 8470286362482689915, guid: 7952c07479473824f90b739236396fa5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8790880341230538051, guid: 7952c07479473824f90b739236396fa5, type: 3}
+      propertyPath: spacing
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8790880341230538051, guid: 7952c07479473824f90b739236396fa5, type: 3}
+      propertyPath: slotWidth
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8790880341230538051, guid: 7952c07479473824f90b739236396fa5, type: 3}
       propertyPath: benchManager
@@ -675,7 +683,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1403244824956879788, guid: ecafa48e59c3558468fb6d31deec71d4, type: 3}
       propertyPath: spacing
-      value: 0.375
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1403244824956879788, guid: ecafa48e59c3558468fb6d31deec71d4, type: 3}
       propertyPath: slotWidth

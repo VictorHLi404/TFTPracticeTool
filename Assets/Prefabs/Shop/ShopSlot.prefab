@@ -551,6 +551,7 @@ GameObject:
   - component: {fileID: 476267197613297882}
   - component: {fileID: 5577177464176922457}
   - component: {fileID: 7779232745086140259}
+  - component: {fileID: 4361216628420875728}
   m_Layer: 0
   m_Name: ShopSlot
   m_TagString: Untagged
@@ -601,7 +602,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_SortAtRoot: 1
 --- !u!61 &7779232745086140259
 BoxCollider2D:
@@ -649,6 +650,33 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 13.4590645, y: 9.918734}
   m_EdgeRadius: 0
+--- !u!50 &4361216628420875728
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6330402162318352869}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &7217616547788629396
 GameObject:
   m_ObjectHideFlags: 0
@@ -822,7 +850,7 @@ SpriteRenderer:
   m_Size: {x: 19.2, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!114 &8178428611483969491

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using NUnit.Framework.Internal;
 using TMPro;
@@ -13,9 +14,6 @@ public class ShopUI : MonoBehaviour
     public float slotHeight = 100f; // Exact height of the hex tile 
     public float spacing = 25f;      // Spacing between bench slots
 
-    public float buttonXSpacing = 30f;
-    public float buttonYSpacing = 35f;
-
     public GameObject shopSlotPrefab; // Prefab for the shop slot tile
     private GameObject XPButton;
     private GameObject rerollButton;
@@ -26,6 +24,7 @@ public class ShopUI : MonoBehaviour
     private GameObject ShopOddsTextField;
     private Shop shop;
     private GameObject[] shopItemArray = new GameObject[5];
+    private bool[] hasBeenPurchased = new bool[5]; // backing array to keep track of which are actually empty and which aren't
 
     [Header("UI Reference Objects")]
     public GameObject benchManager;
@@ -102,25 +101,21 @@ public class ShopUI : MonoBehaviour
 
         float slotSpacing = slotWidth + spacing; // Horizontal spacing between slots
 
-        // Calculate total bench width
-        float benchWidth = (shopSlots - 1) * slotSpacing + slotWidth;
-        float benchOriginX = -benchWidth / 200f + (slotWidth / 200f) - 250f;
-        float benchOriginY = transform.position.y - 20f; // Vertical offset (adjusted upwards)
-        float benchOriginZ = transform.position.z;
-
         for (int i = 0; i < shopSlots; i++)
         {
             // Calculate the position of each bench slot
-            float xPos = i * slotSpacing + benchOriginX;
-            float yPos = benchOriginY;
+            float xPos = i * slotSpacing - 5.15f; // TODO: MAKE THIS RELATIVE
 
             // Instantiate the bench slot
 
-            GameObject newShopSlot = Instantiate(shopSlotPrefab, new Vector3(xPos, yPos, benchOriginZ - 10), Quaternion.identity, transform);
+            // GameObject newShopSlot = Instantiate(shopSlotPrefab, new Vector3(xPos, yPos, benchOriginZ - 10), Quaternion.identity, transform);
+            GameObject newShopSlot = Instantiate(shopSlotPrefab, transform);
+            newShopSlot.transform.localPosition = new Vector3(xPos, -0.4f, -20);
             shopItemArray[i] = newShopSlot;
             ShopItem slotData = newShopSlot.GetComponents<ShopItem>()[0];
             slotData.updateChampion(shop.currentShop[i]);
             slotData.setParentShop(this);
+            slotData.enableInteraction(true);
         }
     }
 
@@ -175,7 +170,45 @@ public class ShopUI : MonoBehaviour
         Champion newChampion = new Champion(1, champion);
         bench.placeInBench(newChampion);
         UpdateDisplays();
-
         return true;
+    }
+
+    public void OnMouseDown()
+    {
+        Debug.Log("CLICKED ON THE SHOP!");
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        GameObject collisionObject = collision.gameObject;
+        if (collisionObject.GetComponent<ChampionEntity>() != null)
+        {
+            Debug.Log("CHAMPION ENTERED SHOP FROM POV OF SHOP");
+            for (int i = 0; i < shopItemArray.Length; i++)
+            {
+                ShopItem shopSlot = shopItemArray[i].GetComponent<ShopItem>();
+                hasBeenPurchased[i] = !shopSlot.isActive;
+            }
+            foreach (GameObject shopSlotObject in shopItemArray)
+            {
+                shopSlotObject.GetComponent<ShopItem>().enableInteraction(false);
+            }
+        }
+    }
+
+    public void OnCollisionExit2D(Collision2D collision)
+    {
+        GameObject collisionObject = collision.gameObject;
+        if (collisionObject.GetComponent<ChampionEntity>() != null)
+        {
+            Debug.Log("CHAMPION LEFT SHOP FROM POV OF SHOP");
+            for (int i = 0; i < shopItemArray.Length; i++)
+            {
+                if (!hasBeenPurchased[i])
+                {
+                    shopItemArray[i].GetComponent<ShopItem>().enableInteraction(true);
+                }
+            }
+        }
     }
 }

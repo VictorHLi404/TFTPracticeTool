@@ -7,13 +7,17 @@ using System;
 /// Changes dynamically to visually represent the current champion it references (e.g show star level, cost, name)
 /// Inherits from ChampionInteraction to handle interaction from player.
 /// </summary>
-public class ChampionEntity : ChampionInteraction
+public class ChampionEntity : DragAndDrop
 {
-    protected Champion champion;
+    public Champion champion { get; set; }
+    public bool isOnBench = true;
     private GameObject border;
     private GameObject championNameField;
     private GameObject championIcon;
 
+    private SpriteRenderer spriteRenderer; // tool for rendering sprite 
+    private GameObject currentCollisionObject = null; // variable to interface with current hex / bench slot that the unit is sitting on\
+    private GameObject previousCollisionObject = null; // variable to keep track of exisiting place, same w drop coords
     private GameObject itemDisplay;
     public new void Awake()
     {
@@ -21,6 +25,117 @@ public class ChampionEntity : ChampionInteraction
         this.border = transform.Find("Border").gameObject;
         this.championNameField = transform.Find("ChampionNameField").gameObject;
         this.championIcon = transform.Find("ChampionIcon").gameObject;
+    }
+
+
+    private void OnMouseEnter()
+    { // highlight champion, visual effect
+        // Change color on hover TEMPORARY TEST
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = Color.yellow; // Highlight color
+        }
+    }
+
+    private void OnMouseExit()
+    {
+        // Revert color when the mouse leaves
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = Color.white; // Default color
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collisionObject)
+    {
+        GameObject collisionGameObject = collisionObject.gameObject;
+        Debug.Log(collisionGameObject.transform.position);
+        if (isUnitSlot(collisionGameObject))
+        {
+            Debug.Log("Entered a tile");
+            currentCollisionObject = collisionGameObject;
+            if (previousCollisionObject == null) // handle spawn in case
+            {
+                previousCollisionObject = currentCollisionObject;
+                UpdatePickupCoords(previousCollisionObject.transform.position);
+            }
+        }
+        else if (collisionGameObject.GetComponent<ShopUI>() != null)
+        {
+            Debug.Log("ENTERED THE SHOP");
+            currentCollisionObject = collisionGameObject;
+            if (previousCollisionObject == null)
+            {
+                previousCollisionObject = currentCollisionObject;
+            }
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collisionObject)
+    {
+        GameObject collisionGameObject = collisionObject.gameObject;
+        if (isUnitSlot(collisionGameObject))
+        {
+            Debug.Log("Exited tile");
+            currentCollisionObject = null;
+        }
+    }
+
+    protected override bool validateDropLocation()
+    {
+        // multiple things to check:
+        // is the unit even hovering over something?
+        // TODO is the space currently occupied by another object? assuming its a hex
+        if (currentCollisionObject == null)
+        {
+            Debug.Log("DROPPING INTO NOTHING");
+            return false;
+        }
+        else if (currentCollisionObject.GetComponent<UnitSlot>() == null)
+        {
+            Debug.Log("DROPPING INTO NOT A UNIT SLOT");
+            return false;
+        }
+        else
+        {
+            return currentCollisionObject.GetComponent<UnitSlot>().isEmpty();
+        }
+    }
+
+    protected override void OnMouseUp()
+    {
+        // check if the location is a valid place for the checkmark to be: if it is, then drop and update new starting, if not, then return to initial place
+        if (validateDropLocation())
+        {
+            this.transform.position = getDropLocationCoords();
+            pickUpCoords = this.transform.position;
+            previousCollisionObject.GetComponent<UnitSlot>().removeChampionFromSlot();
+            currentCollisionObject.GetComponent<UnitSlot>().placeChampionInSlot(this);
+            previousCollisionObject = currentCollisionObject;
+            transform.parent = currentCollisionObject.transform.parent;
+            isOnBench = currentCollisionObject.GetComponent<UnitSlot>().isBenchSlot;
+        }
+        else
+        {
+            this.transform.position = pickUpCoords;
+        }
+
+    }
+    protected override Vector3 getDropLocationCoords()
+    {
+        Vector3 newLocationCoords = currentCollisionObject.transform.position;
+        newLocationCoords.z = -1; // fix the z value 
+        return newLocationCoords;
+    }
+
+    /// <summary>
+    /// Helper function to check whether collision object is a unit slot or not.
+    /// </summary>
+    /// <returns></returns>
+    protected bool isUnitSlot(GameObject collisionObject)
+    {
+        UnitSlot checkSlot = collisionObject.GetComponent<UnitSlot>();
+        return checkSlot != null;
     }
 
     public void Initialize(Champion newChampion)

@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Diagnostics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,11 +5,13 @@ using UnityEngine.UI;
 public class ShopItem : MonoBehaviour
 {
 
+
+    public bool isActive = true;
     private UnitData champion;
     private GameObject border;
     private GameObject championIcon;
-
     private ShopUI parentShop;
+
 
     public void Start()
     {
@@ -52,8 +52,9 @@ public class ShopItem : MonoBehaviour
 
     }
 
-    private void enableInteraction(bool state)
+    public void enableInteraction(bool state)
     {
+        isActive = state;
         gameObject.SetActive(state);
     }
 
@@ -62,11 +63,13 @@ public class ShopItem : MonoBehaviour
         if (parentShop.buyChampion(champion))
         {
             enableInteraction(false);
+
         }
     }
 
     public void OnMouseDown()
     {
+        Debug.Log("CLICKED TO BUY A CHAMPION");
         purchaseChampion();
     }
 

@@ -44,6 +44,7 @@ public class BenchManager : MonoBehaviour
             float yPos = benchOriginY;
             // Instantiate the bench slot and add to the list
             GameObject newBenchSlot = Instantiate(benchSlotPrefab, transform);
+            newBenchSlot.GetComponent<UnitSlot>().Initialize(true);
             newBenchSlot.transform.localPosition = new Vector3(xPos, 0, 0);
             benchSlotObjects.Add(newBenchSlot);
             benchSlotCoordinates.Add((xPos, 0));
@@ -85,7 +86,7 @@ public class BenchManager : MonoBehaviour
                 GameObject newChampionInstance = Instantiate(championPrefab, transform);
                 newChampionInstance.GetComponent<ChampionEntity>().Initialize(newChampion);
                 newChampionInstance.transform.localPosition = new Vector3(xPos, yPos, 0);
-                unitSlot.placeChampionInSlot(newChampion);
+                unitSlot.placeChampionInSlot(newChampionInstance.GetComponent<ChampionEntity>());
                 return true;
             }
         }

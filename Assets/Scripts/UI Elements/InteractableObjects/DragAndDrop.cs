@@ -22,6 +22,7 @@ public class DragAndDrop : MonoBehaviour
     {
         mousePosition = InputSystem.actions.FindAction("MousePointer"); // access the mouse pointer for input
         UpdatePickupCoords(transform.position); // set the first default return location for the object
+        Debug.Log($"STARTING DROP POSITION: {transform.position}");
     }
 
     protected void UpdatePickupCoords(UnityEngine.Vector3 newPositionCoords)
@@ -35,7 +36,7 @@ public class DragAndDrop : MonoBehaviour
         this.transform.position = getMouseWorldPosition(mousePosition.ReadValue<UnityEngine.Vector2>()); // set the position of the object to the current mouse position
     }
 
-    protected void OnMouseUp()
+    protected virtual void OnMouseUp()
     {
         // check if the location is a valid place for the checkmark to be: if it is, then drop and update new starting, if not, then return to initial place
         if (validateDropLocation())

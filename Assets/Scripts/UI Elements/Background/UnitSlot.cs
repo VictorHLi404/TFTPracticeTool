@@ -37,9 +37,15 @@ public class UnitSlot : MonoBehaviour
         return championInSlot == null;
     }
 
-    public void placeChampionInSlot(Champion newChampion)
+    public void placeChampionInSlot(ChampionEntity newChampion)
+
     {
-        championInSlot = newChampion;
+        championInSlot = newChampion.champion;
+    }
+
+    public void removeChampionFromSlot()
+    {
+        championInSlot = null;
     }
 
 }

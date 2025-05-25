@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 65ace4952366b6948b138661b08c2570
+guid: 3e3e86dc2853a614b8b127119e4e3e5c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6659862860947923547
-    second: TFT14_Jarvan.TFT_Set14_0
+      213: -4879361086566997356
+    second: TFT14_Dr.Mundo.TFT_Set14_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TFT14_Jarvan.TFT_Set14_0
+      name: TFT14_Dr.Mundo.TFT_Set14_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5add160730a6393a0800000000000000
-      internalID: -6659862860947923547
+      spriteID: 4926f4891f6094cb0800000000000000
+      internalID: -4879361086566997356
       vertices: []
       indices: 
       edges: []
