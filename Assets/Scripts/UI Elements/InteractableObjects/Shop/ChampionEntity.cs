@@ -29,7 +29,7 @@ public class ChampionEntity : ChampionInteraction
         updateVisuals();
     }
 
-    public void updateVisuals()
+    public void updateVisuals() // TODO: transform from flat top to pointy top
     {
         championNameField.GetComponent<TextMeshPro>().text = champion.UnitName;
         championIcon.GetComponent<ChampionIcon>().updateChampionImage(champion);

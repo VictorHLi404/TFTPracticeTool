@@ -12,7 +12,7 @@ using UnityEngine;
 /// </summary>
 public class UnitSlot : MonoBehaviour
 {
-    public UnitManager parentManager; // reference to either a bench slot manager or 
+    public UnitManager parentManager; // reference to either a bench slot manager or board
     public bool isBenchSlot;
     public float xCenter, yCenter;
 

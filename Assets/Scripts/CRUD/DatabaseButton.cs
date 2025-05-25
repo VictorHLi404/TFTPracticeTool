@@ -7,7 +7,6 @@ public class DatabaseButton : MonoBehaviour
     // assign to a random button to rebuild the database from given csv files
     void Start()
     {
-
     }
 
     private void OnMouseDown()

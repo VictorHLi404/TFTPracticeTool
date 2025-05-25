@@ -10,7 +10,7 @@ public class ChampionIcon : MonoBehaviour
         */
         SpriteRenderer spriteRendererComponent = gameObject.GetComponent<SpriteRenderer>();
         string unitName = champion.UnitName;
-        string file_path = $"ChampionShopIcons/TFT13_{unitName}.TFT_Set13";
+        string file_path = $"ChampionShopIcons/TFT14_{unitName}.TFT_Set14";
         spriteRendererComponent.sprite = Resources.Load<Sprite>(file_path);
     }
 
