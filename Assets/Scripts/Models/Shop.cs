@@ -8,7 +8,8 @@ public class Shop
 {
 
     private List<UnitData> champions; // list of all possible champions
-    private Dictionary<UnitData, int> championBagSizes; // dictionary mapping from champion name to remaining elements within it
+    private Dictionary<int, int> championBagSizes; // dictionary mapping from DATABASE ID to remaining elements within it
+    private Dictionary<int, UnitData> championIDtoUnitData;
     private Dictionary<int, List<int>> levelOdds; // mapping of current level to relavent shop odds
 
     private Player playerData; // data object containing the information of the player
@@ -17,10 +18,12 @@ public class Shop
     public Shop()
     {
         this.champions = DatabaseAPI.getAllUnitData();
-        this.championBagSizes = new Dictionary<UnitData, int>();
+        this.championBagSizes = new Dictionary<int, int>();
+        this.championIDtoUnitData = new Dictionary<int, UnitData>();
         foreach (UnitData champion in champions)
         {
-            championBagSizes[champion] = DatabaseAPI.getBagSize(champion);
+            championBagSizes[champion.databaseID] = DatabaseAPI.getBagSize(champion);
+            championIDtoUnitData[champion.databaseID] = champion;
         }
         this.levelOdds = DatabaseAPI.getShopOdds();
         this.playerData = new Player(6, 0, 40, 40, 4, 2, DatabaseAPI.getLevelMapping());
@@ -62,7 +65,7 @@ public class Shop
             {
                 if (!previousShopChampion.isDummy())
                 {
-                    championBagSizes[previousShopChampion] += 1;
+                    championBagSizes[previousShopChampion.databaseID] += 1;
                     Debug.Log($"Putting {previousShopChampion} back in the bag...");
                 }
             }
@@ -76,24 +79,26 @@ public class Shop
             int value = rnd.Next(1, 101);
             int unitCost = 1;
 
-            while (currentOdds[unitCost - 1] < value && unitCost <= 5)
+            while (currentOdds[unitCost - 1] < value && unitCost <= 5) // pick the cost level
             { // TODO; PATCH FOR 6 COSTS!
                 value -= currentOdds[unitCost - 1];
                 unitCost++;
             }
 
             int unitCostPool = rnd.Next(1, currentPool[unitCost] + 1);
-            foreach (KeyValuePair<UnitData, int> championData in championBagSizes)
+            foreach (KeyValuePair<int, int> championData in championBagSizes) // pick the champion
             {
-                UnitData champion = championData.Key;
+                int championID = championData.Key;
                 int unitCount = championData.Value;
+                UnitData champion = championIDtoUnitData[championID];
+
                 if (champion.Cost == unitCost)
                 {
-                    unitCostPool -= championBagSizes[champion];
+                    unitCostPool -= championBagSizes[champion.databaseID];
                     if (unitCostPool <= 0)
                     {
-                        Debug.Log($"There are currently {championBagSizes[champion]} {champion.UnitName} in play.");
-                        championBagSizes[champion] -= 1;
+                        Debug.Log($"There are currently {championBagSizes[champion.databaseID]} {champion.UnitName} in play.");
+                        championBagSizes[champion.databaseID] -= 1;
                         currentPool[unitCost] -= 1;
                         newShop.Add(champion);
                         break;
@@ -153,12 +158,27 @@ public class Shop
         return false;
     }
 
+    /// <summary>
+    /// Given a Champion object, return the amount its worth to the player and return the amount of units it contains to the pool.
+    /// </summary>
+    /// <param name="champion"></param>
+    /// <returns></returns>
+
+    public bool sellChampion(Champion champion)
+    {
+        playerData.gold += champion.getSellPrice();
+        int unitCount = (int)Math.Pow(3, champion.starLevel - 1);
+        championBagSizes[champion.databaseID] += unitCount;
+        Debug.Log($"Returned {champion} to the pool. there are now {championBagSizes[champion.databaseID]}  instances.");
+        return true;
+    }
+
     private Dictionary<int, int> generateCurrentPool()
     {
         Dictionary<int, int> currentPool = new Dictionary<int, int>();
-        foreach (KeyValuePair<UnitData, int> championData in championBagSizes)
+        foreach (KeyValuePair<int, int> championData in championBagSizes)
         {
-            int key = championData.Key.Cost;
+            int key = championIDtoUnitData[championData.Key].Cost;
             int value = championData.Value;
             if (currentPool.ContainsKey(key))
             {

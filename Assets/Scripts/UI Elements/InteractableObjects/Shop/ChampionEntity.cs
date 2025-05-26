@@ -27,6 +27,72 @@ public class ChampionEntity : DragAndDrop
         this.championIcon = transform.Find("ChampionIcon").gameObject;
     }
 
+    public void Initialize(Champion newChampion)
+    {
+        this.champion = newChampion;
+        updateVisuals();
+    }
+
+    /// <summary>
+    /// Helper function to check whether collision object is a unit slot or not.
+    /// </summary>
+    /// <returns></returns>
+    protected bool isUnitSlot(GameObject collisionObject)
+    {
+        UnitSlot checkSlot = collisionObject.GetComponent<UnitSlot>();
+        return checkSlot != null;
+    }
+
+    public void updateVisuals() // TODO: transform from flat top to pointy top
+    {
+        championNameField.GetComponent<TextMeshPro>().text = champion.UnitName;
+        championIcon.GetComponent<ChampionIcon>().updateChampionImage(champion);
+        int starLevel = champion.starLevel;
+        SpriteRenderer borderSpriteRenderer = border.GetComponent<SpriteRenderer>();
+        if (starLevel == 1) // bronze
+        {
+            borderSpriteRenderer.color = new Color(0.8f, 0.5f, 0.2f, 1f);
+        }
+        else if (starLevel == 2) // silver
+        {
+            borderSpriteRenderer.color = new Color(0.75f, 0.75f, 0.75f, 1f);
+        }
+        else // gold
+        {
+            borderSpriteRenderer.color = new Color(1f, 0.84f, 0f, 1f);
+        }
+        SpriteRenderer championSpriteRenderer = championIcon.GetComponent<SpriteRenderer>();
+        championSpriteRenderer.sprite = CropSprite(championSpriteRenderer.sprite);
+    }
+
+    public Sprite CropSprite(Sprite originalSprite)
+    {
+        Texture2D originalTexture = originalSprite.texture;
+
+        // Create a new sprite from part of the texture
+        Sprite croppedSprite = Sprite.Create(
+            originalTexture,
+        new Rect(
+            x: originalTexture.width * 2 / 5, // Start at middle
+            y: 0,                 // From bottom
+            width: originalTexture.width * 3 / 5,
+            height: originalTexture.height
+        ),
+            new Vector2(0.2f, 0.5f), // Pivot
+            originalSprite.pixelsPerUnit
+        );
+
+        return croppedSprite;
+    }
+
+    /// <summary>
+    /// Extension call from Champion.
+    /// </summary>
+    /// <returns></returns>
+    public int getSellPrice()
+    {
+        return champion.getSellPrice();
+    }
 
     private void OnMouseEnter()
     { // highlight champion, visual effect
@@ -81,7 +147,7 @@ public class ChampionEntity : DragAndDrop
         }
     }
 
-    protected override bool validateDropLocation()
+    protected bool validateHexDropLocation()
     {
         // multiple things to check:
         // is the unit even hovering over something?
@@ -102,10 +168,28 @@ public class ChampionEntity : DragAndDrop
         }
     }
 
+    protected bool validateShopDropLocation()
+    {
+        if (currentCollisionObject == null)
+        {
+            Debug.Log("DROPPING INTO NOTHING");
+            return false;
+        }
+        else if (currentCollisionObject.GetComponent<ShopUI>() == null)
+        {
+            Debug.Log("DROPPING INTO NOT THE SHOP");
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
     protected override void OnMouseUp()
     {
         // check if the location is a valid place for the checkmark to be: if it is, then drop and update new starting, if not, then return to initial place
-        if (validateDropLocation())
+        if (validateHexDropLocation())
         {
             this.transform.position = getDropLocationCoords();
             pickUpCoords = this.transform.position;
@@ -114,6 +198,13 @@ public class ChampionEntity : DragAndDrop
             previousCollisionObject = currentCollisionObject;
             transform.parent = currentCollisionObject.transform.parent;
             isOnBench = currentCollisionObject.GetComponent<UnitSlot>().isBenchSlot;
+        }
+        else if (validateShopDropLocation())
+        {
+            Debug.Log("SELL THAT HOE");
+            currentCollisionObject.GetComponent<ShopUI>().sellChampion(this);
+            previousCollisionObject.GetComponent<UnitSlot>().removeChampionFromSlot();
+            Destroy(gameObject);
         }
         else
         {
@@ -127,63 +218,4 @@ public class ChampionEntity : DragAndDrop
         newLocationCoords.z = -1; // fix the z value 
         return newLocationCoords;
     }
-
-    /// <summary>
-    /// Helper function to check whether collision object is a unit slot or not.
-    /// </summary>
-    /// <returns></returns>
-    protected bool isUnitSlot(GameObject collisionObject)
-    {
-        UnitSlot checkSlot = collisionObject.GetComponent<UnitSlot>();
-        return checkSlot != null;
-    }
-
-    public void Initialize(Champion newChampion)
-    {
-        this.champion = newChampion;
-        updateVisuals();
-    }
-
-    public void updateVisuals() // TODO: transform from flat top to pointy top
-    {
-        championNameField.GetComponent<TextMeshPro>().text = champion.UnitName;
-        championIcon.GetComponent<ChampionIcon>().updateChampionImage(champion);
-        int starLevel = champion.starLevel;
-        SpriteRenderer borderSpriteRenderer = border.GetComponent<SpriteRenderer>();
-        if (starLevel == 1) // bronze
-        {
-            borderSpriteRenderer.color = new Color(0.8f, 0.5f, 0.2f, 1f);
-        }
-        else if (starLevel == 2) // silver
-        {
-            borderSpriteRenderer.color = new Color(0.75f, 0.75f, 0.75f, 1f);
-        }
-        else // gold
-        {
-            borderSpriteRenderer.color = new Color(1f, 0.84f, 0f, 1f);
-        }
-        SpriteRenderer championSpriteRenderer = championIcon.GetComponent<SpriteRenderer>();
-        championSpriteRenderer.sprite = CropSprite(championSpriteRenderer.sprite);
-    }
-
-    public Sprite CropSprite(Sprite originalSprite)
-    {
-        Texture2D originalTexture = originalSprite.texture;
-
-        // Create a new sprite from part of the texture
-        Sprite croppedSprite = Sprite.Create(
-            originalTexture,
-        new Rect(
-            x: originalTexture.width * 2 / 5, // Start at middle
-            y: 0,                 // From bottom
-            width: originalTexture.width * 3 / 5,
-            height: originalTexture.height
-        ),
-            new Vector2(0.2f, 0.5f), // Pivot
-            originalSprite.pixelsPerUnit
-        );
-
-        return croppedSprite;
-    }
-
 }

@@ -22,6 +22,7 @@ public class ShopUI : MonoBehaviour
     private GameObject XPBar;
     private GameObject GoldTextField;
     private GameObject ShopOddsTextField;
+    private GameObject SellChampionInformation;
     private Shop shop;
     private GameObject[] shopItemArray = new GameObject[5];
     private bool[] hasBeenPurchased = new bool[5]; // backing array to keep track of which are actually empty and which aren't
@@ -59,6 +60,8 @@ public class ShopUI : MonoBehaviour
         XPBar = transform.Find("XPBarFill").gameObject;
         GoldTextField = transform.Find("GoldTextField").gameObject;
         ShopOddsTextField = transform.Find("ShopOddsTextField").gameObject;
+        SellChampionInformation = transform.Find("SellChampionInformation").gameObject;
+        SellChampionInformation.SetActive(false);
         UpdateDisplays();
     }
 
@@ -68,6 +71,7 @@ public class ShopUI : MonoBehaviour
     public void UpdateDisplays()
     {
         (int level, int xp, int xpCap, int gold, List<int> levelOdds) = shop.getDisplayData();
+        Debug.Log($"UPDATING GOLD... {gold}");
         levelTextField.GetComponent<TextMeshPro>().text = $"Lvl. {level}";
         XPTextField.GetComponent<TextMeshPro>().text = $"{xp}/{xpCap}";
         GoldTextField.GetComponent<TextMeshPro>().text = $"{gold}";
@@ -147,6 +151,23 @@ public class ShopUI : MonoBehaviour
         }
     }
 
+    public void sellChampion(ChampionEntity championEntity)
+    {
+        if (shop.sellChampion(championEntity.champion))
+        {
+            Debug.Log("SUCESSFULLY SOLD!");
+            UpdateDisplays();
+            SellChampionInformation.GetComponent<SellChampionInformation>().disableDisplay();
+            for (int i = 0; i < shopItemArray.Length; i++)
+            {
+                if (!hasBeenPurchased[i])
+                {
+                    shopItemArray[i].GetComponent<ShopItem>().enableInteraction(true);
+                }
+            }
+        }
+    }
+
     /// <summary>
     /// 1. remove that champion from the current shop by making a parent call. 
     /// 2. (TODO) create an instance of the champion on the bench
@@ -193,6 +214,8 @@ public class ShopUI : MonoBehaviour
             {
                 shopSlotObject.GetComponent<ShopItem>().enableInteraction(false);
             }
+            int sellPrice = collisionObject.GetComponent<ChampionEntity>().getSellPrice();
+            SellChampionInformation.GetComponent<SellChampionInformation>().enableDisplay(sellPrice);
         }
     }
 
@@ -202,6 +225,7 @@ public class ShopUI : MonoBehaviour
         if (collisionObject.GetComponent<ChampionEntity>() != null)
         {
             Debug.Log("CHAMPION LEFT SHOP FROM POV OF SHOP");
+            SellChampionInformation.GetComponent<SellChampionInformation>().disableDisplay();
             for (int i = 0; i < shopItemArray.Length; i++)
             {
                 if (!hasBeenPurchased[i])
