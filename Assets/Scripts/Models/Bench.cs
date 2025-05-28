@@ -1,9 +1,5 @@
 
-using System;
-using Unity.VisualScripting.ReorderableList;
-using UnityEngine.Rendering.Universal.Internal;
 using UnityEngine;
-
 /// <summary>
 /// A class representing the player's bench. Contains references to all of the champions inside of it
 /// (agnostic of position), and handles logic related to validating buying and selling.

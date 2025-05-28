@@ -94,6 +94,12 @@ public class ChampionEntity : DragAndDrop
         return champion.getSellPrice();
     }
 
+    public void LevelUp()
+    {
+        champion.starLevel++;
+        updateVisuals();
+    }
+
     private void OnMouseEnter()
     { // highlight champion, visual effect
         // Change color on hover TEMPORARY TEST
@@ -115,10 +121,8 @@ public class ChampionEntity : DragAndDrop
     private void OnCollisionEnter2D(Collision2D collisionObject)
     {
         GameObject collisionGameObject = collisionObject.gameObject;
-        Debug.Log(collisionGameObject.transform.position);
         if (isUnitSlot(collisionGameObject))
         {
-            Debug.Log("Entered a tile");
             currentCollisionObject = collisionGameObject;
             if (previousCollisionObject == null) // handle spawn in case
             {
@@ -128,7 +132,6 @@ public class ChampionEntity : DragAndDrop
         }
         else if (collisionGameObject.GetComponent<ShopUI>() != null)
         {
-            Debug.Log("ENTERED THE SHOP");
             currentCollisionObject = collisionGameObject;
             if (previousCollisionObject == null)
             {
@@ -142,7 +145,6 @@ public class ChampionEntity : DragAndDrop
         GameObject collisionGameObject = collisionObject.gameObject;
         if (isUnitSlot(collisionGameObject))
         {
-            Debug.Log("Exited tile");
             currentCollisionObject = null;
         }
     }
@@ -154,12 +156,10 @@ public class ChampionEntity : DragAndDrop
         // TODO is the space currently occupied by another object? assuming its a hex
         if (currentCollisionObject == null)
         {
-            Debug.Log("DROPPING INTO NOTHING");
             return false;
         }
         else if (currentCollisionObject.GetComponent<UnitSlot>() == null)
         {
-            Debug.Log("DROPPING INTO NOT A UNIT SLOT");
             return false;
         }
         else
@@ -172,12 +172,10 @@ public class ChampionEntity : DragAndDrop
     {
         if (currentCollisionObject == null)
         {
-            Debug.Log("DROPPING INTO NOTHING");
             return false;
         }
         else if (currentCollisionObject.GetComponent<ShopUI>() == null)
         {
-            Debug.Log("DROPPING INTO NOT THE SHOP");
             return false;
         }
         else
@@ -201,7 +199,6 @@ public class ChampionEntity : DragAndDrop
         }
         else if (validateShopDropLocation())
         {
-            Debug.Log("SELL THAT HOE");
             currentCollisionObject.GetComponent<ShopUI>().sellChampion(this);
             previousCollisionObject.GetComponent<UnitSlot>().removeChampionFromSlot();
             Destroy(gameObject);

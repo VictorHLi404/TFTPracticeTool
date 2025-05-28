@@ -22,7 +22,6 @@ public class DragAndDrop : MonoBehaviour
     {
         mousePosition = InputSystem.actions.FindAction("MousePointer"); // access the mouse pointer for input
         UpdatePickupCoords(transform.position); // set the first default return location for the object
-        Debug.Log($"STARTING DROP POSITION: {transform.position}");
     }
 
     protected void UpdatePickupCoords(UnityEngine.Vector3 newPositionCoords)

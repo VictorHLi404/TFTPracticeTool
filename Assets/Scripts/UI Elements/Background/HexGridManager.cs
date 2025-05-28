@@ -14,6 +14,8 @@ public class HexGridManager : MonoBehaviour
 
     [Header("Tile Settings")]
     public GameObject tileToGenerate; // Prefab for the tile
+
+    private Board board;
     private void Start()
     {
         if (tileToGenerate == null)
@@ -21,7 +23,7 @@ public class HexGridManager : MonoBehaviour
             UnityEngine.Debug.LogError("Tile prefab not assigned. Please assign it in the inspector.");
             return;
         }
-
+        board = new Board();
         GenerateHexGrid();
     }
 
@@ -57,7 +59,7 @@ public class HexGridManager : MonoBehaviour
 
                 // Instantiate the tile at the calculated position
                 GameObject newTile = Instantiate(tileToGenerate, new Vector3(xPos, yPos, 0), Quaternion.identity, transform);
-                newTile.GetComponent<UnitSlot>().Initialize(false);
+                newTile.GetComponent<UnitSlot>().Initialize(board, false);
                 // Optionally, add customization (e.g., color) here
             }
         }

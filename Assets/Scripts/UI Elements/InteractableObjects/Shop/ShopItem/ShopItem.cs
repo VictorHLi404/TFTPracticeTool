@@ -69,7 +69,6 @@ public class ShopItem : MonoBehaviour
 
     public void OnMouseDown()
     {
-        Debug.Log("CLICKED TO BUY A CHAMPION");
         purchaseChampion();
     }
 

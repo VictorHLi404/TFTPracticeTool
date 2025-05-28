@@ -23,9 +23,8 @@ public class BenchManager : MonoBehaviour
             Debug.LogError("Bench slot prefab not assigned.");
             return;
         }
-
-        GenerateBenchElements();
         this.bench = new Bench();
+        GenerateBenchElements();
     }
 
     private void GenerateBenchElements()
@@ -44,7 +43,7 @@ public class BenchManager : MonoBehaviour
             float yPos = benchOriginY;
             // Instantiate the bench slot and add to the list
             GameObject newBenchSlot = Instantiate(benchSlotPrefab, transform);
-            newBenchSlot.GetComponent<UnitSlot>().Initialize(true);
+            newBenchSlot.GetComponent<UnitSlot>().Initialize(bench, true);
             newBenchSlot.transform.localPosition = new Vector3(xPos, 0, 0);
             benchSlotObjects.Add(newBenchSlot);
             benchSlotCoordinates.Add((xPos, 0));
@@ -68,6 +67,11 @@ public class BenchManager : MonoBehaviour
         {
             return false;
         }
+    }
+
+    public bool CanUnitBePlaced()
+    {
+        return bench.CanUnitBePlaced();
     }
 
     /// <summary>
@@ -100,7 +104,7 @@ public class BenchManager : MonoBehaviour
     /// <returns></returns>
     public bool removeFromBench()
     {
+        bench.RemoveUnit();
         return false;
-
     }
 }

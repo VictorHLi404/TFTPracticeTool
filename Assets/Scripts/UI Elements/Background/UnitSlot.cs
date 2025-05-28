@@ -14,21 +14,21 @@ public class UnitSlot : MonoBehaviour
 {
     public UnitManager parentManager; // reference to either a bench slot manager or board
     public bool isBenchSlot;
-    public float xCenter, yCenter;
 
     [Header("Hex Dimensions")]
     public float hexWidth;
 
-    private Champion championInSlot;
+    public Champion championInSlot;
 
     public void Start()
     {
-        this.xCenter = transform.position.x;
-        this.yCenter = transform.position.y;
+
     }
 
-    public void Initialize(bool isBenchSlot)
+    public void Initialize(UnitManager parentManager, bool isBenchSlot)
     {
+        Debug.Log(parentManager);
+        this.parentManager = parentManager;
         this.isBenchSlot = isBenchSlot;
     }
 
@@ -38,14 +38,18 @@ public class UnitSlot : MonoBehaviour
     }
 
     public void placeChampionInSlot(ChampionEntity newChampion)
-
     {
         championInSlot = newChampion.champion;
+        parentManager.AddUnit();
     }
 
     public void removeChampionFromSlot()
     {
         championInSlot = null;
+        if (isBenchSlot)
+        {
+            parentManager.RemoveUnit();
+        }
     }
 
 }

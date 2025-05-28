@@ -71,7 +71,6 @@ public class ShopUI : MonoBehaviour
     public void UpdateDisplays()
     {
         (int level, int xp, int xpCap, int gold, List<int> levelOdds) = shop.getDisplayData();
-        Debug.Log($"UPDATING GOLD... {gold}");
         levelTextField.GetComponent<TextMeshPro>().text = $"Lvl. {level}";
         XPTextField.GetComponent<TextMeshPro>().text = $"{xp}/{xpCap}";
         GoldTextField.GetComponent<TextMeshPro>().text = $"{gold}";
@@ -155,7 +154,6 @@ public class ShopUI : MonoBehaviour
     {
         if (shop.sellChampion(championEntity.champion))
         {
-            Debug.Log("SUCESSFULLY SOLD!");
             UpdateDisplays();
             SellChampionInformation.GetComponent<SellChampionInformation>().disableDisplay();
             for (int i = 0; i < shopItemArray.Length; i++)
@@ -178,14 +176,12 @@ public class ShopUI : MonoBehaviour
     public bool buyChampion(UnitData champion)
     {
         BenchManager bench = benchManager.GetComponent<BenchManager>();
-        if (!bench.AddToBench())
+        if (!bench.CanUnitBePlaced())
         { // no space on bench
-            Debug.Log("NO SPACE ON BENCH!");
             return false;
         }
         if (!shop.buyChampion(champion))
         { // no money
-            Debug.Log("TOO POOR!");
             return false;
         }
         Champion newChampion = new Champion(1, champion);
@@ -194,17 +190,11 @@ public class ShopUI : MonoBehaviour
         return true;
     }
 
-    public void OnMouseDown()
-    {
-        Debug.Log("CLICKED ON THE SHOP!");
-    }
-
     public void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject collisionObject = collision.gameObject;
         if (collisionObject.GetComponent<ChampionEntity>() != null)
         {
-            Debug.Log("CHAMPION ENTERED SHOP FROM POV OF SHOP");
             for (int i = 0; i < shopItemArray.Length; i++)
             {
                 ShopItem shopSlot = shopItemArray[i].GetComponent<ShopItem>();
@@ -224,7 +214,6 @@ public class ShopUI : MonoBehaviour
         GameObject collisionObject = collision.gameObject;
         if (collisionObject.GetComponent<ChampionEntity>() != null)
         {
-            Debug.Log("CHAMPION LEFT SHOP FROM POV OF SHOP");
             SellChampionInformation.GetComponent<SellChampionInformation>().disableDisplay();
             for (int i = 0; i < shopItemArray.Length; i++)
             {
