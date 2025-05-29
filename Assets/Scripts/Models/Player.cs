@@ -1,8 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Xml.Linq;
-using UnityEngine.Rendering;
 
 public class Player
 {
