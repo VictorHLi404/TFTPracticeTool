@@ -1,17 +1,7 @@
-using UnityEngine;
-using CsvHelper;
-
-using System.IO;
-using System.Globalization;
 using Mono.Data.Sqlite;
-using System.Linq;
-using System;
 using System.Collections.Generic;
-using Unity.VisualScripting.Dependencies.Sqlite;
 using System.Data;
-using NUnit.Framework;
-using System.Security.Cryptography;
-
+using UnityEngine;
 /// <summary>
 /// A class that reads from the BaseGameInformation.db to provide basic game data (levels, shop odds, etc.)
 /// Provides them in model format.
@@ -167,5 +157,79 @@ public static class DatabaseAPI
             }
         }
         return levelMapping;
+    }
+
+    /// <summary>
+    /// From the database, grab the mapping of the trait names to (their leveling scheme, their rarities/colors)
+    /// </summary>
+    /// <returns>A dictionary mapping trait naems to levelling scheme and rarities</returns>
+    public static Dictionary<string, (List<int>, List<TFTEnums.TraitRarities>)> getTraits()
+    {
+        Dictionary<string, (List<int>, List<TFTEnums.TraitRarities>)> traitMapping = new Dictionary<string, (List<int>, List<TFTEnums.TraitRarities>)>();
+        Dictionary<string, List<int>> traitToLevels = new Dictionary<string, List<int>>();
+        Dictionary<string, List<TFTEnums.TraitRarities>> traitToRarities = new Dictionary<string, List<TFTEnums.TraitRarities>>();
+        using (var connection = new SqliteConnection(dbName))
+        {
+            connection.Open();
+            using (var command = connection.CreateCommand())
+            {
+                command.CommandText = $"SELECT * FROM TraitLevels";
+                SqliteDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    List<int> levels = new List<int>();
+                    for (int i = 1; i <= 7; i++) // TODO: MAKE MORE ROBUST FOR FUTURE VERSIONS?
+                    {
+                        int traitLevel = getTraitLevel(reader, $"Tier{i}");
+                        if (traitLevel != 0)
+                        {
+                            levels.Add(traitLevel);
+                        }
+                    }
+                    string traitName = reader.GetString(reader.GetOrdinal("TraitName"));
+                    traitToLevels[traitName] = levels;
+                }
+            }
+            using (var command = connection.CreateCommand())
+            {
+                command.CommandText = $"SELECT * FROM TraitColors";
+                SqliteDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    List<TFTEnums.TraitRarities> rarities = new List<TFTEnums.TraitRarities>();
+                    for (int i = 1; i <= 7; i++) // TODO: MAKE MORE ROBUST FOR FUTURE VERSIONS?
+                    {
+                        int traitRarity = getTraitLevel(reader, $"Tier{i}");
+                        if (traitRarity != 0)
+                        {
+                            TFTEnums.TraitRarities enumValue = (TFTEnums.TraitRarities)traitRarity;
+                            rarities.Add(enumValue);
+                        }
+                    }
+                    string traitName = reader.GetString(reader.GetOrdinal("TraitName"));
+                    traitToRarities[traitName] = rarities;
+                }
+            }
+        }
+        foreach (string traitName in traitToLevels.Keys)
+        {
+            traitMapping[traitName] = (traitToLevels[traitName], traitToRarities[traitName]);
+        }
+        return traitMapping;
+    }
+
+    private static int getTraitLevel(SqliteDataReader reader, string traitTier) {
+        // current assumption is that all values in the table are nonnull; "null" values are just empty strings
+        Debug.Log(traitTier);
+
+        string traitLevelString = reader.GetString(reader.GetOrdinal(traitTier));
+        if (traitLevelString != "")
+        {
+            return int.Parse(traitLevelString);
+        }
+        else
+        {
+            return 0;
+        }
     }
 }

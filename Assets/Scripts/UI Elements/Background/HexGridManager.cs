@@ -65,7 +65,7 @@ public class HexGridManager : MonoBehaviour
             }
         }
     }
-    
+
     /// <summary>
     /// A function that iterates through the current gameObjects children and picks up all of the ChampionEntities.
     /// </summary>
@@ -77,7 +77,7 @@ public class HexGridManager : MonoBehaviour
         for (int i = 0; i < transform.childCount; i++)
         {
             GameObject childObject = transform.GetChild(i).gameObject;
-            if (childObject.GetComponent<ChampionEntity>() == null)
+            if (childObject.GetComponent<ChampionEntity>() != null)
             {
                 championList.Add(childObject.GetComponent<ChampionEntity>());
             }

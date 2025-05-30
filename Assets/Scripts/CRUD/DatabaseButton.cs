@@ -11,8 +11,7 @@ public class DatabaseButton : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Shop newShop = new Shop();
-        newShop.generateShop(false);
+
 
     }
 

@@ -7,7 +7,6 @@ using Mono.Data.Sqlite;
 using System.Linq;
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting.Dependencies.Sqlite;
 public static class DatabaseBuilder
 {
     // A collection of functions that build sqlite tables from csv files
@@ -19,6 +18,7 @@ public static class DatabaseBuilder
     private static string shopOddsCSVFile = @"Assets\Scripts\CRUD\CSVFiles\ShopOdds.csv";
     private static string defaultBagSizesCSVFile = @"Assets\Scripts\CRUD\CSVFiles\DefaultBagSizes.csv";
     private static string traitLevelsCSVFile = @"Assets\Scripts\CRUD\CSVFiles\TraitLevels.csv";
+    private static string traitColorsCSVFile = @"Assets\Scripts\CRUD\CSVFiles\TraitColors.csv";
 
     private static string XPLevelsCSVFile = @"Assets\Scripts\CRUD\CSVFiles\XPLevels.csv";
 
@@ -42,6 +42,8 @@ public static class DatabaseBuilder
         Debug.Log("Default Bag Sizes generated!");
         buildTraitLevels();
         Debug.Log("Trait Levels generated!");
+        buildTraitColors();
+        Debug.Log("Trait Colors generated");
         buildXPLevels();
         Debug.Log("XP levels built!");
     }
@@ -141,6 +143,30 @@ public static class DatabaseBuilder
         }
     }
 
+    public static void buildTraitColors()
+    {
+        List<List<string>> dataPackage = convertCSVFileTo2DList(traitColorsCSVFile);
+        using (var connection = new SqliteConnection(dbName))
+        {
+            connection.Open();
+            using (var command = connection.CreateCommand())
+            {
+                command.CommandText = "CREATE TABLE IF NOT EXISTS TraitColors (TraitName VARCHAR (20), Tier1 VARCHAR (20), Tier2 VARCHAR (20), Tier3 VARCHAR (20), Tier4 VARCHAR (20), Tier5 VARCHAR (20), Tier6 VARCHAR (20), Tier7 VARCHAR (20));";
+                command.ExecuteNonQuery();
+            }
+            foreach (List<string> traitData in dataPackage)
+            {
+                using (var command = connection.CreateCommand())
+                {
+                    string formattedValue = generateFormattedValueForSQL(traitData);
+                    command.CommandText = "INSERT INTO TraitColors (TraitName, Tier1, Tier2, Tier3, Tier4, Tier5, Tier6, Tier7) VALUES " + formattedValue;
+                    command.ExecuteNonQuery();
+                }
+            }
+            connection.Close();
+        }
+    }
+
     public static void buildXPLevels()
     {
         List<List<string>> dataPackage = convertCSVFileTo2DList(XPLevelsCSVFile); // generate 2d list from csv file
@@ -169,7 +195,7 @@ public static class DatabaseBuilder
     { // generate a usable INSERT INTO SQL command from a list of values,
         if (rowData.Count < 1)
         {
-            throw new ArgumentException("Rowdata must contain at least on element");
+            throw new ArgumentException("Rowdata must contain at least one element");
         }
         // NOTE: function must assume that rowData is at least of length 1, look into safeguarding for later
         string formattedValue = "(\'";

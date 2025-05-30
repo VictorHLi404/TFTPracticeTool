@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -33,15 +34,13 @@ public class GameManager : MonoBehaviour
         Dictionary<(int, int), int> newCurrentChampions = new Dictionary<(int, int), int>();
         List<ChampionEntity> championList = new List<ChampionEntity>();
 
-        int boardChampionCount = boardManager.transform.childCount;
-        for (int i = 0; i < boardChampionCount; i++)
+        List<ChampionEntity> benchChampions = benchManager.GetComponent<BenchManager>().GetChampionEntities();
+        List<ChampionEntity> boardChampions = boardManager.GetComponent<HexGridManager>().GetChampionEntities();
+
+        benchChampions.AddRange(boardChampions);
+
+        foreach (ChampionEntity championEntity in benchChampions)
         {
-            GameObject childObject = boardManager.transform.GetChild(i).gameObject;
-            if (!childObject.GetComponent<ChampionEntity>())
-            {
-                continue;
-            }
-            ChampionEntity championEntity = childObject.GetComponent<ChampionEntity>();
             int databaseID = championEntity.champion.databaseID;
             int starLevel = championEntity.champion.starLevel;
             if (!newCurrentChampions.ContainsKey((databaseID, starLevel)))
@@ -55,29 +54,6 @@ public class GameManager : MonoBehaviour
             championList.Add(championEntity);
         }
 
-        int benchChampionCount = benchManager.transform.childCount;
-        for (int i = 0; i < benchChampionCount; i++)
-        {
-            GameObject childObject = benchManager.transform.GetChild(i).gameObject;
-
-            if (!childObject.GetComponent<ChampionEntity>())
-            {
-                continue;
-            }
-            ChampionEntity championEntity = childObject.GetComponent<ChampionEntity>();
-            int databaseID = championEntity.champion.databaseID;
-            int starLevel = championEntity.champion.starLevel;
-
-            if (!newCurrentChampions.ContainsKey((databaseID, starLevel)))
-            {
-                newCurrentChampions[(databaseID, starLevel)] = 1;
-            }
-            else
-            {
-                newCurrentChampions[(databaseID, starLevel)] += 1;
-            }
-            championList.Add(championEntity);
-        }
         foreach (KeyValuePair<(int, int), int> kvp in newCurrentChampions)
         {
             int databaseID = kvp.Key.Item1;

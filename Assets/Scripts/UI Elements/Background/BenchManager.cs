@@ -49,6 +49,26 @@ public class BenchManager : MonoBehaviour
             benchSlotCoordinates.Add((xPos, 0));
         }
     }
+    
+    /// <summary>
+    /// A function that iterates through the current gameObjects children and picks up all of the ChampionEntities.
+    /// </summary>
+    /// <returns>A list of the ChampionEntities, NOT their respective game objects.</returns>
+    public List<ChampionEntity> GetChampionEntities()
+    {
+        List<ChampionEntity> championList = new List<ChampionEntity>();
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            GameObject childObject = transform.GetChild(i).gameObject;
+            if (childObject.GetComponent<ChampionEntity>() != null)
+            {
+                championList.Add(childObject.GetComponent<ChampionEntity>());
+            }
+        }
+
+        return championList;
+    }
 
     /// <summary>
     /// A method that validates whether a champion can be added to the bench or not based off of the total count.
