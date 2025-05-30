@@ -29,6 +29,7 @@ public class ShopUI : MonoBehaviour
 
     [Header("UI Reference Objects")]
     public GameObject benchManager;
+    public GameObject hexGridManager;
 
     private void Start()
     {
@@ -37,6 +38,7 @@ public class ShopUI : MonoBehaviour
         GenerateButtons();
         GenerateDisplayElements();
         GenerateShopItems();
+        hexGridManager.GetComponent<HexGridManager>().updateMaxUnitCount(shop.getPlayerLevel());
     }
 
     /// <summary>
@@ -147,6 +149,7 @@ public class ShopUI : MonoBehaviour
         if (shop.buyXP())
         {
             UpdateDisplays();
+            hexGridManager.GetComponent<HexGridManager>().updateMaxUnitCount(shop.getPlayerLevel());
         }
     }
 

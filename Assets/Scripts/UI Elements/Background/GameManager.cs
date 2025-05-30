@@ -95,8 +95,6 @@ public class GameManager : MonoBehaviour
                 }
                 mergeChampions(championsToMerge);
             }
-            Debug.Log($"{kvp.Key.Item1}, {kvp.Key.Item2}, {kvp.Value}");
-
         }
         currentChampions = newCurrentChampions;
     }
@@ -131,6 +129,8 @@ public class GameManager : MonoBehaviour
         {
             if (index != i)
             {
+                ChampionEntity championEntity = champions[i];
+                championEntity.removeSelfFromSlot();
                 Destroy(champions[i].gameObject);
             }
         }

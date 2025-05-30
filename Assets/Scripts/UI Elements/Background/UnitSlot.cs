@@ -27,7 +27,6 @@ public class UnitSlot : MonoBehaviour
 
     public void Initialize(UnitManager parentManager, bool isBenchSlot)
     {
-        Debug.Log(parentManager);
         this.parentManager = parentManager;
         this.isBenchSlot = isBenchSlot;
     }
@@ -46,10 +45,7 @@ public class UnitSlot : MonoBehaviour
     public void removeChampionFromSlot()
     {
         championInSlot = null;
-        if (isBenchSlot)
-        {
-            parentManager.RemoveUnit();
-        }
+        parentManager.RemoveUnit();
     }
 
 }

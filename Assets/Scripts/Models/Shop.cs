@@ -97,7 +97,6 @@ public class Shop
                     unitCostPool -= championBagSizes[champion.databaseID];
                     if (unitCostPool <= 0)
                     {
-                        Debug.Log($"There are currently {championBagSizes[champion.databaseID]} {champion.UnitName} in play.");
                         championBagSizes[champion.databaseID] -= 1;
                         currentPool[unitCost] -= 1;
                         newShop.Add(champion);
@@ -121,6 +120,11 @@ public class Shop
         Debug.Log("BUY XP!");
         playerData.buyXP(4); // default is 4, change later for potential implements
         return true;
+    }
+
+    public int getPlayerLevel()
+    {
+        return playerData.level;
     }
 
     /// <summary>

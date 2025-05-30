@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System;
+using Unity.VisualScripting;
 
 /// <summary>
 /// A class to represent a single champion entity on the board.
@@ -16,8 +17,8 @@ public class ChampionEntity : DragAndDrop
     private GameObject championIcon;
 
     private SpriteRenderer spriteRenderer; // tool for rendering sprite 
-    private GameObject currentCollisionObject = null; // variable to interface with current hex / bench slot that the unit is sitting on\
-    private GameObject previousCollisionObject = null; // variable to keep track of exisiting place, same w drop coords
+    public GameObject currentCollisionObject = null; // variable to interface with current hex / bench slot that the unit is sitting on\
+    public GameObject previousCollisionObject = null; // variable to keep track of exisiting place, same w drop coords
     private GameObject itemDisplay;
     public new void Awake()
     {
@@ -27,9 +28,11 @@ public class ChampionEntity : DragAndDrop
         this.championIcon = transform.Find("ChampionIcon").gameObject;
     }
 
-    public void Initialize(Champion newChampion)
+    public void Initialize(Champion newChampion, GameObject unitSlot)
     {
         this.champion = newChampion;
+        this.currentCollisionObject = unitSlot;
+        this.previousCollisionObject = unitSlot;
         updateVisuals();
     }
 
@@ -100,6 +103,21 @@ public class ChampionEntity : DragAndDrop
         updateVisuals();
     }
 
+    public void removeSelfFromSlot()
+    {
+        if (currentCollisionObject == null)
+        {
+            Debug.Log("CHAMPION DIDNT TOUCH ANYTHING");
+            return;
+        }
+        if (currentCollisionObject.gameObject.GetComponent<UnitSlot>() == null)
+        {
+            Debug.LogError("Invalid merging occured when trying to delete old objects");
+        }
+        UnitSlot championSlot = currentCollisionObject.gameObject.GetComponent<UnitSlot>();
+        championSlot.removeChampionFromSlot();
+    }
+
     private void OnMouseEnter()
     { // highlight champion, visual effect
         // Change color on hover TEMPORARY TEST
@@ -164,6 +182,11 @@ public class ChampionEntity : DragAndDrop
         }
         else
         {
+            UnitManager parentManager = currentCollisionObject.GetComponent<UnitSlot>().parentManager;
+            if (!parentManager.CanUnitBePlaced())
+            {
+                return false;
+            }
             return currentCollisionObject.GetComponent<UnitSlot>().isEmpty();
         }
     }

@@ -1,7 +1,10 @@
+using UnityEngine;
+
 /// <summary>
 /// A class that represents the main board. Takes in arguments to determine the current max unit count,
 /// and adds some functionality to determine trait levels of the current board.
 /// </summary>
+/// 
 public class Board : UnitManager
 {
     public Board()
@@ -21,6 +24,7 @@ public class Board : UnitManager
 
     public override bool CanUnitBePlaced()
     {
+        Debug.Log($"{currentUnitCount + 1}, {maxUnitCount}");
         return currentUnitCount + 1 <= maxUnitCount;
     }
 }
