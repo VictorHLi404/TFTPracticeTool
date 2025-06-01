@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     public void Awake()
     {
-        this.boardManager = transform.Find("HexGridManager").gameObject;
+        this.boardManager = transform.Find("BoardManager").gameObject;
         this.benchManager = transform.Find("BenchSlotManager").gameObject;
         if (!boardManager || !benchManager)
         {

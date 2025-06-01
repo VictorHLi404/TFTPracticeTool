@@ -220,7 +220,6 @@ public static class DatabaseAPI
 
     private static int getTraitLevel(SqliteDataReader reader, string traitTier) {
         // current assumption is that all values in the table are nonnull; "null" values are just empty strings
-        Debug.Log(traitTier);
 
         string traitLevelString = reader.GetString(reader.GetOrdinal(traitTier));
         if (traitLevelString != "")

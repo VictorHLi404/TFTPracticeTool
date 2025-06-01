@@ -31,7 +31,7 @@ public class ShopUI : MonoBehaviour
     public GameObject benchManager;
     public GameObject hexGridManager;
 
-    private void Start()
+    public void Start()
     {
         shop = new Shop();
         shop.generateShop(true);

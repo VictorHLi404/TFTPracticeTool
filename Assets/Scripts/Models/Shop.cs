@@ -26,7 +26,7 @@ public class Shop
             championIDtoUnitData[champion.databaseID] = champion;
         }
         this.levelOdds = DatabaseAPI.getShopOdds();
-        this.playerData = new Player(6, 0, 40, 40, 4, 2, DatabaseAPI.getLevelMapping());
+        this.playerData = new Player(6, 0, 200, 40, 4, 2, DatabaseAPI.getLevelMapping());
     }
 
     /// <summary>

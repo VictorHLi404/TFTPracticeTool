@@ -24,7 +24,6 @@ public class Board : UnitManager
 
     public override bool CanUnitBePlaced()
     {
-        Debug.Log($"{currentUnitCount + 1}, {maxUnitCount}");
         return currentUnitCount + 1 <= maxUnitCount;
     }
 }

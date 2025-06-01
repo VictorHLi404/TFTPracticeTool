@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
-using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
-using UnityEngine.AI;
+using System.Linq;
 
 
 /// <summary>
@@ -15,27 +13,17 @@ public class TraitManager : MonoBehaviour
 
     [Header("Object References")]
     public GameObject board;
+    public GameObject traitTemplate;
+
     private int currentChampionCount = 0;
     private Dictionary<string, int> traitCountMapping = new Dictionary<string, int>();
 
     private Dictionary<string, (List<int>, List<TFTEnums.TraitRarities>)> traitDataMapping = new Dictionary<string, (List<int>, List<TFTEnums.TraitRarities>)>();
 
 
-    public void Start()
+    public void Awake()
     {
         this.traitDataMapping = DatabaseAPI.getTraits();
-        foreach (KeyValuePair<string, (List<int>, List<TFTEnums.TraitRarities>)> kvp in traitDataMapping)
-        {
-            Debug.Log(kvp.Key);
-            foreach (int level in kvp.Value.Item1)
-            {
-                Debug.Log(level);
-            }
-            foreach (TFTEnums.TraitRarities rarity in kvp.Value.Item2)
-            {
-                Debug.Log(rarity);
-            }
-        }   
     }
 
     public void Update()
@@ -53,7 +41,9 @@ public class TraitManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// A function that, given a list of entities representing the champions currently on the board,
+    /// extracts the relevant trait data and assigns it to the storage. Then calls createTraitDisplays()
+    /// to build the new traits.
     /// </summary>
     /// <param name="championEntities"></param>
     /// <returns></returns>
@@ -84,13 +74,105 @@ public class TraitManager : MonoBehaviour
             }
         }
 
-        foreach (KeyValuePair<string, int> kvp in newTraitMapping)
-        {
-            Debug.Log($"{kvp.Key}, {kvp.Value}");
-        }
-
         traitCountMapping = newTraitMapping;
+        createTraitDisplays();
+    }
+
+    /// <summary>
+    /// Destroys all previous existing trait displays, and regenerates new ones based off of traitCountMapping.
+    /// </summary>
+    private void createTraitDisplays()
+    {
+        if (transform.childCount > 0)
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                GameObject childObject = transform.GetChild(i).gameObject;
+                if (childObject.GetComponent<TraitDisplay>() != null)
+                {
+                    Destroy(childObject);
+                }
+                else
+                {
+                    Debug.LogError("A non-trait display child is a child of the trait manager object.");
+                }
+            }
+        }
+        float yPosition = 0;
+        // TODO: implement sorting / consistent order of trait appearances
+        List<(string, int)> sortedTraits = getSortedTraits();
+
+        foreach ((string, int) traitData in sortedTraits)
+        {
+            GameObject newTraitDisplay = Instantiate(traitTemplate, transform);
+            newTraitDisplay.transform.localPosition = new Vector3(0, yPosition, 0);
+            newTraitDisplay.transform.localScale = new Vector3(0.005f, 0.005f, 0.005f);
+            newTraitDisplay.GetComponent<TraitDisplay>().Initialize(traitData.Item1, traitData.Item2, traitDataMapping[traitData.Item1].Item1, traitDataMapping[traitData.Item1].Item2);
+
+            yPosition -= 0.12f;
+        }
+        // foreach (KeyValuePair<string, int> trait in traitCountMapping)
+        // {
+        //     GameObject newTraitDisplay = Instantiate(traitTemplate, transform);
+        //     newTraitDisplay.transform.localPosition = new Vector3(0, yPosition, 0);
+        //     newTraitDisplay.transform.localScale = new Vector3(0.005f, 0.005f, 0.005f);
+        //     newTraitDisplay.GetComponent<TraitDisplay>().Initialize(trait.Key, trait.Value, traitDataMapping[trait.Key].Item1, traitDataMapping[trait.Key].Item2);
+
+        //     yPosition -= 0.12f;
+        // }
     }
 
 
+    /// <summary>
+    /// A function that returns a sorted list of traits in an optimal display order. Prioritizes by:
+    /// Is completed / active -> tier of trait completeness -> alphabetical
+    /// Tier of trait completeness
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    private List<(string, int)> getSortedTraits()
+    {
+        List<(string, int, int)> isActiveTraits = new List<(string, int, int)>();
+        List<(string, int, int)> isInactiveTraits = new List<(string, int, int)>();
+
+        foreach (KeyValuePair<string, int> trait in traitCountMapping)
+        {
+            List<int> traitBreakpoints = traitDataMapping[trait.Key].Item1;
+            if (trait.Value < traitBreakpoints[0])
+            {
+                isInactiveTraits.Add((trait.Key, trait.Value, traitBreakpoints[0]));
+            }
+            else
+            {
+                int index = 0;
+                while (trait.Value >= traitBreakpoints[index + 1])
+                {
+                    index += 1;
+                }
+                isActiveTraits.Add((trait.Key, trait.Value, index));
+            }
+        }
+
+        List<(string, int, int)> sortedActiveTraits = isActiveTraits.OrderByDescending(s => s.Item3).ThenBy(s => s.Item1).ToList();
+        foreach ((string, int, int) v in isInactiveTraits)
+        {
+            Debug.Log(v);
+        }
+        List<(string, int, int)> sortedInactiveTraits = isInactiveTraits.OrderByDescending(s => (float) s.Item2 / s.Item3).ThenBy(s => s.Item1).ToList();
+        foreach ((string, int, int) v in sortedInactiveTraits)
+        {
+            Debug.Log(v);
+        }
+
+        List<(string, int)> returnList = new List<(string, int)>();
+        foreach ((string, int, int) trait in sortedActiveTraits)
+        {
+            returnList.Add((trait.Item1, trait.Item2));
+        }
+        foreach ((string, int, int) trait in sortedInactiveTraits)
+        {
+            returnList.Add((trait.Item1, trait.Item2));
+        }
+        return returnList;
+    }
 }
