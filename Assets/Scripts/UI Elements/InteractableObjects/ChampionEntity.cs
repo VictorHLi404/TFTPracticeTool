@@ -13,7 +13,6 @@ public class ChampionEntity : DragAndDrop
     public Champion champion { get; set; }
     public bool isOnBench = true;
     private GameObject border;
-    private GameObject championNameField;
     private GameObject championIcon;
 
     private SpriteRenderer spriteRenderer; // tool for rendering sprite 
@@ -24,7 +23,6 @@ public class ChampionEntity : DragAndDrop
     {
         base.Awake();
         this.border = transform.Find("Border").gameObject;
-        this.championNameField = transform.Find("ChampionNameField").gameObject;
         this.championIcon = transform.Find("ChampionIcon").gameObject;
     }
 
@@ -48,7 +46,6 @@ public class ChampionEntity : DragAndDrop
 
     public void updateVisuals() // TODO: transform from flat top to pointy top
     {
-        championNameField.GetComponent<TextMeshPro>().text = champion.UnitName;
         championIcon.GetComponent<ChampionIcon>().updateChampionImage(champion);
         int starLevel = champion.starLevel;
         SpriteRenderer borderSpriteRenderer = border.GetComponent<SpriteRenderer>();

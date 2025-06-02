@@ -38,7 +38,11 @@ public class ShopUI : MonoBehaviour
         GenerateButtons();
         GenerateDisplayElements();
         GenerateShopItems();
-        hexGridManager.GetComponent<HexGridManager>().updateMaxUnitCount(shop.getPlayerLevel());
+    }
+
+    public void Update()
+    {
+        hexGridManager.GetComponent<HexGridManager>().updateMaxUnitCount(shop.getPlayerLevel());   
     }
 
     /// <summary>

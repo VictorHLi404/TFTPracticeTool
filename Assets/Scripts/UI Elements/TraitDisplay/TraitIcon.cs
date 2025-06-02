@@ -16,8 +16,18 @@ public class TraitIcon : MonoBehaviour
         {
             spriteRendererComponent.color = new Color32(0, 0, 0, 255);
         }
-        else {
+        else
+        {
             spriteRendererComponent.color = new Color32(94, 94, 96, 255);
         }
+    }
+
+    public void UpdateShopTraitIcon(string traitName)
+    {
+        SpriteRenderer spriteRendererComponent = gameObject.GetComponent<SpriteRenderer>();
+        string pathArgument = traitName.Replace(" ", "");
+        string file_path = $"TraitIcons/{pathArgument}_Icon";
+        spriteRendererComponent.sprite = Resources.Load<Sprite>(file_path);
+        spriteRendererComponent.color = new Color32(255, 255, 255, 255);
     }
 }

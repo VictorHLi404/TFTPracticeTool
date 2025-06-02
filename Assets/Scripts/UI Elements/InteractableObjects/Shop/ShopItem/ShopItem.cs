@@ -12,6 +12,11 @@ public class ShopItem : MonoBehaviour
     private GameObject championIcon;
     private ShopUI parentShop;
 
+    [Header("Object References")]
+
+    public GameObject traitDisplayTemplate;
+
+
 
     public void Start()
     {
@@ -49,6 +54,29 @@ public class ShopItem : MonoBehaviour
 
         this.championIcon = transform.Find("ChampionIcon").gameObject;
         championIcon.GetComponent<ChampionIcon>().updateChampionImage(newChampion);
+
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (transform.GetChild(i).GetComponent<ShopTraitDisplay>())
+            {
+                Destroy(transform.GetChild(i).gameObject);
+            }
+        }
+
+        int traitCount = champion.unitTraits.Count;
+        float yPosition = -2 + ((traitCount-1) * 1.5f);
+
+        foreach (string traitName in champion.unitTraits)
+        {
+            Debug.Log(yPosition);
+            GameObject traitDisplayField = Instantiate(traitDisplayTemplate, transform);
+            traitDisplayField.transform.localPosition = new Vector3(-5.5f, yPosition, -0.5f);
+            traitDisplayField.transform.localScale = new Vector3(1.5f, 1.5f, 1f);
+
+            traitDisplayField.GetComponent<ShopTraitDisplay>().Initialize(traitName);
+            yPosition -= 1.5f;
+        }
 
     }
 

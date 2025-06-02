@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3e3e86dc2853a614b8b127119e4e3e5c
+guid: 222423052ca35e7428da797836f9c279
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4879361086566997356
-    second: TFT14_Dr.Mundo.TFT_Set14_0
+      213: 6234146796056821757
+    second: TFT14_Miss Fortune.TFT_Set14_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TFT14_Dr.Mundo.TFT_Set14_0
+      name: TFT14_Miss Fortune.TFT_Set14_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4926f4891f6094cb0800000000000000
-      internalID: -4879361086566997356
+      spriteID: dff3b982b73248650800000000000000
+      internalID: 6234146796056821757
       vertices: []
       indices: 
       edges: []

@@ -111,15 +111,6 @@ public class TraitManager : MonoBehaviour
 
             yPosition -= 0.12f;
         }
-        // foreach (KeyValuePair<string, int> trait in traitCountMapping)
-        // {
-        //     GameObject newTraitDisplay = Instantiate(traitTemplate, transform);
-        //     newTraitDisplay.transform.localPosition = new Vector3(0, yPosition, 0);
-        //     newTraitDisplay.transform.localScale = new Vector3(0.005f, 0.005f, 0.005f);
-        //     newTraitDisplay.GetComponent<TraitDisplay>().Initialize(trait.Key, trait.Value, traitDataMapping[trait.Key].Item1, traitDataMapping[trait.Key].Item2);
-
-        //     yPosition -= 0.12f;
-        // }
     }
 
 
