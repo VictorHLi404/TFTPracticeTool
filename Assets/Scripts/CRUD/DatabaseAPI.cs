@@ -2,6 +2,7 @@ using Mono.Data.Sqlite;
 using System.Collections.Generic;
 using System.Data;
 using UnityEngine;
+using System;
 /// <summary>
 /// A class that reads from the BaseGameInformation.db to provide basic game data (levels, shop odds, etc.)
 /// Provides them in model format.
@@ -218,7 +219,8 @@ public static class DatabaseAPI
         return traitMapping;
     }
 
-    private static int getTraitLevel(SqliteDataReader reader, string traitTier) {
+    private static int getTraitLevel(SqliteDataReader reader, string traitTier)
+    {
         // current assumption is that all values in the table are nonnull; "null" values are just empty strings
 
         string traitLevelString = reader.GetString(reader.GetOrdinal(traitTier));
@@ -231,4 +233,27 @@ public static class DatabaseAPI
             return 0;
         }
     }
+
+    public static Dictionary<(TFTEnums.Component, TFTEnums.Component), TFTEnums.Item> getItemMapping()
+    {
+        Dictionary<(TFTEnums.Component, TFTEnums.Component), TFTEnums.Item> itemMapping = new Dictionary<(TFTEnums.Component, TFTEnums.Component), TFTEnums.Item>();
+        using (var connection = new SqliteConnection(dbName))
+        {
+            connection.Open();
+            using (var command = connection.CreateCommand())
+            {
+                command.CommandText = $"SELECT * FROM Items";
+                SqliteDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    TFTEnums.Component component1 = (TFTEnums.Component)Enum.Parse(typeof(TFTEnums.Component), reader.GetString(reader.GetOrdinal("Component1")).Replace(".", "").Replace(" ", ""));
+                    TFTEnums.Component component2 = (TFTEnums.Component)Enum.Parse(typeof(TFTEnums.Component), reader.GetString(reader.GetOrdinal("Component2")).Replace(".", "").Replace(" ", ""));
+                    TFTEnums.Item item = (TFTEnums.Item)Enum.Parse(typeof(TFTEnums.Item), reader.GetString(reader.GetOrdinal("CompletedItem")).Replace(".", "").Replace(" ", ""));
+                    itemMapping[(component1, component2)] = item;
+                }
+            }
+        }
+        return itemMapping;
+    }
+    
 }

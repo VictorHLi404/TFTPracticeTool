@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6758030878113201010
+--- !u!1 &5740294972047425949
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,56 +8,56 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8276854931691784628}
-  - component: {fileID: 4285647903691900793}
-  - component: {fileID: 8929644451413802737}
+  - component: {fileID: 841501498054959225}
+  - component: {fileID: 1366092276368773600}
+  - component: {fileID: 2526064100236654948}
   m_Layer: 0
-  m_Name: BoardManager
+  m_Name: ItemManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8276854931691784628
+--- !u!4 &841501498054959225
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6758030878113201010}
+  m_GameObject: {fileID: 5740294972047425949}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -162, y: -113, z: 0.042683423}
-  m_LocalScale: {x: 50, y: 50, z: 200}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 114.984764, y: 16.396852, z: -2.8146324}
+  m_LocalScale: {x: 50, y: 50, z: 50}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4285647903691900793
+--- !u!114 &1366092276368773600
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6758030878113201010}
+  m_GameObject: {fileID: 5740294972047425949}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06fefa9fd0e37074cac30b327a8c5099, type: 3}
+  m_Script: {fileID: 11500000, guid: 230d66cc7ffd4734baa5b678ea0c1a31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileWidth: 50
-  tileHeight: 50
-  rows: 4
-  columns: 7
-  spacing: 25
-  tileToGenerate: {fileID: 1498485293303364913, guid: c79bb56abdfcd51438ac24f5fb733d29, type: 3}
---- !u!212 &8929644451413802737
+  itemSlots: 10
+  slotWidth: 1.25
+  slotHeight: 1
+  spacing: 0.375
+  itemSlotPrefab: {fileID: 6590607752231234666, guid: 48a82b934956a9f418a4cbdc2adaf03e, type: 3}
+  itemPrefab: {fileID: 6257319456356722106, guid: 849727c5fc719dc4084116820dcc8e56, type: 3}
+--- !u!212 &2526064100236654948
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6758030878113201010}
+  m_GameObject: {fileID: 5740294972047425949}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -95,14 +95,14 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -242972851694231144, guid: 80a12b820c04b044a8b165256607750e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 5.12, y: 5.12}
+  m_Size: {x: 1.89, y: 12.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0

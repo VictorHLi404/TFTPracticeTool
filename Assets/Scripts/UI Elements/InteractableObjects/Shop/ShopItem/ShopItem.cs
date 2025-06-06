@@ -69,7 +69,6 @@ public class ShopItem : MonoBehaviour
 
         foreach (string traitName in champion.unitTraits)
         {
-            Debug.Log(yPosition);
             GameObject traitDisplayField = Instantiate(traitDisplayTemplate, transform);
             traitDisplayField.transform.localPosition = new Vector3(-5.5f, yPosition, -0.5f);
             traitDisplayField.transform.localScale = new Vector3(1.5f, 1.5f, 1f);

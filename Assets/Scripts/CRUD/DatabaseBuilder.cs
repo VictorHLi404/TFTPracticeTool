@@ -19,8 +19,8 @@ public static class DatabaseBuilder
     private static string defaultBagSizesCSVFile = @"Assets\Scripts\CRUD\CSVFiles\DefaultBagSizes.csv";
     private static string traitLevelsCSVFile = @"Assets\Scripts\CRUD\CSVFiles\TraitLevels.csv";
     private static string traitColorsCSVFile = @"Assets\Scripts\CRUD\CSVFiles\TraitColors.csv";
-
     private static string XPLevelsCSVFile = @"Assets\Scripts\CRUD\CSVFiles\XPLevels.csv";
+    private static string itemsFile = @"Assets\Scripts\CRUD\CSVFiles\Items.csv";
 
     public static void generateNewDatabase()
     { // generate a brand new database if one does not exist yet
@@ -34,6 +34,7 @@ public static class DatabaseBuilder
     public static void initializeDatabase()
     {
         generateNewDatabase();
+        Debug.Log("Database built!");
         buildChampionTable();
         Debug.Log("Champion Table generated!");
         buildShopOdds();
@@ -46,6 +47,8 @@ public static class DatabaseBuilder
         Debug.Log("Trait Colors generated");
         buildXPLevels();
         Debug.Log("XP levels built!");
+        buildItems();
+        Debug.Log("Items built!");
     }
 
     public static void buildChampionTable()
@@ -191,6 +194,30 @@ public static class DatabaseBuilder
         }
     }
 
+    public static void buildItems()
+    {
+        List<List<string>> dataPackage = convertCSVFileTo2DList(itemsFile); // generate 2d list from csv file
+        using (var connection = new SqliteConnection(dbName))
+        { // add to champion table
+            connection.Open();
+            using (var command = connection.CreateCommand())
+            { // generate the champion table
+                command.CommandText = "CREATE TABLE IF NOT EXISTS Items (Component1 VARCHAR(20), Component2 VARCHAR(20), CompletedItem VARCHAR(20));";
+                command.ExecuteNonQuery();
+            }
+            foreach (List<string> itemData in dataPackage)
+            {
+                using (var command = connection.CreateCommand())
+                {
+                    string formattedValue = generateFormattedValueForSQL(itemData);
+                    command.CommandText = "INSERT INTO Items (Component1, Component2, CompletedItem) VALUES " + formattedValue;
+                    command.ExecuteNonQuery();
+                }
+            }
+            connection.Close();
+        }
+    }
+
     private static string generateFormattedValueForSQL(List<string> rowData)
     { // generate a usable INSERT INTO SQL command from a list of values,
         if (rowData.Count < 1)
@@ -244,14 +271,4 @@ public static class DatabaseBuilder
         }
         return currentList;
     }
-    static void Main(string[] args)
-    {
-        Console.WriteLine("Hello from the command line!");
-        if (args.Length > 0)
-        {
-            Console.WriteLine($"First argument: {args[0]}");
-        }
-        DatabaseBuilder.initializeDatabase();
-    }
-
 }

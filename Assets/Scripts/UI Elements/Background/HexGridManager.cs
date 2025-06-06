@@ -10,7 +10,7 @@ public class HexGridManager : MonoBehaviour
     public int columns = 7;         // Number of columns in the grid
 
     [Header("Spacing Settings")]
-    public float spacing = 20f;    // Consistent spacing for both horizontal and vertical gaps
+    public float spacing = 40f;    // Consistent spacing for both horizontal and vertical gaps
 
     [Header("Tile Settings")]
     public GameObject tileToGenerate; // Prefab for the tile

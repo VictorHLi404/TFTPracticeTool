@@ -15,7 +15,6 @@ public class ChampionEntity : DragAndDrop
     private GameObject border;
     private GameObject championIcon;
 
-    private SpriteRenderer spriteRenderer; // tool for rendering sprite 
     public GameObject currentCollisionObject = null; // variable to interface with current hex / bench slot that the unit is sitting on\
     public GameObject previousCollisionObject = null; // variable to keep track of exisiting place, same w drop coords
     private GameObject itemDisplay;
@@ -44,7 +43,7 @@ public class ChampionEntity : DragAndDrop
         return checkSlot != null;
     }
 
-    public void updateVisuals() // TODO: transform from flat top to pointy top
+    public void updateVisuals() 
     {
         championIcon.GetComponent<ChampionIcon>().updateChampionImage(champion);
         int starLevel = champion.starLevel;
@@ -115,25 +114,7 @@ public class ChampionEntity : DragAndDrop
         championSlot.removeChampionFromSlot();
     }
 
-    private void OnMouseEnter()
-    { // highlight champion, visual effect
-        // Change color on hover TEMPORARY TEST
-        if (spriteRenderer != null)
-        {
-            spriteRenderer.color = Color.yellow; // Highlight color
-        }
-    }
-
-    private void OnMouseExit()
-    {
-        // Revert color when the mouse leaves
-        if (spriteRenderer != null)
-        {
-            spriteRenderer.color = Color.white; // Default color
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collisionObject)
+    public void OnCollisionEnter2D(Collision2D collisionObject)
     {
         GameObject collisionGameObject = collisionObject.gameObject;
         if (isUnitSlot(collisionGameObject))
@@ -155,7 +136,7 @@ public class ChampionEntity : DragAndDrop
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collisionObject)
+    public void OnCollisionExit2D(Collision2D collisionObject)
     {
         GameObject collisionGameObject = collisionObject.gameObject;
         if (isUnitSlot(collisionGameObject))

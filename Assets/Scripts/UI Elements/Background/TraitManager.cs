@@ -51,7 +51,6 @@ public class TraitManager : MonoBehaviour
     {
         Dictionary<string, int> newTraitMapping = new Dictionary<string, int>();
         HashSet<int> championHashSet = new HashSet<int>();
-        Debug.Log(championEntities.Count);
 
         foreach (ChampionEntity championEntity in championEntities)
         {
@@ -99,7 +98,7 @@ public class TraitManager : MonoBehaviour
             }
         }
         float yPosition = 0;
-        // TODO: implement sorting / consistent order of trait appearances
+
         List<(string, int)> sortedTraits = getSortedTraits();
 
         foreach ((string, int) traitData in sortedTraits)
@@ -145,15 +144,7 @@ public class TraitManager : MonoBehaviour
         }
 
         List<(string, int, int)> sortedActiveTraits = isActiveTraits.OrderByDescending(s => s.Item3).ThenBy(s => s.Item1).ToList();
-        foreach ((string, int, int) v in isInactiveTraits)
-        {
-            Debug.Log(v);
-        }
         List<(string, int, int)> sortedInactiveTraits = isInactiveTraits.OrderByDescending(s => (float) s.Item2 / s.Item3).ThenBy(s => s.Item1).ToList();
-        foreach ((string, int, int) v in sortedInactiveTraits)
-        {
-            Debug.Log(v);
-        }
 
         List<(string, int)> returnList = new List<(string, int)>();
         foreach ((string, int, int) trait in sortedActiveTraits)
