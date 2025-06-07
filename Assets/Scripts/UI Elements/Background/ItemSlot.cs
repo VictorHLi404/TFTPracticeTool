@@ -13,36 +13,43 @@ using UnityEngine;
 public class ItemSlot : MonoBehaviour
 {
     public ItemBench itemBench; // reference to either a bench slot manager or board
+    public ItemManager itemManager;
 
     [Header("Hex Dimensions")]
     public float hexWidth;
 
-    public Item itemInSlot;
+    public ItemEntity itemEntityInSlot;
 
     public void Start()
     {
 
     }
 
-    public void Initialize(ItemBench itemBench)
+    public void Initialize(ItemBench itemBench, ItemManager itemManager)
     {
         this.itemBench = itemBench;
+        this.itemManager = itemManager;
     }
 
     public bool isEmpty()
     {
-        return itemInSlot == null;
+        return itemEntityInSlot == null;
     }
 
     public void placeItemInSlot(ItemEntity newItem)
     {
-        itemInSlot = newItem.item;
+        itemEntityInSlot = newItem;
         itemBench.AddItem();
     }
 
     public void removeItemFromSlot()
     {
-        itemInSlot = null;
+        itemEntityInSlot = null;
         itemBench.RemoveItem();
+    }
+
+    public void callReshuffle()
+    {
+        itemManager.reshuffleBench();
     }
 }

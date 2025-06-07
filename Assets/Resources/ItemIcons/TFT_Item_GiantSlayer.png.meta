@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 578ffc3099b577c49a8f65a0042d7a34
+guid: 1d9dd4c78a7cd954aaef95201bea025a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2827509102736960844
-    second: TFT_Item_MadredsBloodrazor_0
+      213: -7225172600869843991
+    second: TFT_Item_GiantSlayer_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TFT_Item_MadredsBloodrazor_0
+      name: TFT_Item_GiantSlayer_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4b21e2ca37ba2c8d0800000000000000
-      internalID: -2827509102736960844
+      spriteID: 9eb8444dcc70bbb90800000000000000
+      internalID: -7225172600869843991
       vertices: []
       indices: 
       edges: []

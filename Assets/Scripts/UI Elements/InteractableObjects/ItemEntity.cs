@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -25,7 +26,6 @@ public class ItemEntity : DragAndDrop
         SpriteRenderer spriteRendererComponent = itemIcon.GetComponent<SpriteRenderer>();
         string itemName = item.getImageString();
         string file_path = $"ItemIcons/{itemName}";
-        Debug.Log(file_path);
         spriteRendererComponent.sprite = Resources.Load<Sprite>(file_path);
 
         this.currentCollisionObject = itemSlot;
@@ -41,24 +41,21 @@ public class ItemEntity : DragAndDrop
         if (isChampion(collisionGameObject))
         {
             currentCollisionObject = collisionGameObject;
-            Debug.Log("ENTERING A CHAMPION");
         }
         else if (isItem(collisionGameObject))
         {
             currentCollisionObject = collisionGameObject;
-            Debug.Log("ENTERING AN ITEM!");
         }
         else if (isItemSlot(collisionGameObject))
         {
             currentCollisionObject = collisionGameObject;
-            Debug.Log("ENTERING AN ITEM SLOT");
         }
     }
 
     public void OnCollisionExit2D(Collision2D collisionObject)
     {
         GameObject collisionGameObject = collisionObject.gameObject;
-        if (isItemSlot(collisionGameObject))
+        if (isItemSlot(collisionGameObject) && currentCollisionObject == collisionGameObject)
         {
             currentCollisionObject = null;
         }
@@ -89,6 +86,7 @@ public class ItemEntity : DragAndDrop
         {
             return false;
         }
+
         return true;
     }
 
@@ -104,10 +102,22 @@ public class ItemEntity : DragAndDrop
         }
         else
         {
-            Debug.Log("CHECK THIS SHIT!");
             ItemEntity otherItemEntity = currentCollisionObject.GetComponent<ItemEntity>();
             return item.canCombine(otherItemEntity.item);
         }
+    }
+
+    protected bool validateItemSwapLocation()
+    {
+        if (currentCollisionObject == null)
+        {
+            return false;
+        }
+        else if (currentCollisionObject.GetComponent<ItemEntity>() == null)
+        {
+            return false;
+        }
+        return true;
     }
 
     protected bool validateChampionDropLocation()
@@ -117,7 +127,6 @@ public class ItemEntity : DragAndDrop
 
     protected override void OnMouseUp()
     {
-        Debug.Log(pickUpCoords);
         if (validateItemCombinationLocation())
         {
             ItemEntity otherItemEntity = currentCollisionObject.GetComponent<ItemEntity>();
@@ -140,9 +149,29 @@ public class ItemEntity : DragAndDrop
             newItemSlot.GetComponent<ItemSlot>().removeItemFromSlot();
 
             newItemSlot.GetComponent<ItemSlot>().placeItemInSlot(newItemEntity.GetComponent<ItemEntity>());
+            newItemSlot.GetComponent<ItemSlot>().callReshuffle();
 
             Destroy(currentCollisionObject);
             Destroy(this.gameObject);
+        }
+        else if (validateItemSwapLocation())
+        {
+            ItemEntity otherItemEntity = currentCollisionObject.GetComponent<ItemEntity>();
+            previousCollisionObject.GetComponent<ItemSlot>().removeItemFromSlot();
+            otherItemEntity.previousCollisionObject.GetComponent<ItemSlot>().removeItemFromSlot();
+            GameObject tempData = previousCollisionObject;
+
+            previousCollisionObject = otherItemEntity.previousCollisionObject;
+            currentCollisionObject = previousCollisionObject;
+            Initialize(item, previousCollisionObject);
+            previousCollisionObject.GetComponent<ItemSlot>().placeItemInSlot(this);
+
+            otherItemEntity.previousCollisionObject = tempData;
+            otherItemEntity.currentCollisionObject = otherItemEntity.previousCollisionObject;
+            otherItemEntity.Initialize(otherItemEntity.item, otherItemEntity.previousCollisionObject);
+            otherItemEntity.previousCollisionObject.GetComponent<ItemSlot>().placeItemInSlot(otherItemEntity);
+
+            currentCollisionObject.GetComponent<ItemSlot>().callReshuffle();
 
         }
         else if (validateChampionDropLocation())
@@ -151,8 +180,17 @@ public class ItemEntity : DragAndDrop
         }
         else if (validateItemSlotDropLocation())
         {
+            // Assumption is that there is NO case in which its possible to place an item in a slot
+            // thats already occupied.
 
+            ItemSlot itemSlot = currentCollisionObject.GetComponent<ItemSlot>();
+            previousCollisionObject.GetComponent<ItemSlot>().removeItemFromSlot();
+            itemSlot.placeItemInSlot(this);
+            previousCollisionObject = currentCollisionObject;
+            this.transform.position = getDropLocationCoords();
+            itemSlot.callReshuffle();
         }
+
         this.transform.position = pickUpCoords;
     }
 
@@ -163,9 +201,9 @@ public class ItemEntity : DragAndDrop
         return newLocationCoords;
     }
 
-    protected new void UpdatePickupCoords(UnityEngine.Vector3 newPositionCoords)
+    protected new void UpdatePickupCoords(Vector3 newPositionCoords)
     { // assign the latest position the champion was successfully dropped off at to the variable pickUpCoords
-        newPositionCoords.z -= 1;
+        newPositionCoords.z -= 10;
         pickUpCoords = newPositionCoords;
     }
 }

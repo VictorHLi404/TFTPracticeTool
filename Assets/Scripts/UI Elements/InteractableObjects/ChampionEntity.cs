@@ -31,19 +31,10 @@ public class ChampionEntity : DragAndDrop
         this.currentCollisionObject = unitSlot;
         this.previousCollisionObject = unitSlot;
         updateVisuals();
+        UpdatePickupCoords(previousCollisionObject.transform.position);
     }
 
-    /// <summary>
-    /// Helper function to check whether collision object is a unit slot or not.
-    /// </summary>
-    /// <returns></returns>
-    protected bool isUnitSlot(GameObject collisionObject)
-    {
-        UnitSlot checkSlot = collisionObject.GetComponent<UnitSlot>();
-        return checkSlot != null;
-    }
-
-    public void updateVisuals() 
+    public void updateVisuals()
     {
         championIcon.GetComponent<ChampionIcon>().updateChampionImage(champion);
         int starLevel = champion.starLevel;
@@ -117,16 +108,8 @@ public class ChampionEntity : DragAndDrop
     public void OnCollisionEnter2D(Collision2D collisionObject)
     {
         GameObject collisionGameObject = collisionObject.gameObject;
-        if (isUnitSlot(collisionGameObject))
-        {
-            currentCollisionObject = collisionGameObject;
-            if (previousCollisionObject == null) // handle spawn in case
-            {
-                previousCollisionObject = currentCollisionObject;
-                UpdatePickupCoords(previousCollisionObject.transform.position);
-            }
-        }
-        else if (collisionGameObject.GetComponent<ShopUI>() != null)
+
+        if (collisionGameObject.GetComponent<ShopUI>() != null)
         {
             currentCollisionObject = collisionGameObject;
             if (previousCollisionObject == null)
@@ -134,16 +117,55 @@ public class ChampionEntity : DragAndDrop
                 previousCollisionObject = currentCollisionObject;
             }
         }
+        if (isChampion(collisionGameObject))
+        {
+            currentCollisionObject = collisionGameObject;
+            if (previousCollisionObject == null)
+            {
+                previousCollisionObject = currentCollisionObject;
+            }
+            Debug.Log(currentCollisionObject);
+        }
+        else if (isUnitSlot(collisionGameObject))
+        {
+            if (currentCollisionObject != null && isChampion(currentCollisionObject))
+            {
+                return;
+            }
+            currentCollisionObject = collisionGameObject;
+            if (previousCollisionObject == null) // handle spawn in case
+            {
+                previousCollisionObject = currentCollisionObject;
+                UpdatePickupCoords(previousCollisionObject.transform.position);
+            }
+        }
     }
 
     public void OnCollisionExit2D(Collision2D collisionObject)
     {
         GameObject collisionGameObject = collisionObject.gameObject;
-        if (isUnitSlot(collisionGameObject))
+        if (currentCollisionObject == collisionGameObject)
         {
+            Debug.Log($"MOST RECENTLY TOUCHED TILE AT {currentCollisionObject.transform.position}");
+            Debug.Log($"LEAVING A TILE AT {collisionGameObject.transform.position}");
             currentCollisionObject = null;
         }
     }
+
+    /// <summary>
+    /// Helper function to check whether collision object is a unit slot or not.
+    /// </summary>
+    /// <returns></returns>
+    protected bool isUnitSlot(GameObject collisionObject)
+    {
+        return collisionObject.GetComponent<UnitSlot>() != null;
+    }
+
+    protected bool isChampion(GameObject collisionObject)
+    {
+        return collisionObject.GetComponent<ChampionEntity>() != null;
+    }
+
 
     protected bool validateHexDropLocation()
     {
@@ -185,10 +207,56 @@ public class ChampionEntity : DragAndDrop
         }
     }
 
+    protected bool validateChampionSwapLocation()
+    {
+        if (currentCollisionObject == null)
+        {
+            Debug.Log(0);
+            return false;
+        }
+        else if (currentCollisionObject.GetComponent<ChampionEntity>() == null)
+        {
+            Debug.Log(currentCollisionObject);
+            Debug.Log(1);
+            return false;
+        }
+        Debug.Log("VALIDATED!");
+        return true;
+    }
+
     protected override void OnMouseUp()
     {
         // check if the location is a valid place for the checkmark to be: if it is, then drop and update new starting, if not, then return to initial place
-        if (validateHexDropLocation())
+        if (validateShopDropLocation())
+        {
+            currentCollisionObject.GetComponent<ShopUI>().sellChampion(this);
+            previousCollisionObject.GetComponent<UnitSlot>().removeChampionFromSlot();
+            Destroy(gameObject);
+        }
+        else if (validateChampionSwapLocation())
+        {
+            Debug.Log("SWAP THAT HOE!");
+            ChampionEntity otherChampion = currentCollisionObject.GetComponent<ChampionEntity>();
+            previousCollisionObject.GetComponent<UnitSlot>().removeChampionFromSlot();
+            Debug.Log(currentCollisionObject);
+            otherChampion.previousCollisionObject.GetComponent<UnitSlot>().removeChampionFromSlot();
+            GameObject tempData = previousCollisionObject;
+
+            previousCollisionObject = otherChampion.previousCollisionObject;
+            currentCollisionObject = previousCollisionObject;
+            UpdatePickupCoords(previousCollisionObject.transform.position);
+            previousCollisionObject.GetComponent<UnitSlot>().placeChampionInSlot(this);
+            isOnBench = previousCollisionObject.GetComponent<UnitSlot>().isBenchSlot;
+            this.transform.position = pickUpCoords;
+
+            otherChampion.previousCollisionObject = tempData;
+            otherChampion.currentCollisionObject = otherChampion.previousCollisionObject;
+            otherChampion.UpdatePickupCoords(otherChampion.previousCollisionObject.transform.position);
+            otherChampion.previousCollisionObject.GetComponent<UnitSlot>().placeChampionInSlot(otherChampion);
+            otherChampion.isOnBench = otherChampion.previousCollisionObject.GetComponent<UnitSlot>().isBenchSlot;
+            otherChampion.transform.position = otherChampion.pickUpCoords;
+        }
+        else if (validateHexDropLocation())
         {
             this.transform.position = getDropLocationCoords();
             pickUpCoords = this.transform.position;
@@ -197,12 +265,6 @@ public class ChampionEntity : DragAndDrop
             previousCollisionObject = currentCollisionObject;
             transform.parent = currentCollisionObject.transform.parent;
             isOnBench = currentCollisionObject.GetComponent<UnitSlot>().isBenchSlot;
-        }
-        else if (validateShopDropLocation())
-        {
-            currentCollisionObject.GetComponent<ShopUI>().sellChampion(this);
-            previousCollisionObject.GetComponent<UnitSlot>().removeChampionFromSlot();
-            Destroy(gameObject);
         }
         else
         {
@@ -215,5 +277,11 @@ public class ChampionEntity : DragAndDrop
         Vector3 newLocationCoords = currentCollisionObject.transform.position;
         newLocationCoords.z = -1; // fix the z value 
         return newLocationCoords;
+    }
+    
+    protected new void UpdatePickupCoords(Vector3 newPositionCoords)
+    { // assign the latest position the champion was successfully dropped off at to the variable pickUpCoords
+        newPositionCoords.z -= 10;
+        pickUpCoords = newPositionCoords;
     }
 }

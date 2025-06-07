@@ -32,7 +32,6 @@ public class TraitManager : MonoBehaviour
         {
             if (currentChampionCount != board.GetComponent<HexGridManager>().GetChampionEntities().Count)
             {
-                Debug.Log("SHITS GOING DOWN!!!");
                 List<ChampionEntity> championEntities = board.GetComponent<HexGridManager>().GetChampionEntities();
                 currentChampionCount = championEntities.Count;
                 updateCurrentTraits(championEntities);
