@@ -84,6 +84,16 @@ public class ChampionEntity : DragAndDrop
         return champion.getSellPrice();
     }
 
+    public bool canItemBePlaced()
+    {
+        return champion.canItemBePlaced();
+    }
+
+    public void addItem(ItemEntity itemEntity)
+    {
+        champion.addItem(itemEntity.item);
+    }
+
     public void LevelUp()
     {
         champion.starLevel++;

@@ -76,7 +76,7 @@ public class ItemEntity : DragAndDrop
         return collisionObject.GetComponent<ItemEntity>() != null;
     }
 
-    protected bool validateItemSlotDropLocation()
+    protected bool ValidateItemSlotDropLocation()
     {
         if (currentCollisionObject == null)
         {
@@ -90,7 +90,7 @@ public class ItemEntity : DragAndDrop
         return true;
     }
 
-    protected bool validateItemCombinationLocation()
+    protected bool ValidateItemCombinationLocation()
     {
         if (currentCollisionObject == null)
         {
@@ -107,7 +107,7 @@ public class ItemEntity : DragAndDrop
         }
     }
 
-    protected bool validateItemSwapLocation()
+    protected bool ValidateItemSwapLocation()
     {
         if (currentCollisionObject == null)
         {
@@ -120,14 +120,22 @@ public class ItemEntity : DragAndDrop
         return true;
     }
 
-    protected bool validateChampionDropLocation()
+    protected bool ValidateChampionDropLocation()
     {
-        return false;
+        if (currentCollisionObject == null || currentCollisionObject.GetComponent<ChampionEntity>() == null)
+        {
+            return false;
+        }
+        else if (currentCollisionObject.GetComponent<ChampionEntity>().canItemBePlaced())
+        {
+            return false;
+        }
+        return true;
     }
 
     protected override void OnMouseUp()
     {
-        if (validateItemCombinationLocation())
+        if (ValidateItemCombinationLocation())
         {
             ItemEntity otherItemEntity = currentCollisionObject.GetComponent<ItemEntity>();
             TFTEnums.Item? newItemEnum = item.combineItem(otherItemEntity.item);
@@ -154,7 +162,7 @@ public class ItemEntity : DragAndDrop
             Destroy(currentCollisionObject);
             Destroy(this.gameObject);
         }
-        else if (validateItemSwapLocation())
+        else if (ValidateItemSwapLocation())
         {
             ItemEntity otherItemEntity = currentCollisionObject.GetComponent<ItemEntity>();
             previousCollisionObject.GetComponent<ItemSlot>().removeItemFromSlot();
@@ -174,11 +182,15 @@ public class ItemEntity : DragAndDrop
             currentCollisionObject.GetComponent<ItemSlot>().callReshuffle();
 
         }
-        else if (validateChampionDropLocation())
+        else if (ValidateChampionDropLocation())
         {
-
+            Debug.Log("PLACE THAT HOE!");
+            previousCollisionObject.GetComponent<ItemSlot>().removeItemFromSlot();
+            ChampionEntity championEntity = currentCollisionObject.GetComponent<ChampionEntity>();
+            championEntity.addItem(this);
+            Destroy(this.gameObject);
         }
-        else if (validateItemSlotDropLocation())
+        else if (ValidateItemSlotDropLocation())
         {
             // Assumption is that there is NO case in which its possible to place an item in a slot
             // thats already occupied.
