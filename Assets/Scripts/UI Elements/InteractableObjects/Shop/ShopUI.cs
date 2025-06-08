@@ -30,6 +30,7 @@ public class ShopUI : MonoBehaviour
     [Header("UI Reference Objects")]
     public GameObject benchManager;
     public GameObject hexGridManager;
+    public GameObject itemBench;
 
     public void Start()
     {
@@ -171,6 +172,7 @@ public class ShopUI : MonoBehaviour
                 }
             }
         }
+        itemBench.GetComponent<ItemManager>().returnItemsToBench(championEntity.champion.GetItems());
     }
 
     /// <summary>

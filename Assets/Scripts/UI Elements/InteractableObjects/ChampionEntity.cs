@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using System;
 using Unity.VisualScripting;
+using System.Collections.Generic;
 
 /// <summary>
 /// A class to represent a single champion entity on the board.
@@ -14,6 +15,7 @@ public class ChampionEntity : DragAndDrop
     public bool isOnBench = true;
     private GameObject border;
     private GameObject championIcon;
+    private GameObject itemRenderer;
 
     public GameObject currentCollisionObject = null; // variable to interface with current hex / bench slot that the unit is sitting on\
     public GameObject previousCollisionObject = null; // variable to keep track of exisiting place, same w drop coords
@@ -23,6 +25,7 @@ public class ChampionEntity : DragAndDrop
         base.Awake();
         this.border = transform.Find("Border").gameObject;
         this.championIcon = transform.Find("ChampionIcon").gameObject;
+        this.itemRenderer = transform.Find("ItemRenderer").gameObject;
     }
 
     public void Initialize(Champion newChampion, GameObject unitSlot)
@@ -53,6 +56,17 @@ public class ChampionEntity : DragAndDrop
         }
         SpriteRenderer championSpriteRenderer = championIcon.GetComponent<SpriteRenderer>();
         championSpriteRenderer.sprite = CropSprite(championSpriteRenderer.sprite);
+        updateItemVisuals();
+    }
+
+    public void updateItemVisuals()
+    {
+        if (itemRenderer == null)
+        {
+            Debug.LogError("Item renderer for this champion has not been initialized.");
+        }
+        List<Item> itemList = champion.GetItems();
+        itemRenderer.GetComponent<ItemRenderer>().UpdateDisplays(itemList);
     }
 
     public Sprite CropSprite(Sprite originalSprite)
@@ -92,6 +106,8 @@ public class ChampionEntity : DragAndDrop
     public void addItem(ItemEntity itemEntity)
     {
         champion.addItem(itemEntity.item);
+        updateItemVisuals();
+
     }
 
     public void LevelUp()

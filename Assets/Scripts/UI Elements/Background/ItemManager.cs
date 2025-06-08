@@ -84,6 +84,26 @@ public class ItemManager : MonoBehaviour
         }
     }
 
+    public void returnItemsToBench(List<Item> itemList)
+    {
+        int index = 0;
+        for (int i = 0; i < itemSlots; i++)
+        {
+            if (itemSlotObjects[i].GetComponent<ItemSlot>().isEmpty())
+            {
+                break;
+            }
+            index++;
+        }
+        foreach (Item item in itemList)
+        {
+            GameObject newItemEntity = Instantiate(itemPrefab, transform);
+            newItemEntity.GetComponent<ItemEntity>().Initialize(item, itemSlotObjects[index]);
+            newItemEntity.transform.localPosition = new Vector3(itemSlotCoordinates[index].Item1, itemSlotCoordinates[index].Item2, -1);
+            itemSlotObjects[index].GetComponent<ItemSlot>().placeItemInSlot(newItemEntity.GetComponent<ItemEntity>());
+        }
+        reshuffleBench();
+    }  
     private void GenerateTestItems()
     {
         GameObject test1 = Instantiate(itemPrefab, transform);

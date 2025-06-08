@@ -39,6 +39,11 @@ public class Champion : UnitData
         }
     }
 
+    public List<Item> GetItems()
+    {
+        return items;
+    }
+
     public bool canItemBePlaced()
     {
         int fullItemCount = 0;
