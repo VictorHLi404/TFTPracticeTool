@@ -176,6 +176,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37b1d17e2a09ccf4bb4f0b277d2d1d26, type: 3}
+--- !u!1 &183094416 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5740294972047425949, guid: ef9fb5500f8e1f94d88ce6931cd3d9e7, type: 3}
+  m_PrefabInstance: {fileID: 1861341484}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,6 +383,10 @@ PrefabInstance:
       propertyPath: spacing
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 8790880341230538051, guid: 7952c07479473824f90b739236396fa5, type: 3}
+      propertyPath: itemBench
+      value: 
+      objectReference: {fileID: 183094416}
     - target: {fileID: 8790880341230538051, guid: 7952c07479473824f90b739236396fa5, type: 3}
       propertyPath: slotWidth
       value: 3
