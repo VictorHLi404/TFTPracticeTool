@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using NUnit.Framework.Internal;
 using TMPro;
 using Unity.VisualScripting;
@@ -32,13 +33,14 @@ public class ShopUI : MonoBehaviour
     public GameObject hexGridManager;
     public GameObject itemBench;
 
-    public void Start()
+    public async void Start()
     {
         shop = new Shop();
         shop.generateShop(true);
         GenerateButtons();
         GenerateDisplayElements();
         GenerateShopItems();
+        await ApiClient.TestFunc();
     }
 
     public void Update()
