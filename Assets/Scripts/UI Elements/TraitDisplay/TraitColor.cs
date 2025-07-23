@@ -5,28 +5,28 @@ using UnityEngine;
 /// </summary>
 public class TraitColor : MonoBehaviour
 {
-    public void UpdateTraitColor(TFTEnums.TraitRarities rarity)
+    public void UpdateTraitColor(TraitRarities rarity)
     {
         SpriteRenderer spriteRendererComponent = gameObject.GetComponent<SpriteRenderer>();
         string filePath = "";
         switch (rarity)
         {
-            case TFTEnums.TraitRarities.Starting:
+            case TraitRarities.Starting:
                 filePath = "CustomArtAssets/StartingLevelTrait";
                 break;
-            case TFTEnums.TraitRarities.Bronze:
+            case TraitRarities.Bronze:
                 filePath = "CustomArtAssets/BronzeLevelTrait";
                 break;
-            case TFTEnums.TraitRarities.Silver:
+            case TraitRarities.Silver:
                 filePath = "CustomArtAssets/SilverLevelTrait";
                 break;
-            case TFTEnums.TraitRarities.Gold:
+            case TraitRarities.Gold:
                 filePath = "CustomArtAssets/GoldLevelTrait";
                 break;
-            case TFTEnums.TraitRarities.Prismatic:
+            case TraitRarities.Prismatic:
                 filePath = "CustomArtAssets/PrismaticLevelTrait";
                 break;
-            case TFTEnums.TraitRarities.Unique:
+            case TraitRarities.Unique:
                 filePath = "CustomArtAssets/UniqueLevelTrait";
                 break;
         }

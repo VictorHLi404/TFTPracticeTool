@@ -107,17 +107,17 @@ public class ItemManager : MonoBehaviour
     private void GenerateTestItems()
     {
         GameObject test1 = Instantiate(itemPrefab, transform);
-        test1.GetComponent<ItemEntity>().Initialize(new Item(TFTEnums.Component.BFSword), itemSlotObjects[0]);
+        test1.GetComponent<ItemEntity>().Initialize(new Item(Component.BFSword), itemSlotObjects[0]);
         test1.transform.localPosition = new Vector3(itemSlotCoordinates[0].Item1, itemSlotCoordinates[0].Item2, -1);
         itemSlotObjects[0].GetComponent<ItemSlot>().placeItemInSlot(test1.GetComponent<ItemEntity>());
 
         GameObject test2 = Instantiate(itemPrefab, transform);
-        test2.GetComponent<ItemEntity>().Initialize(new Item(TFTEnums.Component.NeedlesslyLargeRod), itemSlotObjects[1]);
+        test2.GetComponent<ItemEntity>().Initialize(new Item(Component.NeedlesslyLargeRod), itemSlotObjects[1]);
         test2.transform.localPosition = new Vector3(itemSlotCoordinates[1].Item1, itemSlotCoordinates[1].Item2, -1);
         itemSlotObjects[1].GetComponent<ItemSlot>().placeItemInSlot(test2.GetComponent<ItemEntity>());
 
         GameObject test3 = Instantiate(itemPrefab, transform);
-        test3.GetComponent<ItemEntity>().Initialize(new Item(TFTEnums.Component.RecurveBow), itemSlotObjects[2]);
+        test3.GetComponent<ItemEntity>().Initialize(new Item(Component.RecurveBow), itemSlotObjects[2]);
         test3.transform.localPosition = new Vector3(itemSlotCoordinates[2].Item1, itemSlotCoordinates[2].Item2, -1);
         itemSlotObjects[2].GetComponent<ItemSlot>().placeItemInSlot(test3.GetComponent<ItemEntity>());
     }

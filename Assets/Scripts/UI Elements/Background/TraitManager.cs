@@ -18,7 +18,7 @@ public class TraitManager : MonoBehaviour
     private int currentChampionCount = 0;
     private Dictionary<string, int> traitCountMapping = new Dictionary<string, int>();
 
-    private Dictionary<string, (List<int>, List<TFTEnums.TraitRarities>)> traitDataMapping = new Dictionary<string, (List<int>, List<TFTEnums.TraitRarities>)>();
+    private Dictionary<string, (List<int>, List<TraitRarities>)> traitDataMapping = new Dictionary<string, (List<int>, List<TraitRarities>)>();
 
 
     public void Awake()

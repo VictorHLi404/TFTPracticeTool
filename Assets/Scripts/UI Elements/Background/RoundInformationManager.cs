@@ -18,7 +18,7 @@ public class RoundInformationManager : MonoBehaviour
         this.roundDisplayField = transform.Find("RoundDisplayField").gameObject;
         this.timeDisplayField = transform.Find("TimeDisplayField").gameObject;
         this.timeBar = transform.Find("TimeBarFill").gameObject;
-        this.player = new Player(6, 0, 200, 30, 4, 2, DatabaseAPI.getLevelMapping());
+        this.player = new Player(6, 0, 200, 30, 1, 2, DatabaseAPI.getLevelMapping());
         Debug.Log("GET THAT HOE!");
         currentTime = player.time;
         InitializeDisplays();

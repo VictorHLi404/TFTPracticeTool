@@ -164,11 +164,11 @@ public static class DatabaseAPI
     /// From the database, grab the mapping of the trait names to (their leveling scheme, their rarities/colors)
     /// </summary>
     /// <returns>A dictionary mapping trait naems to levelling scheme and rarities</returns>
-    public static Dictionary<string, (List<int>, List<TFTEnums.TraitRarities>)> getTraits()
+    public static Dictionary<string, (List<int>, List<TraitRarities>)> getTraits()
     {
-        Dictionary<string, (List<int>, List<TFTEnums.TraitRarities>)> traitMapping = new Dictionary<string, (List<int>, List<TFTEnums.TraitRarities>)>();
+        Dictionary<string, (List<int>, List<TraitRarities>)> traitMapping = new Dictionary<string, (List<int>, List<TraitRarities>)>();
         Dictionary<string, List<int>> traitToLevels = new Dictionary<string, List<int>>();
-        Dictionary<string, List<TFTEnums.TraitRarities>> traitToRarities = new Dictionary<string, List<TFTEnums.TraitRarities>>();
+        Dictionary<string, List<TraitRarities>> traitToRarities = new Dictionary<string, List<TraitRarities>>();
         using (var connection = new SqliteConnection(dbName))
         {
             connection.Open();
@@ -197,13 +197,13 @@ public static class DatabaseAPI
                 SqliteDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    List<TFTEnums.TraitRarities> rarities = new List<TFTEnums.TraitRarities>();
+                    List<TraitRarities> rarities = new List<TraitRarities>();
                     for (int i = 1; i <= 7; i++) // TODO: MAKE MORE ROBUST FOR FUTURE VERSIONS?
                     {
                         int traitRarity = getTraitLevel(reader, $"Tier{i}");
                         if (traitRarity != 0)
                         {
-                            TFTEnums.TraitRarities enumValue = (TFTEnums.TraitRarities)traitRarity;
+                            TraitRarities enumValue = (TraitRarities)traitRarity;
                             rarities.Add(enumValue);
                         }
                     }
@@ -234,9 +234,9 @@ public static class DatabaseAPI
         }
     }
 
-    public static Dictionary<(TFTEnums.Component, TFTEnums.Component), TFTEnums.Item> getItemMapping()
+    public static Dictionary<(Component, Component), CompletedItem> getItemMapping()
     {
-        Dictionary<(TFTEnums.Component, TFTEnums.Component), TFTEnums.Item> itemMapping = new Dictionary<(TFTEnums.Component, TFTEnums.Component), TFTEnums.Item>();
+        Dictionary<(Component, Component), CompletedItem> itemMapping = new Dictionary<(Component, Component), CompletedItem>();
         using (var connection = new SqliteConnection(dbName))
         {
             connection.Open();
@@ -246,9 +246,9 @@ public static class DatabaseAPI
                 SqliteDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    TFTEnums.Component component1 = (TFTEnums.Component)Enum.Parse(typeof(TFTEnums.Component), reader.GetString(reader.GetOrdinal("Component1")).Replace(".", "").Replace(" ", ""));
-                    TFTEnums.Component component2 = (TFTEnums.Component)Enum.Parse(typeof(TFTEnums.Component), reader.GetString(reader.GetOrdinal("Component2")).Replace(".", "").Replace(" ", ""));
-                    TFTEnums.Item item = (TFTEnums.Item)Enum.Parse(typeof(TFTEnums.Item), reader.GetString(reader.GetOrdinal("CompletedItem")).Replace(".", "").Replace(" ", ""));
+                    Component component1 = (Component)Enum.Parse(typeof(Component), reader.GetString(reader.GetOrdinal("Component1")).Replace(".", "").Replace(" ", ""));
+                    Component component2 = (Component)Enum.Parse(typeof(Component), reader.GetString(reader.GetOrdinal("Component2")).Replace(".", "").Replace(" ", ""));
+                    CompletedItem item = (CompletedItem)Enum.Parse(typeof(CompletedItem), reader.GetString(reader.GetOrdinal("CompletedItem")).Replace(".", "").Replace(" ", ""));
                     itemMapping[(component1, component2)] = item;
                 }
             }

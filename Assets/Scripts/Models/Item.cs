@@ -6,31 +6,31 @@ using System.Collections.Generic;
 /// </summary>
 public class Item
 {
-    private TFTEnums.Component component;
-    private TFTEnums.Item item;
+    private Component component;
+    private CompletedItem item;
     public bool isComponent;
 
-    private static Dictionary<(TFTEnums.Component, TFTEnums.Component), TFTEnums.Item> itemMapping = DatabaseAPI.getItemMapping();
+    private static Dictionary<(Component, Component), CompletedItem> itemMapping = DatabaseAPI.getItemMapping();
 
-    public Item(TFTEnums.Component? component)
+    public Item(Component? component)
     {
         if (component == null)
         {
             Debug.LogError("Tried to initialize Item with null argument.");
             return;
         }
-        this.component = (TFTEnums.Component) component;
+        this.component = (Component) component;
         isComponent = true;
     }
 
-    public Item(TFTEnums.Item? item)
+    public Item(CompletedItem? item)
     {
         if (item == null)
         {
             Debug.LogError("Tried to initialize Item with null argument.");
             return;
         }
-        this.item = (TFTEnums.Item) item;
+        this.item = (CompletedItem) item;
         isComponent = false;
     }
 
@@ -39,13 +39,13 @@ public class Item
     /// </summary>
     /// <param name="otherComponent"></param>
     /// <returns></returns>
-    public TFTEnums.Item? combineItem(Item otherItem)
+    public CompletedItem? combineItem(Item otherItem)
     {
         if (!isComponent || !otherItem.isComponent)
         {
             Debug.LogError("Cannot combine an item with a component.");
         }
-        TFTEnums.Component otherComponent = otherItem.component;
+        Component otherComponent = otherItem.component;
         if (itemMapping.ContainsKey((component, otherComponent)))
         {
             return itemMapping[(component, otherComponent)];

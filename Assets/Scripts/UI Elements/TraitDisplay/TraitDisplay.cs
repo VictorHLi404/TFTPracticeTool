@@ -14,7 +14,7 @@ public class TraitDisplay : MonoBehaviour
     private int unitCount;
     private string traitName;
     private List<int> traitBreakpoints;
-    private List<TFTEnums.TraitRarities> traitRarities;
+    private List<TraitRarities> traitRarities;
     private GameObject traitIcon;
     private GameObject traitColor;
     private GameObject traitNameField;
@@ -22,7 +22,7 @@ public class TraitDisplay : MonoBehaviour
     private GameObject traitCountBackground;
     private GameObject traitLevelsField;
 
-    public void Initialize(string traitName, int unitCount, List<int> traitBreakpoints, List<TFTEnums.TraitRarities> traitRarities)
+    public void Initialize(string traitName, int unitCount, List<int> traitBreakpoints, List<TraitRarities> traitRarities)
     {
         traitIcon = transform.Find("TraitIcon").gameObject;
         traitColor = transform.Find("TraitColor").gameObject;
@@ -52,7 +52,7 @@ public class TraitDisplay : MonoBehaviour
             {
                 index += 1;
             }
-            TFTEnums.TraitRarities rarity = traitRarities[index];
+            TraitRarities rarity = traitRarities[index];
             traitColor.GetComponent<TraitColor>().UpdateTraitColor(rarity);
             traitCountField.GetComponent<TextMeshPro>().text = $"{unitCount}";
             traitNameField.GetComponent<TextMeshPro>().text = $"<color=\"white\">{traitName}</color>";
@@ -68,7 +68,7 @@ public class TraitDisplay : MonoBehaviour
         else
         {
             traitIcon.GetComponent<TraitIcon>().UpdateTraitIcon(traitName, false);
-            traitColor.GetComponent<TraitColor>().UpdateTraitColor(TFTEnums.TraitRarities.Starting);
+            traitColor.GetComponent<TraitColor>().UpdateTraitColor(TraitRarities.Starting);
             Destroy(traitCountBackground);
             Destroy(traitCountField);
             traitNameField.GetComponent<TextMeshPro>().text = traitName;

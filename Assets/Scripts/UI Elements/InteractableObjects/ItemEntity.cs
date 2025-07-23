@@ -138,7 +138,7 @@ public class ItemEntity : DragAndDrop
         if (ValidateItemCombinationLocation())
         {
             ItemEntity otherItemEntity = currentCollisionObject.GetComponent<ItemEntity>();
-            TFTEnums.Item? newItemEnum = item.combineItem(otherItemEntity.item);
+            CompletedItem? newItemEnum = item.combineItem(otherItemEntity.item);
 
             if (newItemEnum == null)
             {
