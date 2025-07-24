@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 /// <summary>
 /// A class that represents an item that can be attached to a champion or sit on the bench.
 /// Contains a reference to its name by enum.
@@ -19,7 +20,7 @@ public class Item
             Debug.LogError("Tried to initialize Item with null argument.");
             return;
         }
-        this.component = (Component) component;
+        this.component = (Component)component;
         isComponent = true;
     }
 
@@ -30,7 +31,7 @@ public class Item
             Debug.LogError("Tried to initialize Item with null argument.");
             return;
         }
-        this.item = (CompletedItem) item;
+        this.item = (CompletedItem)item;
         isComponent = false;
     }
 
@@ -80,5 +81,21 @@ public class Item
         {
             return $"TFT_Item_{item}";
         }
+    }
+
+    public AllItemsEnum GetAllItemsEnum()
+    {
+        AllItemsEnum itemEnum;
+        if (isComponent)
+        {
+            if (!Enum.TryParse(component.ToString(), out itemEnum))
+                Debug.LogError($"Failed to parse the component {component} to the API Enum.");
+        }
+        else
+        {
+            if (!Enum.TryParse(item.ToString(), out itemEnum))
+                Debug.LogError($"Failed to parse the completed item {item} to the API Enum.");
+        }
+        return itemEnum;
     }
 }

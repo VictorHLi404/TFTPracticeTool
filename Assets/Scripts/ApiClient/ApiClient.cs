@@ -1,35 +1,133 @@
 using UnityEngine.Networking;
 using Cysharp.Threading.Tasks; // Required for UniTask
-using Newtonsoft;
 using UnityEngine;
 using Newtonsoft.Json;
 using System;
 using System.Text;
 using System.Collections.Generic;
+using Newtonsoft.Json.Converters;
 public class ApiClient
 {
     public static readonly string baseUrl = "http://localhost:5000";
 
-    // public static async UniTask<T> GetRequest<T>(string path, Dictionary<string, string> parameters)
-    // {
+    public static readonly string ChampionWinratePath = "/Champion/ChampionWinrate";
+    public static readonly string ChampionItemsPath = "/Champion/ChampionItems";
 
-    // }
-
-    public static async UniTask<decimal> TestFunc()
+    public static async UniTask<ChampionResponse> GetChampionWinrate(Champion champion)
     {
-        ChampionRequest champion = new ChampionRequest
+        ChampionEnum championEnum;
+        if (!Enum.TryParse(ProcessingHelper.CleanChampionName(champion.unitName), out championEnum))
+            Debug.LogError($"Could not parse the champion name {champion.unitName} properly.");
+
+        List<AllItemsEnum> allItems = new List<AllItemsEnum>();
+
+        foreach (var item in champion.GetItems())
         {
-            ChampionName = ChampionEnum.Rhaast,
-            Items = new List<AllItemsEnum>(),
-            Level = 2
+            allItems.Add(item.GetAllItemsEnum());
+        }
+
+        ChampionRequest request = new ChampionRequest
+        {
+            ChampionName = championEnum,
+            Items = allItems,
+            Level = champion.starLevel
         };
-        decimal average = await PostRequest<ChampionRequest, decimal>(
-            "/Champion/ChampionWinrate",
-            champion
+
+        return await PostRequest<ChampionRequest, ChampionResponse>(
+            ChampionWinratePath,
+            request
         );
-        Debug.Log("HOLY SHIT THE API ACTUALLY WORKS");
-        Debug.Log(average);
-        return average;
+    }
+
+    public static async UniTask<ChampionResponse> TestChampionWinrate()
+    {
+
+        Champion testChampion = new Champion(2,
+            new UnitData
+            {
+                databaseID = 1,
+                unitName = "Rhaast",
+                cost = 2,
+                unitTraits = new List<string> { "Divinicorp", "Vanguard" },
+                shopIconName = "",
+                championIconName = ""
+            }
+        );
+        Debug.Log("TEST THE API FUNC FOR CHAMPION WINRATE");
+        ChampionResponse response = await GetChampionWinrate(testChampion);
+        Debug.Log("REQUEST SUCCESSFULLY COMPLETED");
+        Debug.Log(response);
+        Debug.Log(response.ChampionName);
+        Debug.Log(response.AveragePlacement);
+
+        return response;
+    }
+
+    public static async UniTask<List<ChampionResponse>> GetChampionAlternativeBuilds(Champion champion, List<List<AllItemsEnum>> alternativeItems)
+    {
+        ChampionEnum championEnum;
+        if (!Enum.TryParse(ProcessingHelper.CleanChampionName(champion.unitName), out championEnum))
+            Debug.LogError($"Could not parse the champion name {champion.unitName} properly.");
+
+        List<AllItemsEnum> allItems = new List<AllItemsEnum>();
+
+        foreach (var item in champion.GetItems())
+        {
+            allItems.Add(item.GetAllItemsEnum());
+        }
+
+        var championRequest = new ChampionRequest
+        {
+            ChampionName = championEnum,
+            Items = allItems,
+            Level = champion.starLevel
+        };
+
+        var request = new ChampionItemStatisticsRequest
+        {
+            MainChampion = championRequest,
+            PossibleItemSets = alternativeItems
+        };
+
+        return await PostRequest<ChampionItemStatisticsRequest, List<ChampionResponse>>(
+            ChampionItemsPath,
+            request
+        );
+    }
+
+    public static async UniTask<List<ChampionResponse>> TestChampionAlternativeBuilds()
+    {
+        Champion testChampion = new Champion(2,
+            new UnitData
+            {
+                databaseID = 53,
+                unitName = "Aurora",
+                cost = 5,
+                unitTraits = new List<string> { "Anima Squad", "Dynamo" },
+                shopIconName = "",
+                championIconName = ""
+            }
+        );
+        List<List<AllItemsEnum>> alternativeItemSets = new List<List<AllItemsEnum>>
+        {
+            new List<AllItemsEnum> { AllItemsEnum.StrikersFlail, AllItemsEnum.JeweledGauntlet, AllItemsEnum.GiantSlayer, AllItemsEnum.SpearofShojin },
+            new List<AllItemsEnum> { AllItemsEnum.BlueBuff, AllItemsEnum.NeedlesslyLargeRod, AllItemsEnum.JeweledGauntlet, AllItemsEnum.TearoftheGoddess },
+            new List<AllItemsEnum> { AllItemsEnum.RecurveBow, AllItemsEnum.BlueBuff, AllItemsEnum.JeweledGauntlet, AllItemsEnum.SpearofShojin },
+            new List<AllItemsEnum> { AllItemsEnum.RabadonsDeathcap, AllItemsEnum.JeweledGauntlet, AllItemsEnum.NeedlesslyLargeRod, AllItemsEnum.ThiefsGloves },
+            new List<AllItemsEnum> { AllItemsEnum.VoidStaff, AllItemsEnum.BFSword, AllItemsEnum.GuinsoosRageblade, AllItemsEnum.SpearofShojin }
+        };
+
+        Debug.Log("TEST THE API FUNC FOR CHAMPION ALT BUILDS");
+        List<ChampionResponse> response = await ApiClient.GetChampionAlternativeBuilds(testChampion, alternativeItemSets);
+        Debug.Log("REQUEST SUCCESSFULLY COMPLETED");
+        Debug.Log(response);
+
+        foreach (var responseObject in response)
+        {
+            Debug.Log(responseObject.AveragePlacement);
+        }
+
+        return response;
     }
 
     public static async UniTask<TResponse?> PostRequest<TRequest, TResponse>(
@@ -46,7 +144,7 @@ public class ApiClient
         try
         {
             if (requestBody != null)
-                jsonPayload = JsonConvert.SerializeObject(requestBody);
+                jsonPayload = JsonConvert.SerializeObject(requestBody, new JsonSerializerSettings { Converters = { new StringEnumConverter() } });
             else
                 Debug.LogWarning($"No JSON body was provided for the post request to {fullUrl}");
 
@@ -86,7 +184,7 @@ public class ApiClient
                         return default(TResponse); // Return default for TResponse if response is empty
                     }
 
-                    return JsonConvert.DeserializeObject<TResponse>(jsonResponse);
+                    return JsonConvert.DeserializeObject<TResponse>(jsonResponse, new JsonSerializerSettings { Converters = {new StringEnumConverter() }});
                 }
             }
         }
