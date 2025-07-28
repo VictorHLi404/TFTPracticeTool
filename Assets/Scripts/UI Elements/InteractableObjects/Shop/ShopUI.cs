@@ -36,7 +36,7 @@ public class ShopUI : MonoBehaviour
         GenerateButtons();
         GenerateDisplayElements();
         GenerateShopItems();
-        await ApiClient.TestChampionAlternativeBuilds();
+        await ApiClient.TestTeamWinrate();
     }
 
     public void Update()
