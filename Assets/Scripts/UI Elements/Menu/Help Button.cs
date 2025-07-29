@@ -9,6 +9,9 @@ public class HelpButton : MonoBehaviour
 
     void OnMouseDown()
     {
+        if (UIBlocker.activeInHierarchy)
+            return;
+
         Debug.Log("CLICKED THE HELP BUTTON!");
         UIBlocker.SetActive(true);
         HelpModal.SetActive(true);
