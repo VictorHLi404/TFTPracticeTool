@@ -189,7 +189,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: HELP / ABOUT
+  m_text: SETTINGS
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4c7497a209144504b91d097a4fed48e7, type: 2}
   m_sharedMaterial: {fileID: 8043443461606238094, guid: 4c7497a209144504b91d097a4fed48e7, type: 2}
@@ -275,7 +275,7 @@ GameObject:
   - component: {fileID: 2621341724843011347}
   - component: {fileID: 537281279884671360}
   m_Layer: 0
-  m_Name: About Button
+  m_Name: Settings Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -357,4 +357,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UIBlocker: {fileID: 2807823565627572076, guid: 7f8f584c9ade17d4db6aeb2ce9965560, type: 3}
-  Modal: {fileID: 752916543611965809, guid: 8aee728b7bc425249b35041899354779, type: 3}
+  Modal: {fileID: 752916543611965809, guid: db3c2d4cc362bd5478febfb94ae3310f, type: 3}
