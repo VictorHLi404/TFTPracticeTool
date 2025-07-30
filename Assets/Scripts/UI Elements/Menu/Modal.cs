@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class HelpModal : MonoBehaviour
+public class Modal : MonoBehaviour
 {
 
     public GameObject UIBlocker;
