@@ -13,6 +13,7 @@ public class ApiClient
     public static readonly string ChampionItemsPath = "/Champion/ChampionItems";
     public static readonly string TeamWinratePath = "/Team/TeamWinrate";
     public static readonly string TeamAlternativeCompsPath = "/Team/TeamAlternativeComps";
+    public static readonly string TeamPopularTeamComp = "/Team/PopularTeamComp";
 
     public static async UniTask<ChampionResponse> GetChampionWinrate(Champion champion)
     {
@@ -68,6 +69,19 @@ public class ApiClient
 
         return await PostRequest<ChampionItemStatisticsRequest, List<ChampionResponse>>(
             ChampionItemsPath,
+            request
+        );
+    }
+
+    public static async UniTask<TeamResponse> GetPopularTeamComp(int level)
+    {
+        var request = new PopularTeamCompRequest
+        {
+            Level = level
+        };
+
+        return await PostRequest<PopularTeamCompRequest, TeamResponse>(
+            TeamPopularTeamComp,
             request
         );
     }
