@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Crown_Warrior_III.TFT_Set12_0: -3017973075490781103
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

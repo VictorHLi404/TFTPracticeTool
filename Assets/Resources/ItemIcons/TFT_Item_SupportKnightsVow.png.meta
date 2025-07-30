@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT_Item_SupportKnightsVow_0: 1662688690277023577
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

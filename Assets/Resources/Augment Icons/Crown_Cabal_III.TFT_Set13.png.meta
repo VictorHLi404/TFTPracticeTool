@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Crown_Cabal_III.TFT_Set13_0: -1941144880013942613
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

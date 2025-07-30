@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT13_Crime_Gold_FleshRipper_0: -1018685628986703659
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

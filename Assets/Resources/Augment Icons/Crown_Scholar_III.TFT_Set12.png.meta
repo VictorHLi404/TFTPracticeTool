@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Crown_Scholar_III.TFT_Set12_0: -7730843088743334076
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

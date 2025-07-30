@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT14_Samira.TFT_Set14_0: -7914111751293476767
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Living-Forge-III_0: -2498905080468705790
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

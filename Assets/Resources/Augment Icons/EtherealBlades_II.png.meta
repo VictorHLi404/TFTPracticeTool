@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      EtherealBlades_II_0: -1549255515323203638
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

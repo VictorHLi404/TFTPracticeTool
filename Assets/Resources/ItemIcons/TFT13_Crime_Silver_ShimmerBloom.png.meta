@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT13_Crime_Silver_ShimmerBloom_0: 2982817793697541993
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

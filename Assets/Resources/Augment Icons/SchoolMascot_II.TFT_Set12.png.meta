@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SchoolMascot_II.TFT_Set12_0: -6541445034150303383
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT14_Miss Fortune.TFT_Set14_0: 6234146796056821757
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

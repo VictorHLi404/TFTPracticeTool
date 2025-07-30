@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT13_Item_AutomataEmblemItem_0: -1505751244466401182
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

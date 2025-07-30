@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT5_Item_JeweledGauntletRadiant_0: 288619904717826486
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

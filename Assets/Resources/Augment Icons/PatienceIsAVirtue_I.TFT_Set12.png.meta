@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      PatienceIsAVirtue_I.TFT_Set12_0: -1499761568468078977
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

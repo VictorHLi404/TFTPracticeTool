@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT13_Crime_Prismatic_UnleashedToxins_0: -1435335458298278788
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

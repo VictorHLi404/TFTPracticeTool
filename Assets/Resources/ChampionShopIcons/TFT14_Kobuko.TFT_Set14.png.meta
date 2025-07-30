@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT14_Kobuko.TFT_Set14_0: 4078177456476945641
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

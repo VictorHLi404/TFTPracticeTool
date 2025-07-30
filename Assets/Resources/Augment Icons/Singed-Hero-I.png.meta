@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Singed-Hero-I_0: 2095530806603953867
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

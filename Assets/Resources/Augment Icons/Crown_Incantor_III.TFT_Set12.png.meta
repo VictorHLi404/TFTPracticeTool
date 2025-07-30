@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Crown_Incantor_III.TFT_Set12_0: 5037157312249952528
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

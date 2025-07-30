@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Manaflow_II.TFT_Set13_0: 6005353380623746363
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

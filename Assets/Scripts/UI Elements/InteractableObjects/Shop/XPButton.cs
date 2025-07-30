@@ -12,7 +12,7 @@ public class XPButton : MonoBehaviour {
     }
 
     public void OnMouseDown() {
-        parentShop.buyXP();
+        parentShop.BuyXP();
     }
 
 }

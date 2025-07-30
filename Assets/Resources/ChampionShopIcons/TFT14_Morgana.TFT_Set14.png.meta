@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT14_Morgana.TFT_Set14_0: 2890929147223539562
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

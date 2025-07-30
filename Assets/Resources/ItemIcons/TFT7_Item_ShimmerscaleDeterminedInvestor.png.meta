@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT7_Item_ShimmerscaleDeterminedInvestor_0: -4139319827745079995
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

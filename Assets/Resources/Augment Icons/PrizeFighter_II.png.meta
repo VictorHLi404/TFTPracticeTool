@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      PrizeFighter_II_0: 6283953566786824328
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

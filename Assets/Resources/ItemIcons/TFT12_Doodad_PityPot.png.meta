@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT12_Doodad_PityPot_0: -6132193591515988176
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

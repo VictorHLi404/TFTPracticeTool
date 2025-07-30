@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT12_Item_IncantorEmblemItem_0: -7354774187959217016
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

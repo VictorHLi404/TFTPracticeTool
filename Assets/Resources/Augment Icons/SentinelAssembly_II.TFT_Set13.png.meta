@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SentinelAssembly_II.TFT_Set13_0: -7292630099065995252
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

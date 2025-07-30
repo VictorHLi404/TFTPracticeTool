@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT_Consumable_ChampionDuplicator_I_0: 8445021190218515188
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

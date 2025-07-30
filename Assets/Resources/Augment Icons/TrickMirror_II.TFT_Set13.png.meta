@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TrickMirror_II.TFT_Set13_0: -5803515425784655900
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

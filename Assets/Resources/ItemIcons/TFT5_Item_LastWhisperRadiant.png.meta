@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT5_Item_LastWhisperRadiant_0: 2578133634865816611
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

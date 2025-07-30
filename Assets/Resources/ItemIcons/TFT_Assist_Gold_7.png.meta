@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT_Assist_Gold_7_0: 8236122125152209903
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      AGoldenReturn_III.TFT_Set13_Evolved_0: 3179927396510714885
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

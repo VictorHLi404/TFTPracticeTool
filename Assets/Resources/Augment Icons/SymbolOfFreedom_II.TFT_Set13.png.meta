@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SymbolOfFreedom_II.TFT_Set13_0: 2233544724583865146
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

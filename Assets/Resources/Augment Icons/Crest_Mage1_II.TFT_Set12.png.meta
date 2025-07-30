@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Crest_Mage1_II.TFT_Set12_0: -5809239132038535551
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

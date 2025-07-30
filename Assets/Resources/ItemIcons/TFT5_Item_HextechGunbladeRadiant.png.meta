@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT5_Item_HextechGunbladeRadiant_0: 3187180144536133975
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

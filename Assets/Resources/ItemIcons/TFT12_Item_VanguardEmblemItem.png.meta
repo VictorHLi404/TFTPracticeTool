@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT12_Item_VanguardEmblemItem_0: 1364598054384781444
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

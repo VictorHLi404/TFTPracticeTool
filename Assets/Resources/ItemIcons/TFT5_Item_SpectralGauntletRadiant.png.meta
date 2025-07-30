@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT5_Item_SpectralGauntletRadiant_0: -9140329526477253223
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      RoyalGuard_II.TFT_Set12_0: 1869471680400508781
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

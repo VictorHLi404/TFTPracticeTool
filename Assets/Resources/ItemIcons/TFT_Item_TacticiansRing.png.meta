@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT_Item_TacticiansRing_0: 7437542795649929614
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

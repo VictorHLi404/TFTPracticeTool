@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT13_Crime_Gold_VoltaicSaber_0: -1500731689361280989
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT14_DrMundo.TFT_Set14_0: -8669718079179102142
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

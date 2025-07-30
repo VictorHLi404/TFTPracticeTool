@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      PortableForge2_0: -7132220068372702281
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

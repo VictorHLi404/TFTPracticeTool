@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT7_Item_ShimmerscaleMogulsMail_0: 980192616169938223
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

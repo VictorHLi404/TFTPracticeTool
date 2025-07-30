@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      UpwardMobility_III.TFT_Set12_0: 8197581135399640620
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

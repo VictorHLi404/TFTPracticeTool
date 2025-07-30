@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      StarryNight_II.TFT_Set13_0: 8338211353262970322
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

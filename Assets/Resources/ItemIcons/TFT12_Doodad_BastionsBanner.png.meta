@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT12_Doodad_BastionsBanner_0: 5751628795252854760
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

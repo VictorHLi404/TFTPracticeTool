@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT13_Crime_Bronze_MageGuard_0: -8303066912938990437
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

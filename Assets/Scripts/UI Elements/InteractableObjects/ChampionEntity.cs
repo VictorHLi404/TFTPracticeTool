@@ -16,6 +16,7 @@ public class ChampionEntity : DragAndDrop
     private GameObject border;
     private GameObject championIcon;
     private GameObject itemRenderer;
+    private GameObject ShopUIReference;
 
     public GameObject currentCollisionObject = null; // variable to interface with current hex / bench slot that the unit is sitting on\
     public GameObject previousCollisionObject = null; // variable to keep track of exisiting place, same w drop coords
@@ -28,16 +29,17 @@ public class ChampionEntity : DragAndDrop
         this.itemRenderer = transform.Find("ItemRenderer").gameObject;
     }
 
-    public void Initialize(Champion newChampion, GameObject unitSlot)
+    public void Initialize(Champion newChampion, GameObject unitSlot, GameObject ShopUIReference)
     {
         this.champion = newChampion;
         this.currentCollisionObject = unitSlot;
         this.previousCollisionObject = unitSlot;
-        updateVisuals();
+        this.ShopUIReference = ShopUIReference;
+        UpdateVisuals();
         UpdatePickupCoords(previousCollisionObject.transform.position);
     }
 
-    public void updateVisuals()
+    public void UpdateVisuals()
     {
         championIcon.GetComponent<ChampionIcon>().updateChampionImage(champion);
         int starLevel = champion.starLevel;
@@ -56,10 +58,10 @@ public class ChampionEntity : DragAndDrop
         }
         SpriteRenderer championSpriteRenderer = championIcon.GetComponent<SpriteRenderer>();
         championSpriteRenderer.sprite = CropSprite(championSpriteRenderer.sprite);
-        updateItemVisuals();
+        UpdateItemVisuals();
     }
 
-    public void updateItemVisuals()
+    public void UpdateItemVisuals()
     {
         if (itemRenderer == null)
         {
@@ -93,34 +95,33 @@ public class ChampionEntity : DragAndDrop
     /// Extension call from Champion.
     /// </summary>
     /// <returns></returns>
-    public int getSellPrice()
+    public int GetSellPrice()
     {
         return champion.getSellPrice();
     }
 
-    public bool canItemBePlaced()
+    public bool CanItemBePlaced()
     {
         return champion.canItemBePlaced();
     }
 
-    public void addItem(ItemEntity itemEntity)
+    public void AddItem(ItemEntity itemEntity)
     {
         champion.addItem(itemEntity.item);
-        updateItemVisuals();
+        UpdateItemVisuals();
 
     }
 
     public void LevelUp()
     {
         champion.starLevel++;
-        updateVisuals();
+        UpdateVisuals();
     }
 
-    public void removeSelfFromSlot()
+    public void RemoveSelfFromSlot()
     {
         if (currentCollisionObject == null)
         {
-            Debug.Log("CHAMPION DIDNT TOUCH ANYTHING");
             return;
         }
         if (currentCollisionObject.gameObject.GetComponent<UnitSlot>() == null)
@@ -150,7 +151,6 @@ public class ChampionEntity : DragAndDrop
             {
                 previousCollisionObject = currentCollisionObject;
             }
-            Debug.Log(currentCollisionObject);
         }
         else if (isUnitSlot(collisionGameObject))
         {
@@ -172,8 +172,6 @@ public class ChampionEntity : DragAndDrop
         GameObject collisionGameObject = collisionObject.gameObject;
         if (currentCollisionObject == collisionGameObject)
         {
-            Debug.Log($"MOST RECENTLY TOUCHED TILE AT {currentCollisionObject.transform.position}");
-            Debug.Log($"LEAVING A TILE AT {collisionGameObject.transform.position}");
             currentCollisionObject = null;
         }
     }
@@ -237,17 +235,24 @@ public class ChampionEntity : DragAndDrop
     {
         if (currentCollisionObject == null)
         {
-            Debug.Log(0);
             return false;
         }
         else if (currentCollisionObject.GetComponent<ChampionEntity>() == null)
         {
-            Debug.Log(currentCollisionObject);
-            Debug.Log(1);
             return false;
         }
-        Debug.Log("VALIDATED!");
         return true;
+    }
+
+    protected void OnMouseOver()
+    {
+        if (Input.anyKeyDown)
+        {
+            if (Input.GetKeyDown(Settings.Instance.HotkeyBindings[HotkeyEnum.SellChampionHotkey]))
+            {
+                SellSelf();
+            }
+        }
     }
 
     protected override void OnMouseUp()
@@ -255,16 +260,14 @@ public class ChampionEntity : DragAndDrop
         // check if the location is a valid place for the checkmark to be: if it is, then drop and update new starting, if not, then return to initial place
         if (validateShopDropLocation())
         {
-            currentCollisionObject.GetComponent<ShopUI>().sellChampion(this);
+            currentCollisionObject.GetComponent<ShopUI>().SellChampion(this);
             previousCollisionObject.GetComponent<UnitSlot>().removeChampionFromSlot();
             Destroy(gameObject);
         }
         else if (validateChampionSwapLocation())
         {
-            Debug.Log("SWAP THAT HOE!");
             ChampionEntity otherChampion = currentCollisionObject.GetComponent<ChampionEntity>();
             previousCollisionObject.GetComponent<UnitSlot>().removeChampionFromSlot();
-            Debug.Log(currentCollisionObject);
             otherChampion.previousCollisionObject.GetComponent<UnitSlot>().removeChampionFromSlot();
             GameObject tempData = previousCollisionObject;
 
@@ -296,8 +299,17 @@ public class ChampionEntity : DragAndDrop
         {
             this.transform.position = pickUpCoords;
         }
-
     }
+
+    protected void SellSelf()
+    {
+        Debug.Log("DOES THIS SHIT EVEN EXIST?");
+        Debug.Log(ShopUIReference.GetComponent<ShopUI>());
+        ShopUIReference.GetComponent<ShopUI>().SellChampion(this);
+        previousCollisionObject.GetComponent<UnitSlot>().removeChampionFromSlot();
+        Destroy(gameObject);
+    }
+
     protected override Vector3 getDropLocationCoords()
     {
         Vector3 newLocationCoords = currentCollisionObject.transform.position;

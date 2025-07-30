@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT13_Item_TitanEmblemItem_0: 2020042188351496305
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

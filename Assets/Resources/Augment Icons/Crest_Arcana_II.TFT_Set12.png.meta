@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Crest_Arcana_II.TFT_Set12_0: -7509229876366097059
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

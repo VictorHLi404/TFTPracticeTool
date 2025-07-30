@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT14_Shaco.TFT_Set14_0: -1919327270774194806
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      RiggedShop_I.TFT_Set13_0: 3417505163761271654
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

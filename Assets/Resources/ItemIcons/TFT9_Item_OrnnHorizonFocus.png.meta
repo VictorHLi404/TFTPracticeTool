@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT9_Item_OrnnHorizonFocus_0: -3420515813447948580
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

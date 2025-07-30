@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT_Item_WarmogsArmor_0: -6765565056857037776
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

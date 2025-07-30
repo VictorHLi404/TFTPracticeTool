@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT14_KogMaw.TFT_Set14_0: -7110990724725084833
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

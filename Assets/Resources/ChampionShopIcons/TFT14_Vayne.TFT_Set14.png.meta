@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT14_Vayne.TFT_Set14_0: -3999443192827611132
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

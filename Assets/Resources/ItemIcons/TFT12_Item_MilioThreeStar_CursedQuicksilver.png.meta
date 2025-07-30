@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT12_Item_MilioThreeStar_CursedQuicksilver_0: 1985095698682094220
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

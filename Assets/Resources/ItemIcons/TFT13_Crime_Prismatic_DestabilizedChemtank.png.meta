@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT13_Crime_Prismatic_DestabilizedChemtank_0: 3179748287296277649
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

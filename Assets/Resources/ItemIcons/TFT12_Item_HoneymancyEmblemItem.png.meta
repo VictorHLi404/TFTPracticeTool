@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT12_Item_HoneymancyEmblemItem_0: -3790264340356396476
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

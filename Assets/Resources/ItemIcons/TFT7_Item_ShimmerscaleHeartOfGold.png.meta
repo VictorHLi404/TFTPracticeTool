@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT7_Item_ShimmerscaleHeartOfGold_0: 5167982463763935163
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

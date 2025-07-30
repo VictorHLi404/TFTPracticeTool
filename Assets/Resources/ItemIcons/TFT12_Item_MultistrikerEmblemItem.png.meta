@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT12_Item_MultistrikerEmblemItem_0: 1951188315217510494
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

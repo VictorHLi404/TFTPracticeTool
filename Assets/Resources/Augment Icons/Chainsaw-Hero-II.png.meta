@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Chainsaw-Hero-II_0: 3607862914857678
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

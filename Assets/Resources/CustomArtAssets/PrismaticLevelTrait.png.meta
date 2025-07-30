@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      PrismaticLevelTrait_0: 1935143490781299516
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

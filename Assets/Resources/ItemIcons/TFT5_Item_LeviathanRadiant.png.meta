@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT5_Item_LeviathanRadiant_0: -183445607837624536
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

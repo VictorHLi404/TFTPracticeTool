@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT4_Item_OrnnObsidianCleaver_0: 6654038560371226040
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

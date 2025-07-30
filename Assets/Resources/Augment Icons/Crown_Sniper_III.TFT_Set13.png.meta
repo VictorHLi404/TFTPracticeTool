@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Crown_Sniper_III.TFT_Set13_0: 5802068842059392621
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

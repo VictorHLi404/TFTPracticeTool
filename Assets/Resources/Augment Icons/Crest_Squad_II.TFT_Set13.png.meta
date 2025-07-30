@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Crest_Squad_II.TFT_Set13_0: -5119911783111046799
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

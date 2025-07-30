@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT13_AnotherAnomaly_Item_0: 331743232661797435
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

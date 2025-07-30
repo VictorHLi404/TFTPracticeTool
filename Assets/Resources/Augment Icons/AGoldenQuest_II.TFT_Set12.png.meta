@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      AGoldenQuest_II.TFT_Set12_0: -6162799753325177871
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

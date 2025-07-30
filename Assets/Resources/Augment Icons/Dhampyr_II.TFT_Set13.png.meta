@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Dhampyr_II.TFT_Set13_0: 153156692263294916
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT_Item_BansheesVeil_0: 5600342700936471401
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

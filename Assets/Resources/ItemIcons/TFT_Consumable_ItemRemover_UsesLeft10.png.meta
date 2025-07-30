@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT_Consumable_ItemRemover_UsesLeft10_0: -3454730783467111815
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

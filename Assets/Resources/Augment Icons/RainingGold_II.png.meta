@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      RainingGold_II_0: 4349660239225146401
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

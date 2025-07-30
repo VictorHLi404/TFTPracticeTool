@@ -260,6 +260,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 6bfa02845d026bd42a5548dd7a67abd2, type: 3}
+--- !u!1 &371059456 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1258126771460744109, guid: 7952c07479473824f90b739236396fa5, type: 3}
+  m_PrefabInstance: {fileID: 1497925850}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1036,6 +1041,10 @@ PrefabInstance:
       propertyPath: slotWidth
       value: 1.25
       objectReference: {fileID: 0}
+    - target: {fileID: 1403244824956879788, guid: ecafa48e59c3558468fb6d31deec71d4, type: 3}
+      propertyPath: ShopUIReference
+      value: 
+      objectReference: {fileID: 371059456}
     - target: {fileID: 1617363791813450153, guid: ecafa48e59c3558468fb6d31deec71d4, type: 3}
       propertyPath: m_Name
       value: BenchSlotManager

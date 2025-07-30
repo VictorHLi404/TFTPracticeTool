@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Late-Game-Specialist-I_0: -8671620431133784992
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

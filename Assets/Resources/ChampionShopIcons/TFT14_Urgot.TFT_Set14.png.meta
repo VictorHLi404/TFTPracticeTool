@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT14_Urgot.TFT_Set14_0: -4405298982108338086
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

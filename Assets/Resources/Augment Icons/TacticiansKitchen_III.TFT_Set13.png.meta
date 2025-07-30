@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TacticiansKitchen_III.TFT_Set13_0: 2263249486236130629
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

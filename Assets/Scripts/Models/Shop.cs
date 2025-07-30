@@ -66,7 +66,7 @@ public class Shop
                 if (!previousShopChampion.isDummy())
                 {
                     championBagSizes[previousShopChampion.databaseID] += 1;
-                    Debug.Log($"Putting {previousShopChampion} back in the bag...");
+                    // Debug.Log($"Putting {previousShopChampion} back in the bag...");
                 }
             }
         }
@@ -115,9 +115,8 @@ public class Shop
     /// <returns>
     /// Whether purchasing XP was sucessful or not.
     /// </returns>
-    public bool buyXP()
+    public bool BuyXP()
     {
-        Debug.Log("BUY XP!");
         playerData.buyXP(4); // default is 4, change later for potential implements
         return true;
     }
@@ -168,12 +167,12 @@ public class Shop
     /// <param name="champion"></param>
     /// <returns></returns>
 
-    public bool sellChampion(Champion champion)
+    public bool SellChampion(Champion champion)
     {
         playerData.gold += champion.getSellPrice();
         int unitCount = (int)Math.Pow(3, champion.starLevel - 1);
         championBagSizes[champion.databaseID] += unitCount;
-        Debug.Log($"Returned {champion} to the pool. there are now {championBagSizes[champion.databaseID]}  instances.");
+        // Debug.Log($"Returned {champion} to the pool. there are now {championBagSizes[champion.databaseID]}  instances.");
         return true;
     }
 

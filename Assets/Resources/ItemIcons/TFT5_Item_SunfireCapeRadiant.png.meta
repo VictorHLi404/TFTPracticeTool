@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT5_Item_SunfireCapeRadiant_0: -8163969408296156770
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

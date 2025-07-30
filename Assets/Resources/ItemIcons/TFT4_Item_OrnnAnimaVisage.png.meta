@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT4_Item_OrnnAnimaVisage_0: 955956207603690908
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

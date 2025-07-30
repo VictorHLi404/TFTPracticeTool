@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Crown_Faerie_III.TFT_Set12_0: 7755660642029116567
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

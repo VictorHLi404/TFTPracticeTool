@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      PrismaticPipeline_III.TFT_Set13_0: 5052561062850477153
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

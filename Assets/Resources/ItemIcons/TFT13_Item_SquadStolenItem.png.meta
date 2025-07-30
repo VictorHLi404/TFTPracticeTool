@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT13_Item_SquadStolenItem_0: -8669456253687918434
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

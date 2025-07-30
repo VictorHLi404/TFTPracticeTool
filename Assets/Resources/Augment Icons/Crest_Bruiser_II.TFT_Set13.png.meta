@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Crest_Bruiser_II.TFT_Set13_0: 3653423243293220143
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

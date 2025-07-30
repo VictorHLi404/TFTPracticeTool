@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT_Item_Artifact_SpectralCutlass_0: 2786058453749196074
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Crown_Weaponmaster_III.TFT_Set12_0: -1392794273219160186
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

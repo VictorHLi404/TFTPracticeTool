@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TeamUp_Geniuses_III.TFT_Set13_0: 4105078613815725612
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

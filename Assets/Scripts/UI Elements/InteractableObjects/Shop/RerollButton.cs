@@ -13,7 +13,7 @@ public class RerollButton : MonoBehaviour {
     }
 
     public void OnMouseDown() {
-        parentShop.rerollShop();
+        parentShop.RerollShop();
     }
 
 }

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Kingslayer_I.TFT_Set13_0: 3832929970685025506
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

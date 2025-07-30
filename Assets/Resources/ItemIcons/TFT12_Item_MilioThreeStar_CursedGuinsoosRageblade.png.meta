@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT12_Item_MilioThreeStar_CursedGuinsoosRageblade_0: 2650686519040508675
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

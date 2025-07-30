@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      HeavilySmash_II.TFT_Set13_0: 2477238500165256828
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

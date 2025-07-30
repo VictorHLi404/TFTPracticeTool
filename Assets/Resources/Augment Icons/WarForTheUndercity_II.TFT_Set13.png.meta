@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      WarForTheUndercity_II.TFT_Set13_0: -2581876234391625294
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

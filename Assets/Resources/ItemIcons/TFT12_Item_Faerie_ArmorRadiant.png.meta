@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT12_Item_Faerie_ArmorRadiant_0: 5987495941223196401
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

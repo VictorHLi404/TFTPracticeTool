@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      BandThieves1_0: 6476824866381909751
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT4_Item_OrnnRocketPropelledFist_0: 209514218350066554
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

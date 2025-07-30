@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT12_Item_ArcanaEmblemItem_0: -7373623493269957653
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      RadiantRefactor_III_0: 812247064986201036
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

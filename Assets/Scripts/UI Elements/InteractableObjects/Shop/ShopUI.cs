@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -29,19 +30,29 @@ public class ShopUI : MonoBehaviour
     public GameObject hexGridManager;
     public GameObject itemBench;
 
-    public async void Start()
+    public void Start()
     {
         shop = new Shop();
         shop.generateShop(true);
         GenerateButtons();
         GenerateDisplayElements();
         GenerateShopItems();
-        await ApiClient.TestTeamWinrate();
     }
 
     public void Update()
     {
-        hexGridManager.GetComponent<HexGridManager>().updateMaxUnitCount(shop.getPlayerLevel());   
+        hexGridManager.GetComponent<HexGridManager>().updateMaxUnitCount(shop.getPlayerLevel());
+        if (Input.anyKeyDown)
+        {
+            if (Input.GetKey(Settings.Instance.HotkeyBindings[HotkeyEnum.RerollHotkey]))
+            {
+                RerollShop();
+            }
+            else if (Input.GetKey(Settings.Instance.HotkeyBindings[HotkeyEnum.BuyXPHotkey]))
+            {
+                BuyXP();
+            }
+        }
     }
 
     /// <summary>
@@ -130,7 +141,7 @@ public class ShopUI : MonoBehaviour
     /// <summary>
     /// Reroll the shop by making a call to the internal shop object. Then, update the display fields accordingly.
     /// </summary>
-    public void rerollShop()
+    public void RerollShop()
     {
         if (shop.generateShop(false))
         {
@@ -147,18 +158,18 @@ public class ShopUI : MonoBehaviour
     /// <summary>
     /// Call the shop to buy XP. if it does so successfully, grab the new updated player data from shop and update relevant text fields.
     /// </summary>
-    public void buyXP()
+    public void BuyXP()
     {
-        if (shop.buyXP())
+        if (shop.BuyXP())
         {
             UpdateDisplays();
             hexGridManager.GetComponent<HexGridManager>().updateMaxUnitCount(shop.getPlayerLevel());
         }
     }
 
-    public void sellChampion(ChampionEntity championEntity)
+    public void SellChampion(ChampionEntity championEntity)
     {
-        if (shop.sellChampion(championEntity.champion))
+        if (shop.SellChampion(championEntity.champion))
         {
             UpdateDisplays();
             SellChampionInformation.GetComponent<SellChampionInformation>().disableDisplay();
@@ -167,6 +178,10 @@ public class ShopUI : MonoBehaviour
                 if (!hasBeenPurchased[i])
                 {
                     shopItemArray[i].GetComponent<ShopItem>().enableInteraction(true);
+                }
+                else
+                {
+                    Debug.Log($"SLOT {i} HAS BEEN PURCHASED");
                 }
             }
         }
@@ -180,7 +195,7 @@ public class ShopUI : MonoBehaviour
     /// </summary>
     /// <param name="champion"></param>
     /// <returns></returns>
-    public bool buyChampion(UnitData champion)
+    public bool BuyChampion(UnitData champion, GameObject shopItem)
     {
         BenchManager bench = benchManager.GetComponent<BenchManager>();
         if (!bench.CanUnitBePlaced())
@@ -191,8 +206,23 @@ public class ShopUI : MonoBehaviour
         { // no money
             return false;
         }
+        int shopItemIndex = -1;
+        for (int i = 0; i < shopItemArray.Length; i++)
+        {
+            if (shopItem == shopItemArray[i])
+            {
+                shopItemIndex = i;
+                break;
+            }
+        }
+        if (shopItemIndex == -1)
+        {
+            Debug.LogError("Could not find matching shopitemIndex");
+        }
+        ShopItem shopSlot = shopItem.GetComponent<ShopItem>();
+        hasBeenPurchased[shopItemIndex] = true;
         Champion newChampion = new Champion(1, champion);
-        bench.placeInBench(newChampion);
+        bench.PlaceInBench(newChampion);
         UpdateDisplays();
         return true;
     }
@@ -202,16 +232,11 @@ public class ShopUI : MonoBehaviour
         GameObject collisionObject = collision.gameObject;
         if (collisionObject.GetComponent<ChampionEntity>() != null)
         {
-            for (int i = 0; i < shopItemArray.Length; i++)
-            {
-                ShopItem shopSlot = shopItemArray[i].GetComponent<ShopItem>();
-                hasBeenPurchased[i] = !shopSlot.isActive;
-            }
             foreach (GameObject shopSlotObject in shopItemArray)
             {
                 shopSlotObject.GetComponent<ShopItem>().enableInteraction(false);
             }
-            int sellPrice = collisionObject.GetComponent<ChampionEntity>().getSellPrice();
+            int sellPrice = collisionObject.GetComponent<ChampionEntity>().GetSellPrice();
             SellChampionInformation.GetComponent<SellChampionInformation>().enableDisplay(sellPrice);
         }
     }

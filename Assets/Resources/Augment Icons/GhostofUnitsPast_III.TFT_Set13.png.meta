@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      GhostofUnitsPast_III.TFT_Set13_0: -8378574625461100533
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      CaramelizedComforts_II.TFT_Set12_0: 7637749861454192153
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

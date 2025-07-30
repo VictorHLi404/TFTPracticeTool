@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT_Item_GuardianAngel_0: -4112345918632666218
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

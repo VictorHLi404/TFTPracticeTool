@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT4_Item_OrnnRanduinsSanctum_0: 3370771891337973483
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

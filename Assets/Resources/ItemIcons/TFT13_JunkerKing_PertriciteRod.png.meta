@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT13_JunkerKing_PertriciteRod_0: -5802026376783851503
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

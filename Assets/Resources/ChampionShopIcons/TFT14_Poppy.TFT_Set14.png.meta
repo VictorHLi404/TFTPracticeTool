@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT14_Poppy.TFT_Set14_0: -2631374262386959810
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

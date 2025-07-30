@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT5_Item_HandOfJusticeRadiant_0: -4355721519801298237
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

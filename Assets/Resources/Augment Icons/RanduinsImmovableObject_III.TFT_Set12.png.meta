@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      RanduinsImmovableObject_III.TFT_Set12_0: 1167140987498763368
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

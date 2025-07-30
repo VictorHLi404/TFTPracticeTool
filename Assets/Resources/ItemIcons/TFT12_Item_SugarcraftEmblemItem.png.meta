@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT12_Item_SugarcraftEmblemItem_0: -7355021084799221453
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT12_Item_ChronoEmblemItem_0: 2975867122485344279
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

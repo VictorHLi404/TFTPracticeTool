@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT13_Item_Crime_ArmoryCashout_0: 1536074106468210797
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

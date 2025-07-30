@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Crown_Sorcerer_III.TFT_Set13_0: 7403695789110088984
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

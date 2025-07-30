@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT12_Item_MilioThreeStar_CursedHextechGunblade_0: -250700391016279839
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

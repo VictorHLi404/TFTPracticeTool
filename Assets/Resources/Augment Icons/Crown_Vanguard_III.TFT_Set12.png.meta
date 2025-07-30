@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Crown_Vanguard_III.TFT_Set12_0: 5584078011485402838
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

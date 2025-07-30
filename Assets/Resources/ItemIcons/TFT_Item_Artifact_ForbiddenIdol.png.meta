@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT_Item_Artifact_ForbiddenIdol_0: -6646248126373113828
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

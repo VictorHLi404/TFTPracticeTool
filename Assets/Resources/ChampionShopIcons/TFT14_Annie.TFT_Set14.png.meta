@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT14_Annie.TFT_Set14_0: -4518436264067502298
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

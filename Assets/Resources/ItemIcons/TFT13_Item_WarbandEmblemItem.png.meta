@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT13_Item_WarbandEmblemItem_0: 2090795008139177763
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

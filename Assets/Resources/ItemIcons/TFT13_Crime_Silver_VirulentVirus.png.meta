@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT13_Crime_Silver_VirulentVirus_0: -2462777362199104804
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

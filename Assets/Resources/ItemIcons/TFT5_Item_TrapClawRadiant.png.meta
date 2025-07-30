@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT5_Item_TrapClawRadiant_0: 7272352999223504286
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

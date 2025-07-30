@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      RocketCollection_II.TFT_Set13_0: 9197871793774261252
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

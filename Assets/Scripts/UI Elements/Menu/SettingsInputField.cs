@@ -11,8 +11,7 @@ public class SettingsInputField : MonoBehaviour
     {
         if (Settings.Instance == null)
             Debug.LogError("Settings input field attempted to access settings before initialization, likely race condition");
-        var currentValue = Settings.Instance.HotkeyBindings[hotkey];
-        textObject.text = currentValue;
+        textObject.text = Settings.Instance.HotkeyBindings[hotkey].ToString();
     }
 
     public void SetValue(string value)

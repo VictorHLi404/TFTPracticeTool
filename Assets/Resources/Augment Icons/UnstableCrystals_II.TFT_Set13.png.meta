@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      UnstableCrystals_II.TFT_Set13_0: 6707386109554218965
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

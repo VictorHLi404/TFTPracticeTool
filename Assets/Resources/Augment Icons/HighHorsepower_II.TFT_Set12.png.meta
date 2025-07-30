@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      HighHorsepower_II.TFT_Set12_0: 4036025743770241029
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

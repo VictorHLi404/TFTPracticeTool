@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      OopsAllRageblades_III.TFT_Set12_0: -653065173286806969
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

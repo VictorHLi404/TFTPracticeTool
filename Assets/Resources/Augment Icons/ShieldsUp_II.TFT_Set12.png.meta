@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ShieldsUp_II.TFT_Set12_0: 44735888151459873
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

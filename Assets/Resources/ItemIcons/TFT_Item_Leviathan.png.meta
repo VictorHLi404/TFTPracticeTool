@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT_Item_Leviathan_0: -5927005290704482276
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

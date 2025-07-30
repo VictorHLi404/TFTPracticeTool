@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT12_Doodad_PiggyBanker_0: 177415067013037086
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

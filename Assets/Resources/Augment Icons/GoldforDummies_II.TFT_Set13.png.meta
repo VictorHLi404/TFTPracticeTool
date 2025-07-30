@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      GoldforDummies_II.TFT_Set13_0: 695520655113996921
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

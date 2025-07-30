@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT14_Aurora.TFT_Set14_0: -577985369673447048
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

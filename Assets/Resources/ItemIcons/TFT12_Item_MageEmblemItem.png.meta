@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT12_Item_MageEmblemItem_0: 1041950128959481450
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

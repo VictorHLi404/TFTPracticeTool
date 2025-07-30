@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      LootExplosion_II.TFT_Set13_0: -4452183608081225190
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Crown_Witch_III.TFT_Set12_0: 3304400549982271973
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

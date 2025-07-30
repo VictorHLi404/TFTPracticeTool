@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Crown_Ambusher_III.TFT_Set13_0: 3055994952128405118
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

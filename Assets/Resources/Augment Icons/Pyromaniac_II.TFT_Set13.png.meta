@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Pyromaniac_II.TFT_Set13_0: -8503935933727812465
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

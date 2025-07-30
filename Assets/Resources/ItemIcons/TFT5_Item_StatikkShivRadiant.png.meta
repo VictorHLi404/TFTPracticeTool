@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT5_Item_StatikkShivRadiant_0: 4144339166389895259
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

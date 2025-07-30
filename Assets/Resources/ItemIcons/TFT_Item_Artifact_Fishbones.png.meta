@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT_Item_Artifact_Fishbones_0: 8082600189703598780
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

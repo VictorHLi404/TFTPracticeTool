@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT14_Shyvana.TFT_Set14_0: -2643839220602760232
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

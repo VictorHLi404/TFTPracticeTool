@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT12_Doodad_DuplicatorPrinter_0: 3058499081673925953
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

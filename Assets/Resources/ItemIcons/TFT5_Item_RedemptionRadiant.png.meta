@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT5_Item_RedemptionRadiant_0: -6250921030769045524
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

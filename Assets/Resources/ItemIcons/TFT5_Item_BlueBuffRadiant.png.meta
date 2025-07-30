@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT5_Item_BlueBuffRadiant_0: -1955851090530474971
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

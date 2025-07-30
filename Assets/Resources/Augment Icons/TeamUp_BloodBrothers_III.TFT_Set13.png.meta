@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TeamUp_BloodBrothers_III.TFT_Set13_0: 2076138260624789975
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

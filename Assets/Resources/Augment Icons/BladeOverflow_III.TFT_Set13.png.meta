@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      BladeOverflow_III.TFT_Set13_0: -4713659190521603064
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

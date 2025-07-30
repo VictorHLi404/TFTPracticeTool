@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Crown_Crime_III.TFT_Set13_0: 5480277300516677016
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

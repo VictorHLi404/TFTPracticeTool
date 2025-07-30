@@ -51,6 +51,7 @@ MonoBehaviour:
   spacing: 25
   benchSlotPrefab: {fileID: 7475067501814657363, guid: 2169c815ac9df2543882fb8c2633540e, type: 3}
   championPrefab: {fileID: 706143008092661224, guid: fb5934cc5ab26f74085715ac7e08be42, type: 3}
+  ShopUIReference: {fileID: 1258126771460744109, guid: 7952c07479473824f90b739236396fa5, type: 3}
 --- !u!212 &3198868488463323153
 SpriteRenderer:
   m_ObjectHideFlags: 0

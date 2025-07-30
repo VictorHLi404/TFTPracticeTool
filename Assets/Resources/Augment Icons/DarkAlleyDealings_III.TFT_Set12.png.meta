@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      DarkAlleyDealings_III.TFT_Set12_0: -3250376662850722896
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

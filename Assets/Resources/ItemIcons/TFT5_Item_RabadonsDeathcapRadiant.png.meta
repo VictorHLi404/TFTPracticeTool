@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT5_Item_RabadonsDeathcapRadiant_0: 6362868283030157328
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

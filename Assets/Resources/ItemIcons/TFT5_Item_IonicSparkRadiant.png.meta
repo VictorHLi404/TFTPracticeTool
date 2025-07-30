@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT5_Item_IonicSparkRadiant_0: -8151261552870398854
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

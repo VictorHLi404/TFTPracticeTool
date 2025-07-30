@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      PairofFours_II.TFT_Set13_0: 4141574630934731702
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

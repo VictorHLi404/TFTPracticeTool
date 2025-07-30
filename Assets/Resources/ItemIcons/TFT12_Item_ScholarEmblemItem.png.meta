@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT12_Item_ScholarEmblemItem_0: 5925759465348907520
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT_Item_Artifact_UnendingDespair_0: -5086777320884671838
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

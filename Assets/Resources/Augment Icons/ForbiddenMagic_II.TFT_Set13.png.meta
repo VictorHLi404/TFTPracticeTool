@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ForbiddenMagic_II.TFT_Set13_0: -2743346680854566424
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

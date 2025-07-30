@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Pandoras-Bench-I_0: -958886227521120168
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

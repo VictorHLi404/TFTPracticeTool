@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT13_ChampionItem_RenataGlasc_3Star_0: 7997132553611883291
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

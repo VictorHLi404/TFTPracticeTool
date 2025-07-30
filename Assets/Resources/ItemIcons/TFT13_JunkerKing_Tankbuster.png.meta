@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT13_JunkerKing_Tankbuster_0: -8865845654347510129
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

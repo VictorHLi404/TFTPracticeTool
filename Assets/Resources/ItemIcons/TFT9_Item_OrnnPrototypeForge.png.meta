@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT9_Item_OrnnPrototypeForge_0: 3974972680800449345
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

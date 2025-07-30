@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT5_Item_RapidFirecannonRadiant_0: -270420532382367307
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

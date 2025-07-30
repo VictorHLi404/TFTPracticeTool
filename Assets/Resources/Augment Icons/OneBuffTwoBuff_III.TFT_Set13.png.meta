@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      OneBuffTwoBuff_III.TFT_Set13_0: -5039242377996402513
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

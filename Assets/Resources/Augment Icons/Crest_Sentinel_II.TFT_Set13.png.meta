@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Crest_Sentinel_II.TFT_Set13_0: 7723174573298929571
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

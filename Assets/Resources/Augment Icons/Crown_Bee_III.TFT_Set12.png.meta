@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Crown_Bee_III.TFT_Set12_0: -309345949868823943
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

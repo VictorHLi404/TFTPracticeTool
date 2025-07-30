@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Crown_Watcher_III.TFT_Set13_0: 3075758835269568538
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

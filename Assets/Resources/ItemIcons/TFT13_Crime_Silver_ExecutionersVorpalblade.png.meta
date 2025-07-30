@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT13_Crime_Silver_ExecutionersVorpalblade_0: -7802078707853230883
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

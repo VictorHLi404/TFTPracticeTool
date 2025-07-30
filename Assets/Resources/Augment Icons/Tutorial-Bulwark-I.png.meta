@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Tutorial-Bulwark-I_0: -4553497002090905580
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

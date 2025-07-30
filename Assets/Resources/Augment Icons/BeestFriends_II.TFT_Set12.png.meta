@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      BeestFriends_II.TFT_Set12_0: -1692418967864319539
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

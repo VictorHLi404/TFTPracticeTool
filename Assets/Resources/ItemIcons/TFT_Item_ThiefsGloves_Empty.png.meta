@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT_Item_ThiefsGloves_Empty_0: -3875961374352540009
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

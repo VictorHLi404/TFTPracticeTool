@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Tutorial-Swift-Strike-I_0: 5088840221259136228
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Wandering-Trainer-II_0: -440881758781744213
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

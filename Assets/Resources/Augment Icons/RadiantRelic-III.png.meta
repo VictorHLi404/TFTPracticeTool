@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      RadiantRelic-III_0: -1176946647400005182
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

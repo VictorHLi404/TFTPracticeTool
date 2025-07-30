@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT13_Item_BruiserEmblemItem_0: -3642239887177596256
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

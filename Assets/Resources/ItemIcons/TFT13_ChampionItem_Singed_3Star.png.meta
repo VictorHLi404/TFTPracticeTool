@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT13_ChampionItem_Singed_3Star_0: 4103705030220313473
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

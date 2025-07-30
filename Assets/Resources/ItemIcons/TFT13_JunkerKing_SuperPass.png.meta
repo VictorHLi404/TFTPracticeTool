@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT13_JunkerKing_SuperPass_0: 2758337411284668733
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

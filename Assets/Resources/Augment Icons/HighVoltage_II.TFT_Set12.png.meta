@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      HighVoltage_II.TFT_Set12_0: 7891676393073481858
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

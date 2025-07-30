@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT_Item_EternalFlame_0: 2101234552370905001
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

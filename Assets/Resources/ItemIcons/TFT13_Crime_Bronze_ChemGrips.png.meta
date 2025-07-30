@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT13_Crime_Bronze_ChemGrips_0: 5048585724407162770
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

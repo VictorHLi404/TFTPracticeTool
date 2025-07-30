@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Health-is-Wealth-I_0: 2287966564966099978
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

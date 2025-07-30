@@ -8,13 +8,12 @@ public class Settings : MonoBehaviour
 {
     public static Settings Instance { get; set; }
 
-    public Dictionary<HotkeyEnum, string> HotkeyBindings = new Dictionary<HotkeyEnum, string>
+    public Dictionary<HotkeyEnum, KeyCode> HotkeyBindings = new Dictionary<HotkeyEnum, KeyCode>
     {
-        {HotkeyEnum.BuyXPHotkey, "B"},
-        {HotkeyEnum.RerollHotkey, "R"},
-        {HotkeyEnum.SellChampionHotkey, "E"}
+        {HotkeyEnum.BuyXPHotkey, KeyCode.B},
+        {HotkeyEnum.RerollHotkey, KeyCode.R},
+        {HotkeyEnum.SellChampionHotkey, KeyCode.E}
     };
-
     void Awake()
     {
         if (Instance == null)
@@ -30,9 +29,11 @@ public class Settings : MonoBehaviour
 
     private static bool CheckDuplicateHotkeys(string newValue)
     {
+        KeyCode newKeyCode;
+        Enum.TryParse(newValue, true, out newKeyCode);
         foreach (var existingHotkey in Instance.HotkeyBindings.Values)
         {
-            if (newValue.Equals(existingHotkey))
+            if (newKeyCode.Equals(existingHotkey))
             {
                 return true;
             }
@@ -53,7 +54,9 @@ public class Settings : MonoBehaviour
             return;
         }
         Debug.Log($"UPDATING {hotkey} WITH NEW VALUE {newValue}");
-        Instance.HotkeyBindings[hotkey] = newValue;
+        KeyCode newKeyCode;
+        Enum.TryParse(newValue, true, out newKeyCode);
+        Instance.HotkeyBindings[hotkey] = newKeyCode;
     }
 
     public static void UpdateRerollHotkey(string newValue)
@@ -69,7 +72,7 @@ public class Settings : MonoBehaviour
     public static string ValidateHotkey(HotkeyEnum hotkey, string currentValue)
     {
         if (string.IsNullOrEmpty(currentValue) || CheckDuplicateHotkeys(currentValue))
-            return Instance.HotkeyBindings[hotkey];
+            return Instance.HotkeyBindings[hotkey].ToString();
         else
             return currentValue;
     }
@@ -82,27 +85,4 @@ public class Settings : MonoBehaviour
 
     public static string ValidateSellChampionHotKey(string currentValue)
         => ValidateHotkey(HotkeyEnum.SellChampionHotkey, currentValue);
-
-    public static string GetBuyXPHotkey()
-    {
-        if (!Instance.HotkeyBindings.ContainsKey(HotkeyEnum.BuyXPHotkey))
-            Debug.LogError("Buy XP Hotkey was not set properly.");
-        return Instance.HotkeyBindings[HotkeyEnum.BuyXPHotkey];
-    }
-    public static string GetRerollHotkey()
-    {
-        if (!Instance.HotkeyBindings.ContainsKey(HotkeyEnum.RerollHotkey))
-        {
-            Debug.LogError("Reroll Hotkey was not set properly in Instance.HotkeyBindings dictionary.");
-        }
-        return Instance.HotkeyBindings[HotkeyEnum.RerollHotkey];
-    }
-    public static string GetSellChampionHotkey()
-    {
-        if (!Instance.HotkeyBindings.ContainsKey(HotkeyEnum.SellChampionHotkey))
-        {
-            Debug.LogError("Sell Champion Hotkey was not set properly in Instance.HotkeyBindings dictionary.");
-        }
-        return Instance.HotkeyBindings[HotkeyEnum.SellChampionHotkey];
-    }
 } 

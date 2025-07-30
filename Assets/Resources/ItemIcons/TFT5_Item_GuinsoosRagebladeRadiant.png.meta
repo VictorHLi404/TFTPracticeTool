@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT5_Item_GuinsoosRagebladeRadiant_0: -6886000760919175494
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT12_Doodad_ToughCookie_0: -5649724112837734406
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

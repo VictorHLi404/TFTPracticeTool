@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT13_Crime_Consumable_PerfectedShimmer_0: -5341913706651873621
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

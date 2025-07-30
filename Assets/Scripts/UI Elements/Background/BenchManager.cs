@@ -11,6 +11,7 @@ public class BenchManager : MonoBehaviour
     public float spacing = 0.375f;      // Spacing between bench slots
     public GameObject benchSlotPrefab; // Prefab for the bench slots.
     public GameObject championPrefab;
+    public GameObject ShopUIReference;
 
     private Bench bench;
     private List<GameObject> benchSlotObjects = new List<GameObject>();
@@ -99,7 +100,7 @@ public class BenchManager : MonoBehaviour
     /// at the leftmost position on the bench.
     /// </summary>
     /// <returns></returns>
-    public bool placeInBench(Champion newChampion)
+    public bool PlaceInBench(Champion newChampion)
     {
         for (int i = 0; i < benchSlotObjects.Count; i++)
         {
@@ -108,7 +109,7 @@ public class BenchManager : MonoBehaviour
             {
                 (float xPos, float yPos) = benchSlotCoordinates[i];
                 GameObject newChampionInstance = Instantiate(championPrefab, transform);
-                newChampionInstance.GetComponent<ChampionEntity>().Initialize(newChampion, benchSlotObjects[i]);
+                newChampionInstance.GetComponent<ChampionEntity>().Initialize(newChampion, benchSlotObjects[i], ShopUIReference);
                 newChampionInstance.transform.localPosition = new Vector3(xPos, yPos, -0.4f);
                 unitSlot.placeChampionInSlot(newChampionInstance.GetComponent<ChampionEntity>());
                 return true;

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT12_Item_HunterEmblemItem_0: -7653472532926239310
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

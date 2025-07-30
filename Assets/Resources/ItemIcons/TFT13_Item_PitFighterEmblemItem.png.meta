@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT13_Item_PitFighterEmblemItem_0: 551924903720326964
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

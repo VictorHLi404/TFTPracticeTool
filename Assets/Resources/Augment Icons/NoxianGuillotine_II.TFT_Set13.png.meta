@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      NoxianGuillotine_II.TFT_Set13_0: 56959659338872879
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

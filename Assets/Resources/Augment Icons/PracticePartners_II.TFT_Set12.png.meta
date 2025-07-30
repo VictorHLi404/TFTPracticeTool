@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      PracticePartners_II.TFT_Set12_0: -5960749846787849503
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

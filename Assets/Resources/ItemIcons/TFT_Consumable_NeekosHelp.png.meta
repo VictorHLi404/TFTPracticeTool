@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT_Consumable_NeekosHelp_0: 4208397832012445065
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

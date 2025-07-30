@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      WandOverflow_III.TFT_Set13_0: 8984699741805735386
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

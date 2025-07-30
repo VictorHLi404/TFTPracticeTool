@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT14_Vex.TFT_Set14_0: -6578436946945502384
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

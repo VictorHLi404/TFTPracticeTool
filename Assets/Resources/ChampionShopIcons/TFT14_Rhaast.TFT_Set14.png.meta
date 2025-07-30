@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT14_Rhaast.TFT_Set14_0: -1984259001194784059
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

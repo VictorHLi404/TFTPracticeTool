@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT13_Item_DemolitionistEmblemItem_0: 4185895112462544229
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

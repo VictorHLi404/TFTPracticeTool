@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      HardCommit_III.TFT_Set12_0: 2932476122591832201
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

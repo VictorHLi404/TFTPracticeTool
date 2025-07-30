@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT_Item_RunaansHurricane_0: -7248930963341526132
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

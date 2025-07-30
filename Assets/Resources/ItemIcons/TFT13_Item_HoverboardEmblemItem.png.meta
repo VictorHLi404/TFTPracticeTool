@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT13_Item_HoverboardEmblemItem_0: 3856268313315372915
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

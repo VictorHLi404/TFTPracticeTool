@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFTTutorial_Item_RecurveBow_0: -7138412408397556335
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

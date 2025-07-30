@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      EyeforanEye_I.TFT_Set13_0: 3488114930013331885
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

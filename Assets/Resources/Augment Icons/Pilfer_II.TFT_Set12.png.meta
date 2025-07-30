@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Pilfer_II.TFT_Set12_0: -4758671367044544088
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

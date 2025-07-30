@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT5_Item_BrambleVestRadiant_0: -1032500358798498500
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

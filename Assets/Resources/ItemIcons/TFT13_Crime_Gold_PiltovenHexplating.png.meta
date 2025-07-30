@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT13_Crime_Gold_PiltovenHexplating_0: -8421307986467408460
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

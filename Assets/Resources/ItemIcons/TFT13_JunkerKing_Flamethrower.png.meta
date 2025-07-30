@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT13_JunkerKing_Flamethrower_0: -7134969091574659197
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

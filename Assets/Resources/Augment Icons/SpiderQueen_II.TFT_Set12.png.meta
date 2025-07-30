@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SpiderQueen_II.TFT_Set12_0: -6272490464506050478
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

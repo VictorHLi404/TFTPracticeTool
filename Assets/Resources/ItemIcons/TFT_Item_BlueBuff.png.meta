@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT_Item_BlueBuff_0: 5033193255773352341
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

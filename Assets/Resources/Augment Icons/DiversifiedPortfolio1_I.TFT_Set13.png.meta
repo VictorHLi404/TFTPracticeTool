@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      DiversifiedPortfolio1_I.TFT_Set13_0: -6321736141237308466
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

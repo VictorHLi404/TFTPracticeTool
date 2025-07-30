@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TombRaider_III.TFT_Set13_0: 4780976460728156448
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

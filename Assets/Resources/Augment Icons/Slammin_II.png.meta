@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Slammin_II_0: -8180499679829616455
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

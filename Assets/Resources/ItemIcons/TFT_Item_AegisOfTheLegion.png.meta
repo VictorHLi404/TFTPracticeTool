@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT_Item_AegisOfTheLegion_0: 6449811494729583443
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

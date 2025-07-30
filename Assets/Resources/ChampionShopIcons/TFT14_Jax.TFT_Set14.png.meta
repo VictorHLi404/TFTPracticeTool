@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT14_Jax.TFT_Set14_0: -1453064242812643946
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

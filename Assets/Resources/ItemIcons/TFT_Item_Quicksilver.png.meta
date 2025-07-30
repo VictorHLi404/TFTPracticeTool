@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT_Item_Quicksilver_0: 4156373805365699441
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

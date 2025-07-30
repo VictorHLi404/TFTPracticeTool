@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      BattleScars_II.TFT_Set13_0: -3372912084039368067
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

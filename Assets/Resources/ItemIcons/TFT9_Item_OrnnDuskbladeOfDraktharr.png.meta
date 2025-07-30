@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT9_Item_OrnnDuskbladeOfDraktharr_0: 8192230611023920833
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

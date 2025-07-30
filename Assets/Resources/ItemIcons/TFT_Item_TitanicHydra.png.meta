@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT_Item_TitanicHydra_0: 4458196700361592954
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

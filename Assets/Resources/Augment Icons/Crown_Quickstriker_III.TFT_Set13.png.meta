@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Crown_Quickstriker_III.TFT_Set13_0: 4986329371591816604
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

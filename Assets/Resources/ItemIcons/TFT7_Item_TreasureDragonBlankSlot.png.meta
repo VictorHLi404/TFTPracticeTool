@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT7_Item_TreasureDragonBlankSlot_0: 5299736710096398545
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

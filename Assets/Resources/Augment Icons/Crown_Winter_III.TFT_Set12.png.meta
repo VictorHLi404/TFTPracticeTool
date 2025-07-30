@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Crown_Winter_III.TFT_Set12_0: 8765135036170322517
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

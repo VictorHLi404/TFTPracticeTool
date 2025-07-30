@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT5_Item_GiantSlayerRadiant_0: -8631674048982543321
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

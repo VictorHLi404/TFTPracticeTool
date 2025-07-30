@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      EndlessHunt_II.TFT_Set12_0: 220019636984614437
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

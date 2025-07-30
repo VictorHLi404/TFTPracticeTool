@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      FindYourCenter_I.TFT_Set12_0: 408579931096825920
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

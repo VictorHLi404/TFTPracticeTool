@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT12_Doodad_AnimatedHat_0: -4301145911836978388
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

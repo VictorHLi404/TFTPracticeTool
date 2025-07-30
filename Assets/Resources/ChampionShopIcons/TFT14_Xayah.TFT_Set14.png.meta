@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT14_Xayah.TFT_Set14_0: -1092737949507682128
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      CollectTheBounty_II.TFT_Set13_0: 7763585267593544944
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

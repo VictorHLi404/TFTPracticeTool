@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Unladen-Airspeed-Velocity-II_0: -7246186393527926319
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

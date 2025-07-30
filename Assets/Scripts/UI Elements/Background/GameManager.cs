@@ -106,7 +106,7 @@ public class GameManager : MonoBehaviour
             if (index != i)
             {
                 ChampionEntity championEntity = champions[i];
-                championEntity.removeSelfFromSlot();
+                championEntity.RemoveSelfFromSlot();
                 Destroy(champions[i].gameObject);
             }
         }

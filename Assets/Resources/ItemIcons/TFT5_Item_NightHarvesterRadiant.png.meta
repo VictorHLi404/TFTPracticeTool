@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT5_Item_NightHarvesterRadiant_0: -8305949154815245155
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

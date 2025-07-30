@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      DraconicMastery_II.TFT_Set12_0: -4569472329700088262
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      FlurryofBlows_III.TFT_Set13_0: 951913514787012951
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

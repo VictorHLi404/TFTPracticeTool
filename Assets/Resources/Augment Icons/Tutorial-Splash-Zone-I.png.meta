@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Tutorial-Splash-Zone-I_0: 2404502306269335732
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

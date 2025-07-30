@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      GlassCannon_I.TFT_Set13_0: 6033436475964154974
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

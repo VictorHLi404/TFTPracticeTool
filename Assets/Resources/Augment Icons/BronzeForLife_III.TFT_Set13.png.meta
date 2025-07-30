@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      BronzeForLife_III.TFT_Set13_0: 7083035123457147727
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

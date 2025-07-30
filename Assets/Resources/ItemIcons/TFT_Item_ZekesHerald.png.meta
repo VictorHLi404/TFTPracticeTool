@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT_Item_ZekesHerald_0: -1457486555672967225
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

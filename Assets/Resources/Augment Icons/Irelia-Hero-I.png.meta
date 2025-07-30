@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Irelia-Hero-I_0: -1296257912995571614
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

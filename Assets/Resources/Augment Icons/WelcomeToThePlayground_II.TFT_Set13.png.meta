@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      WelcomeToThePlayground_II.TFT_Set13_0: 4877861056378301541
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

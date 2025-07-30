@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT14_Mordekaiser.TFT_Set14_0: 948176808647207821
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

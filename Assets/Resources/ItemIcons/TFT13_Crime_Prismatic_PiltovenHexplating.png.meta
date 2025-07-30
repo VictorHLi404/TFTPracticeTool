@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT13_Crime_Prismatic_PiltovenHexplating_0: 5367703808133655837
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

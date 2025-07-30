@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT14_Aphelios.TFT_Set14_0: -2126340674229696027
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

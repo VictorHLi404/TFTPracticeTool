@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT13_ChampionItem_Lieutenant_0: -8843231901807727570
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

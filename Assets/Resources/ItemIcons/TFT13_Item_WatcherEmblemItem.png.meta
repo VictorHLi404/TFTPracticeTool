@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT13_Item_WatcherEmblemItem_0: 6942838057787543955
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

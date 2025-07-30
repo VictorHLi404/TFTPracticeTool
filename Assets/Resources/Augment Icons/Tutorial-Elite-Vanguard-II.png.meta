@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Tutorial-Elite-Vanguard-II_0: -8036258455085088660
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

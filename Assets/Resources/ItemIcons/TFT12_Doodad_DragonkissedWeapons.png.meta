@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT12_Doodad_DragonkissedWeapons_0: 5161489028366390792
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

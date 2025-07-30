@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      InvestmentStrategy_III.TFT_Set13_0: 430844275575605434
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

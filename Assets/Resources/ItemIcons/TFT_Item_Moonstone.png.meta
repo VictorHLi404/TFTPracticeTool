@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT_Item_Moonstone_0: -7728194636533544881
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

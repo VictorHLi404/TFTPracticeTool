@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT12_Item_Faerie_QueensCrown_0: -3603366501279343427
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

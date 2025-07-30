@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT5_Item_FrozenHeartRadiant_0: -1555609798189207669
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

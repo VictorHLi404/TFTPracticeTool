@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Overheal_II.TFT_Set13_0: -4956820921305835218
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

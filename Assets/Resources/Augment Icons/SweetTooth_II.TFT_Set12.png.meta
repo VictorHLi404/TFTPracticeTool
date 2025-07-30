@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SweetTooth_II.TFT_Set12_0: 1579433895890907950
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

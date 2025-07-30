@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Crest_Time1_II.TFT_Set12_0: -6888679438103063402
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

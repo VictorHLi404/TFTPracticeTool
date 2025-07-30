@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT_Item_AdaptiveHelm_0: 3132759314880760516
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

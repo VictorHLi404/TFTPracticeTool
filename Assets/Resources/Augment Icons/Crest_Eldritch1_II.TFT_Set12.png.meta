@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Crest_Eldritch1_II.TFT_Set12_0: 6619703657043614227
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

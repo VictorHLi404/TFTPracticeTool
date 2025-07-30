@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Crown_Bruiser_III.TFT_Set13_0: 3684697757790777102
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT12_Item_EldritchEmblemItem_0: 2524257162600527055
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

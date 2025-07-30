@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SatedSpellweaver_II.TFT_Set13_0: -3112979457655528058
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

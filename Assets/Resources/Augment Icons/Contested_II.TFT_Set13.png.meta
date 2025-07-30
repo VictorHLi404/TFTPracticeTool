@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Contested_II.TFT_Set13_0: -2237014176490710009
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

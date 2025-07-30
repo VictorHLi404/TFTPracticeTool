@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      CookingPot_II.TFT_Set13_0: 3538072102640744970
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

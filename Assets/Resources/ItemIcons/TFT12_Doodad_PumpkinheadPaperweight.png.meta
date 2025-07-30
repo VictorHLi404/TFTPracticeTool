@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT12_Doodad_PumpkinheadPaperweight_0: 2010487741086521395
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

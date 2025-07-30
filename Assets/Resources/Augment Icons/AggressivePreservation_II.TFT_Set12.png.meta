@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      AggressivePreservation_II.TFT_Set12_0: 6112022467138101585
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

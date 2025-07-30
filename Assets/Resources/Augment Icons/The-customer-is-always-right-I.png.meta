@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      The-customer-is-always-right-I_0: -1733063175660888152
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

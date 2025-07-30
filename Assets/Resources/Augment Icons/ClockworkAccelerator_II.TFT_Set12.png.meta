@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ClockworkAccelerator_II.TFT_Set12_0: 3534988781135915159
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

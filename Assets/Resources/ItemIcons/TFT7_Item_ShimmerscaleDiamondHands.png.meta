@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT7_Item_ShimmerscaleDiamondHands_0: 6273077025021547646
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ThornPlatedArmor_II.TFT_Set12_0: -7527868876395683709
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

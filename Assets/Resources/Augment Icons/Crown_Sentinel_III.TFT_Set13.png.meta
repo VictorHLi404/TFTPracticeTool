@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Crown_Sentinel_III.TFT_Set13_0: -8749204986185835753
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

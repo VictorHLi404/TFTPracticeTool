@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT14_Elise.TFT_Set14_0: 895229331349438389
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

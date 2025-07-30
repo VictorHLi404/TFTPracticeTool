@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      RaidBoss_II.TFT_Set12_0: 8525178034820996581
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

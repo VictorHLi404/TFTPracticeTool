@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      MoltenCaramel_II.TFT_Set12_0: 8975464359077033451
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Firesale_I.TFT_Set13_0: 7749655310392398369
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

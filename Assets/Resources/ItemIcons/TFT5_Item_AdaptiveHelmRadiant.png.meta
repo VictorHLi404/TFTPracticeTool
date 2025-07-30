@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT5_Item_AdaptiveHelmRadiant_0: -4155456354062093909
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

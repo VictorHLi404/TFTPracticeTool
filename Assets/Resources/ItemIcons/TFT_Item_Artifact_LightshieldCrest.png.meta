@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT_Item_Artifact_LightshieldCrest_0: -472268707853546432
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

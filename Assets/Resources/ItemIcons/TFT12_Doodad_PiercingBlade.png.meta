@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT12_Doodad_PiercingBlade_0: 6329370301385241357
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

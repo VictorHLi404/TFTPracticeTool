@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT12_Doodad_HyperRoller_0: -7100230320624934820
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Coronation_III.TFT_Set13_0: 2126590226684630163
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

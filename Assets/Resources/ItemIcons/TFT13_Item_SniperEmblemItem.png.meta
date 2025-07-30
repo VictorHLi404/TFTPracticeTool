@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT13_Item_SniperEmblemItem_0: -4499858458016187972
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

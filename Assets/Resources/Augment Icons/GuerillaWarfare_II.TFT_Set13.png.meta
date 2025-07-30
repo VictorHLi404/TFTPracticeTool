@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      GuerillaWarfare_II.TFT_Set13_0: -6484846293818470352
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

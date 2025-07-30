@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT4_Item_OrnnEternalWinter_0: -6458907824262143471
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

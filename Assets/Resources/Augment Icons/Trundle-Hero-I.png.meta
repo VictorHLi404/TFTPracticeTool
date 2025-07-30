@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Trundle-Hero-I_0: 572019489652867991
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

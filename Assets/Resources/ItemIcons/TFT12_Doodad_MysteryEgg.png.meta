@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT12_Doodad_MysteryEgg_0: -7241883281016699664
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT5_Item_ZzRotPortalRadiant_0: -3174615688948132523
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

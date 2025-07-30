@@ -87,7 +87,7 @@ public class ShopItem : MonoBehaviour
 
     public void purchaseChampion()
     {
-        if (parentShop.buyChampion(champion))
+        if (parentShop.BuyChampion(champion, gameObject))
         {
             enableInteraction(false);
 

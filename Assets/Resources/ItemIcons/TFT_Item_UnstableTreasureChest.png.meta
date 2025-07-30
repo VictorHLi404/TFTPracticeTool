@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT_Item_UnstableTreasureChest_0: -474407776548436260
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

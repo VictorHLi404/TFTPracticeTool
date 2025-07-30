@@ -126,7 +126,7 @@ public class ItemEntity : DragAndDrop
         {
             return false;
         }
-        else if (currentCollisionObject.GetComponent<ChampionEntity>().canItemBePlaced())
+        else if (currentCollisionObject.GetComponent<ChampionEntity>().CanItemBePlaced())
         {
             return false;
         }
@@ -187,7 +187,7 @@ public class ItemEntity : DragAndDrop
             Debug.Log("PLACE THAT HOE!");
             previousCollisionObject.GetComponent<ItemSlot>().removeItemFromSlot();
             ChampionEntity championEntity = currentCollisionObject.GetComponent<ChampionEntity>();
-            championEntity.addItem(this);
+            championEntity.AddItem(this);
             Destroy(this.gameObject);
         }
         else if (ValidateItemSlotDropLocation())

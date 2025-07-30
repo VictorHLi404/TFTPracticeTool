@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SuperStars_II.TFT_Set13_0: 4017995373104118208
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

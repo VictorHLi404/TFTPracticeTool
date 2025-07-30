@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      HallofMirrors_III.TFT_Set13_0: 1085754062337333279
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

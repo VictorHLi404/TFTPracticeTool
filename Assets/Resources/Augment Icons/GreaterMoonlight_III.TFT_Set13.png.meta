@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      GreaterMoonlight_III.TFT_Set13_0: -4779984522948763437
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

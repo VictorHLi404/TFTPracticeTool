@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT_Item_Artifact_InnervatingLocket_0: 598337563953951536
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

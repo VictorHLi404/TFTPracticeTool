@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT14_Yuumi.TFT_Set14_0: 5826473850333416516
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

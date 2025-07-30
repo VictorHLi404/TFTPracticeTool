@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT13_ChampionItem_Gremlin_0: -6114117929309602450
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

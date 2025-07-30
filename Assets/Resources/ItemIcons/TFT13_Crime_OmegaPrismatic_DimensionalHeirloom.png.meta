@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT13_Crime_OmegaPrismatic_DimensionalHeirloom_0: -3033947918624491078
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

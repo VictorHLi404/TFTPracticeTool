@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT12_Doodad_DevilTrident_0: -3574090200909204846
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

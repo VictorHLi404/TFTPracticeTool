@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT13_ChampionItem_Chainsaw_2Star_0: -5733478533211121338
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

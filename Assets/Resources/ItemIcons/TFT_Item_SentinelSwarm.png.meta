@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT_Item_SentinelSwarm_0: 5627459249479818676
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

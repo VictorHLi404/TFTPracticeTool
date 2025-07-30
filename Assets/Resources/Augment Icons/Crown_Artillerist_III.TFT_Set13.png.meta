@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Crown_Artillerist_III.TFT_Set13_0: 4545304663358252544
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

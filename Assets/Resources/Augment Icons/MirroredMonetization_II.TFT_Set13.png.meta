@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      MirroredMonetization_II.TFT_Set13_0: -140209119336610757
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

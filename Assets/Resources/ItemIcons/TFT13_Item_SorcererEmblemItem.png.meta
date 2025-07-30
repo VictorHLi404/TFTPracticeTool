@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT13_Item_SorcererEmblemItem_0: 6208153453349599400
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      PresstheAttack_II.TFT_Set12_0: 3068180551448233866
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

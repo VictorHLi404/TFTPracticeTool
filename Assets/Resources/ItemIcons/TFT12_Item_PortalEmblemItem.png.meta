@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT12_Item_PortalEmblemItem_0: -7009601812970943667
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

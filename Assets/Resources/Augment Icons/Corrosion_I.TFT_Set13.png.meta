@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Corrosion_I.TFT_Set13_0: 2779171599525790716
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      WorthTheWait_II.TFT_Set12_0: -7685915690882767727
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT_Item_Artifact_ProwlersClaw_0: -7116050745523362620
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

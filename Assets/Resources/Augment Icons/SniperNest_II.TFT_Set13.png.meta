@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SniperNest_II.TFT_Set13_0: -3794528993505505069
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

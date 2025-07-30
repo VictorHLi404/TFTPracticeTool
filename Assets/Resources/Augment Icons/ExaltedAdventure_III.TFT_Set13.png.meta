@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ExaltedAdventure_III.TFT_Set13_0: 1959740663192014221
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

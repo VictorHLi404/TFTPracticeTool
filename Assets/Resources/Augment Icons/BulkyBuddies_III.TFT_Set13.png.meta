@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      BulkyBuddies_III.TFT_Set13_0: -2215563140627348044
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

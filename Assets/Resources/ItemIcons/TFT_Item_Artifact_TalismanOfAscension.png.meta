@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT_Item_Artifact_TalismanOfAscension_0: 4370026359532573958
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

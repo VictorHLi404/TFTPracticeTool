@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Crown_Eldritch_III.TFT_Set12_0: -1698760774636173676
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

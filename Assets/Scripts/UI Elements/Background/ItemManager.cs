@@ -40,7 +40,6 @@ public class ItemManager : MonoBehaviour
     /// </summary>
     public void reshuffleBench()
     {
-        Debug.Log("START THE RESHUFFLE");
         List<GameObject> itemsOnBench = new List<GameObject>();
         // re initialize all of the items, prolly ineffficnet but should be ok 
         foreach (GameObject itemSlotObject in itemSlotObjects)
@@ -53,13 +52,10 @@ public class ItemManager : MonoBehaviour
             }
             itemSlot.removeItemFromSlot();
         }
-        Debug.Log($"{itemsOnBench.Count}");
         int index = 0;
         foreach (GameObject itemObject in itemsOnBench)
         {
             ItemEntity itemEntity = itemObject.GetComponent<ItemEntity>();
-            Debug.Log(itemEntity.item);
-            Debug.Log($"{itemSlotCoordinates[index].Item1}, {itemSlotCoordinates[index].Item2}");
             itemEntity.Initialize(itemEntity.item, itemSlotObjects[index]);
             itemObject.transform.localPosition = new Vector3(itemSlotCoordinates[index].Item1, itemSlotCoordinates[index].Item2, -1);
             itemSlotObjects[index].GetComponent<ItemSlot>().placeItemInSlot(itemObject.GetComponent<ItemEntity>());

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT_Item_SparringGloves_0: 6106908272748488161
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

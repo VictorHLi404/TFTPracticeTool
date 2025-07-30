@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT14_Jhin.TFT_Set14_0: 2079472084321579423
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

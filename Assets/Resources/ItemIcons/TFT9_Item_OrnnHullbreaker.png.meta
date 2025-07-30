@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT9_Item_OrnnHullbreaker_0: -2923433623157930030
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

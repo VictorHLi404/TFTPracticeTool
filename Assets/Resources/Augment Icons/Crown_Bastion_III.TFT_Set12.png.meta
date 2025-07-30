@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Crown_Bastion_III.TFT_Set12_0: 7861093999463407789
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

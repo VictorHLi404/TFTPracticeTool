@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT13_GoopBuff_Miniaturize_Item_0: -7336053279410569860
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

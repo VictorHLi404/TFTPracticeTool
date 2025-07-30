@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      FishHero_I.TFT_Set13_0: -24628234263058835
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

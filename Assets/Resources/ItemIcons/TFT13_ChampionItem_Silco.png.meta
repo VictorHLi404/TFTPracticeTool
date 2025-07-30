@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT13_ChampionItem_Silco_0: 6195496245683007332
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Crest_Sugarcraft1_II.TFT_Set12_0: 4495506961257685267
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

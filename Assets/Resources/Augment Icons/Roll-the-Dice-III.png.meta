@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Roll-the-Dice-III_0: 7879155459500166994
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

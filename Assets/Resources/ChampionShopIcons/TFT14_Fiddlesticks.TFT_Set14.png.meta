@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT14_Fiddlesticks.TFT_Set14_0: 5566855682265171331
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

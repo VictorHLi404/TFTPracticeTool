@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      LoneSurvivor_I.TFT_Set13_0: 6717558030710837935
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

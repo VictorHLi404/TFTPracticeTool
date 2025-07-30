@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT12_Item_FrostEmblemItem_0: -7074426608530977030
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

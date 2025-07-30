@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Crest_Quickstriker_II.TFT_Set13_0: 8336570223158317015
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

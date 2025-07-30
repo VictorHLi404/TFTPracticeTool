@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TeamUp_Reunion_II.TFT_Set13_0: -3082686076227437450
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Void-Swarm-III_0: -5051206344635906698
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

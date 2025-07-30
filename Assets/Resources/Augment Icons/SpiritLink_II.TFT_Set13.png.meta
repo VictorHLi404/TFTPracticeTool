@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SpiritLink_II.TFT_Set13_0: 3300248325466607564
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

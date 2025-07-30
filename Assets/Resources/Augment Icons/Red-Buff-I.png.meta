@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Red-Buff-I_0: -244271859545389683
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

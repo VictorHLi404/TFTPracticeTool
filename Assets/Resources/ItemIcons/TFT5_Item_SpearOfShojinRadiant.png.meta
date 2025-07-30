@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT5_Item_SpearOfShojinRadiant_0: -8908020520931557655
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
