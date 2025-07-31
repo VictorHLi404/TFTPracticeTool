@@ -75,6 +75,7 @@ public class ApiClient
 
     public static async UniTask<TeamResponse> GetPopularTeamComp(int level)
     {
+        Debug.Log($"FIX THIS SHIT IDK WHATS WRONG {level}");
         var request = new PopularTeamCompRequest
         {
             Level = level

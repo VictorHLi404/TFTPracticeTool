@@ -273,7 +273,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5630912105429599071}
   - component: {fileID: 2621341724843011347}
-  - component: {fileID: 4294257258765374068}
+  - component: {fileID: 3384079909035674836}
   m_Layer: 0
   m_Name: Play Button
   m_TagString: Untagged
@@ -344,7 +344,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3.9867337, y: 1.9911134}
   m_EdgeRadius: 0
---- !u!114 &4294257258765374068
+--- !u!114 &3384079909035674836
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -353,7 +353,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7140100825254217506}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4519110428e2a354eb465d3e3e318c53, type: 3}
+  m_Script: {fileID: 11500000, guid: 6876be339389ca540ae8d763f90a6e94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   UIBlocker: {fileID: 0}
