@@ -54,9 +54,9 @@ public class TraitManager : MonoBehaviour
         foreach (ChampionEntity championEntity in championEntities)
         {
             Champion championData = championEntity.champion;
-            if (!championHashSet.Contains(championData.databaseID))
+            if (!championHashSet.Contains(championData.DatabaseID))
             {
-                championHashSet.Add(championData.databaseID);
+                championHashSet.Add(championData.DatabaseID);
                 List<string> traits = championData.UnitTraits;
                 foreach (string trait in traits)
                 {

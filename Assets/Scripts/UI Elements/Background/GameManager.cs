@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
 
         foreach (ChampionEntity championEntity in benchChampions)
         {
-            int databaseID = championEntity.champion.databaseID;
+            int databaseID = championEntity.champion.DatabaseID;
             int starLevel = championEntity.champion.starLevel;
             if (!newCurrentChampions.ContainsKey((databaseID, starLevel)))
             {
@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
                 List<ChampionEntity> championsToMerge = new List<ChampionEntity>();
                 foreach (ChampionEntity potentialChampion in championList)
                 {
-                    if (potentialChampion.champion.databaseID == databaseID && potentialChampion.champion.starLevel == starLevel)
+                    if (potentialChampion.champion.DatabaseID == databaseID && potentialChampion.champion.starLevel == starLevel)
                     {
                         championsToMerge.Add(potentialChampion);
                     }

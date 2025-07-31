@@ -4,7 +4,9 @@ using Cysharp.Threading.Tasks; // Required for UniTask
 using NUnit.Framework.Interfaces;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StartingResources : MonoBehaviour
 {
@@ -40,12 +42,13 @@ public class StartingResources : MonoBehaviour
         {
             Debug.LogError("Instance for StartingResources has not been set yet.");
         }
-        Instance.initialComponents = RandomizationHelper.GenerateRandomComponents();
+        SceneManager.LoadScene("TestScene");
+        // Instance.initialComponents = RandomizationHelper.GenerateRandomComponents();
 
-        var initialTeamResults = await ApiClient.GetPopularTeamComp(Instance.initialLevel);
+        // var initialTeamResults = await ApiClient.GetPopularTeamComp(Instance.initialLevel);
 
-        (Instance.expectedPlacement, Instance.initialChampions) = DtosHelper.DeserializeTeamResponse(initialTeamResults);
-        RandomizationHelper.DelevelTeam(initialChampions);
+        // (Instance.expectedPlacement, Instance.initialChampions) = DtosHelper.DeserializeTeamResponse(initialTeamResults);
+        // RandomizationHelper.DelevelTeam(initialChampions);
 
 
     }

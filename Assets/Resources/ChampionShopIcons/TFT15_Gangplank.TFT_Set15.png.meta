@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d1e93edcc1118474492feb9aefdb8ff8
+guid: 0c8a01a8ef76b00488f57d4b173446ac
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 750137024008527273
-    second: Vanguard_Icon_0
+      213: 8574677322846492882
+    second: TFT15_Gangplank.TFT_Set15_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Vanguard_Icon_0
+      name: TFT15_Gangplank.TFT_Set15_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 1
-        width: 30
-        height: 28
+        x: 0
+        y: 0
+        width: 256
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9ad95e026a5096a00800000000000000
-      internalID: 750137024008527273
+      spriteID: 2d8dcd3389f5ff670800000000000000
+      internalID: 8574677322846492882
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Vanguard_Icon_0: 750137024008527273
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

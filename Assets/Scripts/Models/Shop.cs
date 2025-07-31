@@ -22,8 +22,8 @@ public class Shop
         this.championIDtoUnitData = new Dictionary<int, UnitData>();
         foreach (UnitData champion in champions)
         {
-            championBagSizes[champion.databaseID] = DatabaseAPI.getBagSize(champion);
-            championIDtoUnitData[champion.databaseID] = champion;
+            championBagSizes[champion.DatabaseID] = DatabaseAPI.getBagSize(champion);
+            championIDtoUnitData[champion.DatabaseID] = champion;
         }
         this.levelOdds = DatabaseAPI.getShopOdds();
         this.playerData = new Player(6, 0, 200, 40, 4, 2, DatabaseAPI.getLevelMapping());
@@ -65,8 +65,8 @@ public class Shop
             {
                 if (!previousShopChampion.isDummy())
                 {
-                    championBagSizes[previousShopChampion.databaseID] += 1;
-                    // Debug.Log($"Putting {previousShopChampion} back in the bag...");
+                    championBagSizes[previousShopChampion.DatabaseID] += 1;
+                    Debug.Log($"Putting {previousShopChampion} back in the bag...");
                 }
             }
         }
@@ -94,10 +94,10 @@ public class Shop
 
                 if (champion.Cost == unitCost)
                 {
-                    unitCostPool -= championBagSizes[champion.databaseID];
+                    unitCostPool -= championBagSizes[champion.DatabaseID];
                     if (unitCostPool <= 0)
                     {
-                        championBagSizes[champion.databaseID] -= 1;
+                        championBagSizes[champion.DatabaseID] -= 1;
                         currentPool[unitCost] -= 1;
                         newShop.Add(champion);
                         break;
@@ -171,7 +171,7 @@ public class Shop
     {
         playerData.gold += champion.getSellPrice();
         int unitCount = (int)Math.Pow(3, champion.starLevel - 1);
-        championBagSizes[champion.databaseID] += unitCount;
+        championBagSizes[champion.DatabaseID] += unitCount;
         // Debug.Log($"Returned {champion} to the pool. there are now {championBagSizes[champion.databaseID]}  instances.");
         return true;
     }

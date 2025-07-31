@@ -47,7 +47,7 @@ public class ShopItem : MonoBehaviour
         border.GetComponent<Border>().updateColor(newChampion);
 
         GameObject championNameTextField = transform.Find("ChampionNameField").gameObject;
-        championNameTextField.GetComponent<TextMeshPro>().text = newChampion.UnitName;
+        championNameTextField.GetComponent<TextMeshPro>().text = newChampion.UnitName.ToString();
 
         GameObject costTextField = transform.Find("CostTextField").gameObject;
         costTextField.GetComponent<TextMeshPro>().text = $"{newChampion.Cost}";
@@ -64,10 +64,10 @@ public class ShopItem : MonoBehaviour
             }
         }
 
-        int traitCount = champion.unitTraits.Count;
+        int traitCount = champion.UnitTraits.Count;
         float yPosition = -2 + ((traitCount-1) * 1.5f);
 
-        foreach (string traitName in champion.unitTraits)
+        foreach (string traitName in champion.UnitTraits)
         {
             GameObject traitDisplayField = Instantiate(traitDisplayTemplate, transform);
             traitDisplayField.transform.localPosition = new Vector3(-5.5f, yPosition, -0.5f);

@@ -14,12 +14,13 @@ public class Champion : UnitData
     public Champion(int starLevel, UnitData unitData)
     {
         this.starLevel = starLevel;
-        this.unitName = unitData.unitName;
-        this.databaseID = unitData.databaseID;
-        this.unitTraits = unitData.unitTraits;
-        this.cost = unitData.cost;
-        this.shopIconName = unitData.shopIconName;
-        this.championIconName = unitData.championIconName;
+        this.UnitName = unitData.UnitName;
+        this.DisplayName = unitData.DisplayName;
+        this.DatabaseID = unitData.DatabaseID;
+        this.UnitTraits = unitData.UnitTraits;
+        this.Cost = unitData.Cost;
+        this.ShopIconName = unitData.ShopIconName;
+        this.ChampionIconName = unitData.ChampionIconName;
         this.items = new List<Item>();
     }
 
@@ -27,15 +28,15 @@ public class Champion : UnitData
     {
         if (starLevel == 1)
         {
-            return cost;
+            return Cost;
         }
-        else if (cost == 1)
+        else if (Cost == 1)
         {
-            return (int)Math.Pow(3, starLevel - 1) * cost;
+            return (int)Math.Pow(3, starLevel - 1) * Cost;
         }
         else
         {
-            return (int)Math.Pow(3, starLevel - 1) * cost - 1;
+            return (int)Math.Pow(3, starLevel - 1) * Cost - 1;
         }
     }
 

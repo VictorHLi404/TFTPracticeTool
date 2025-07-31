@@ -5,6 +5,7 @@ public class DatabaseButton : MonoBehaviour
     // assign to a random button to rebuild the database from given csv files
     public void Awake()
     {
+        DatabaseBuilder.initializeDatabase();
     }
 
     public void OnMouseDown()

@@ -35,7 +35,13 @@ public static class DatabaseAPI
                             traitList.Add((string)reader[currentHeader]);
                         }
                     } // shitty typecasting
+
+                    ChampionEnum championEnum;
+                    if (!Enum.TryParse((string)reader["ChampionEnum"], out championEnum))
+                        Debug.LogError("Could not parse champion enum from the CSV file.");
+                    
                     return new UnitData(int.Parse((string)reader["DatabaseID"]),
+                                        championEnum,
                                         (string)reader["ChampionName"],
                                         traitList,
                                         int.Parse((string)reader["Cost"]),
@@ -72,7 +78,11 @@ public static class DatabaseAPI
                             traitList.Add((string)reader[currentHeader]);
                         }
                     } // shitty typecasting
+                    ChampionEnum championEnum;
+                    if (!Enum.TryParse((string)reader["ChampionEnum"], out championEnum))
+                        Debug.LogError("Could not parse champion enum from the CSV file.");
                     unitDataList.Add(new UnitData(int.Parse((string)reader["DatabaseID"]),
+                                                    championEnum,
                                                     (string)reader["ChampionName"],
                                                     traitList,
                                                     int.Parse((string)reader["Cost"]),

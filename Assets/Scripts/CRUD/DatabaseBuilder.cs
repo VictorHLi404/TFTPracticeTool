@@ -59,7 +59,7 @@ public static class DatabaseBuilder
             connection.Open();
             using (var command = connection.CreateCommand())
             { // generate the champion table
-                command.CommandText = "CREATE TABLE IF NOT EXISTS Champions (DatabaseID VARCHAR (20), ChampionName VARCHAR (20), Cost VARCHAR (20), Trait1 VARCHAR (20), Trait2 VARCHAR (20), Trait3 VARCHAR (20), ShopIconName VARCHAR(20), ChampionIconName VARCHAR(20));";
+                command.CommandText = "CREATE TABLE IF NOT EXISTS Champions (DatabaseID VARCHAR (20), ChampionEnum VARCHAR(20), ChampionName VARCHAR (20), Cost VARCHAR (20), Trait1 VARCHAR (20), Trait2 VARCHAR (20), Trait3 VARCHAR (20), ShopIconName VARCHAR(20), ChampionIconName VARCHAR(20));";
                 command.ExecuteNonQuery();
             }
             foreach (List<string> championData in dataPackage)
@@ -67,7 +67,7 @@ public static class DatabaseBuilder
                 using (var command = connection.CreateCommand())
                 {
                     string formattedValue = generateFormattedValueForSQL(championData);
-                    command.CommandText = "INSERT INTO Champions (DatabaseID, ChampionName, Cost, Trait1, Trait2, Trait3, ShopIconName, ChampionIconName) VALUES " + formattedValue;
+                    command.CommandText = "INSERT INTO Champions (DatabaseID, ChampionEnum, ChampionName, Cost, Trait1, Trait2, Trait3, ShopIconName, ChampionIconName) VALUES " + formattedValue;
                     command.ExecuteNonQuery();
                 }
             }
@@ -130,7 +130,7 @@ public static class DatabaseBuilder
             connection.Open();
             using (var command = connection.CreateCommand())
             { // generate the champion table
-                command.CommandText = "CREATE TABLE IF NOT EXISTS TraitLevels (TraitName VARCHAR (20), Tier1 VARCHAR (20), Tier2 VARCHAR (20), Tier3 VARCHAR (20), Tier4 VARCHAR (20), Tier5 VARCHAR (20), Tier6 VARCHAR (20), Tier7 VARCHAR (20));";
+                command.CommandText = "CREATE TABLE IF NOT EXISTS TraitLevels (TraitName VARCHAR (20), Tier1 VARCHAR (20), Tier2 VARCHAR (20), Tier3 VARCHAR (20), Tier4 VARCHAR (20), Tier5 VARCHAR (20), Tier6 VARCHAR (20), Tier7 VARCHAR (20), Tier8 VARCHAR (20), Tier9 VARCHAR (20), Tier10 VARCHAR (20));";
                 command.ExecuteNonQuery();
             }
             foreach (List<string> traitData in dataPackage)
@@ -138,7 +138,7 @@ public static class DatabaseBuilder
                 using (var command = connection.CreateCommand())
                 {
                     string formattedValue = generateFormattedValueForSQL(traitData);
-                    command.CommandText = "INSERT INTO TraitLevels (TraitName, Tier1, Tier2, Tier3, Tier4, Tier5, Tier6, Tier7) VALUES " + formattedValue;
+                    command.CommandText = "INSERT INTO TraitLevels (TraitName, Tier1, Tier2, Tier3, Tier4, Tier5, Tier6, Tier7, Tier8, Tier9, Tier10) VALUES " + formattedValue;
                     command.ExecuteNonQuery();
                 }
             }
@@ -154,7 +154,7 @@ public static class DatabaseBuilder
             connection.Open();
             using (var command = connection.CreateCommand())
             {
-                command.CommandText = "CREATE TABLE IF NOT EXISTS TraitColors (TraitName VARCHAR (20), Tier1 VARCHAR (20), Tier2 VARCHAR (20), Tier3 VARCHAR (20), Tier4 VARCHAR (20), Tier5 VARCHAR (20), Tier6 VARCHAR (20), Tier7 VARCHAR (20));";
+                command.CommandText = "CREATE TABLE IF NOT EXISTS TraitColors (TraitName VARCHAR (20), Tier1 VARCHAR (20), Tier2 VARCHAR (20), Tier3 VARCHAR (20), Tier4 VARCHAR (20), Tier5 VARCHAR (20), Tier6 VARCHAR (20), Tier7 VARCHAR (20), Tier8 VARCHAR (20), Tier9 VARCHAR (20), Tier10 VARCHAR (20));";
                 command.ExecuteNonQuery();
             }
             foreach (List<string> traitData in dataPackage)
@@ -162,7 +162,7 @@ public static class DatabaseBuilder
                 using (var command = connection.CreateCommand())
                 {
                     string formattedValue = generateFormattedValueForSQL(traitData);
-                    command.CommandText = "INSERT INTO TraitColors (TraitName, Tier1, Tier2, Tier3, Tier4, Tier5, Tier6, Tier7) VALUES " + formattedValue;
+                    command.CommandText = "INSERT INTO TraitColors (TraitName, Tier1, Tier2, Tier3, Tier4, Tier5, Tier6, Tier7, Tier8, Tier9, Tier10) VALUES " + formattedValue;
                     command.ExecuteNonQuery();
                 }
             }

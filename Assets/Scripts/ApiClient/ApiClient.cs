@@ -17,10 +17,6 @@ public class ApiClient
 
     public static async UniTask<ChampionResponse> GetChampionWinrate(Champion champion)
     {
-        ChampionEnum championEnum;
-        if (!Enum.TryParse(ProcessingHelper.CleanChampionName(champion.unitName), out championEnum))
-            Debug.LogError($"Could not parse the champion name {champion.unitName} properly.");
-
         List<AllItemsEnum> allItems = new List<AllItemsEnum>();
 
         foreach (var item in champion.GetItems())
@@ -30,7 +26,7 @@ public class ApiClient
 
         ChampionRequest request = new ChampionRequest
         {
-            ChampionName = championEnum,
+            ChampionName = champion.UnitName ?? throw new Exception("champion is not set to a value."),
             Items = allItems,
             Level = champion.starLevel
         };
@@ -43,10 +39,6 @@ public class ApiClient
 
     public static async UniTask<List<ChampionResponse>> GetChampionAlternativeBuilds(Champion champion, List<List<AllItemsEnum>> alternativeItems)
     {
-        ChampionEnum championEnum;
-        if (!Enum.TryParse(ProcessingHelper.CleanChampionName(champion.unitName), out championEnum))
-            Debug.LogError($"Could not parse the champion name {champion.unitName} properly.");
-
         List<AllItemsEnum> allItems = new List<AllItemsEnum>();
 
         foreach (var item in champion.GetItems())
@@ -56,7 +48,7 @@ public class ApiClient
 
         var championRequest = new ChampionRequest
         {
-            ChampionName = championEnum,
+            ChampionName = champion.UnitName ?? throw new Exception("champion is not set to a value."),
             Items = allItems,
             Level = champion.starLevel
         };
@@ -92,13 +84,9 @@ public class ApiClient
         List<ChampionRequest> championRequests = new List<ChampionRequest>();
         foreach (var champion in champions)
         {
-            ChampionEnum championEnum;
-            if (!Enum.TryParse(ProcessingHelper.CleanChampionName(champion.unitName), out championEnum))
-                Debug.LogError($"Could not parse the champion name {champion.unitName} properly.");
-
             championRequests.Add(new ChampionRequest
             {
-                ChampionName = championEnum,
+                ChampionName = champion.UnitName ?? throw new Exception("champion is not set to a value."),
                 Items = new List<AllItemsEnum>(),
                 Level = champion.starLevel
             });
@@ -121,13 +109,9 @@ public class ApiClient
         List<ChampionRequest> teamChampionRequests = new List<ChampionRequest>();
         foreach (var champion in team)
         {
-            ChampionEnum championEnum;
-            if (!Enum.TryParse(ProcessingHelper.CleanChampionName(champion.unitName), out championEnum))
-                Debug.LogError($"Could not parse the champion name {champion.unitName} properly.");
-
             teamChampionRequests.Add(new ChampionRequest
             {
-                ChampionName = championEnum,
+                ChampionName = champion.UnitName ?? throw new Exception("champion is not set to a value."),
                 Items = new List<AllItemsEnum>(),
                 Level = champion.starLevel
             });
@@ -143,13 +127,9 @@ public class ApiClient
 
         foreach (var champion in benchChampions)
         {
-            ChampionEnum championEnum;
-            if (!Enum.TryParse(ProcessingHelper.CleanChampionName(champion.unitName), out championEnum))
-                Debug.LogError($"Could not parse the champion name {champion.unitName} properly.");
-
             alternateChampions.Add(new ChampionRequest
             {
-                ChampionName = championEnum,
+                ChampionName = champion.UnitName ?? throw new Exception("champion is not set to a value."),
                 Items = new List<AllItemsEnum>(),
                 Level = champion.starLevel
             });
@@ -233,87 +213,87 @@ public class ApiClient
         }
     }
 
-    public static async UniTask<ChampionResponse> TestChampionWinrate()
-    {
+    // public static async UniTask<ChampionResponse> TestChampionWinrate()
+    // {
 
-        Champion testChampion = new Champion(2,
-            new UnitData
-            {
-                databaseID = 1,
-                unitName = "Rhaast",
-                cost = 2,
-                unitTraits = new List<string> { "Divinicorp", "Vanguard" },
-                shopIconName = "",
-                championIconName = ""
-            }
-        );
-        Debug.Log("TEST THE API FUNC FOR CHAMPION WINRATE");
-        ChampionResponse response = await GetChampionWinrate(testChampion);
-        Debug.Log("REQUEST SUCCESSFULLY COMPLETED");
-        Debug.Log(response);
-        Debug.Log(response.ChampionName);
-        Debug.Log(response.AveragePlacement);
+    //     Champion testChampion = new Champion(2,
+    //         new UnitData
+    //         {
+    //             DatabaseID = 1,
+    //             UnitName = "Rhaast",
+    //             Cost = 2,
+    //             UnitTraits = new List<string> { "Divinicorp", "Vanguard" },
+    //             ShopIconName = "",
+    //             ChampionIconName = ""
+    //         }
+    //     );
+    //     Debug.Log("TEST THE API FUNC FOR CHAMPION WINRATE");
+    //     ChampionResponse response = await GetChampionWinrate(testChampion);
+    //     Debug.Log("REQUEST SUCCESSFULLY COMPLETED");
+    //     Debug.Log(response);
+    //     Debug.Log(response.ChampionName);
+    //     Debug.Log(response.AveragePlacement);
 
-        return response;
-    }
+    //     return response;
+    // }
 
-    public static async UniTask<List<ChampionResponse>> TestChampionAlternativeBuilds()
-    {
-        Champion testChampion = new Champion(2,
-            new UnitData
-            {
-                databaseID = 53,
-                unitName = "Aurora",
-                cost = 5,
-                unitTraits = new List<string> { "Anima Squad", "Dynamo" },
-                shopIconName = "",
-                championIconName = ""
-            }
-        );
-        List<List<AllItemsEnum>> alternativeItemSets = new List<List<AllItemsEnum>>
-        {
-            new List<AllItemsEnum> { AllItemsEnum.StrikersFlail, AllItemsEnum.JeweledGauntlet, AllItemsEnum.GiantSlayer, AllItemsEnum.SpearofShojin },
-            new List<AllItemsEnum> { AllItemsEnum.BlueBuff, AllItemsEnum.NeedlesslyLargeRod, AllItemsEnum.JeweledGauntlet, AllItemsEnum.TearoftheGoddess },
-            new List<AllItemsEnum> { AllItemsEnum.RecurveBow, AllItemsEnum.BlueBuff, AllItemsEnum.JeweledGauntlet, AllItemsEnum.SpearofShojin },
-            new List<AllItemsEnum> { AllItemsEnum.RabadonsDeathcap, AllItemsEnum.JeweledGauntlet, AllItemsEnum.NeedlesslyLargeRod, AllItemsEnum.ThiefsGloves },
-            new List<AllItemsEnum> { AllItemsEnum.VoidStaff, AllItemsEnum.BFSword, AllItemsEnum.GuinsoosRageblade, AllItemsEnum.SpearofShojin }
-        };
+    // public static async UniTask<List<ChampionResponse>> TestChampionAlternativeBuilds()
+    // {
+    //     Champion testChampion = new Champion(2,
+    //         new UnitData
+    //         {
+    //             DatabaseID = 53,
+    //             UnitName = "Aurora",
+    //             Cost = 5,
+    //             UnitTraits = new List<string> { "Anima Squad", "Dynamo" },
+    //             ShopIconName = "",
+    //             ChampionIconName = ""
+    //         }
+    //     );
+    //     List<List<AllItemsEnum>> alternativeItemSets = new List<List<AllItemsEnum>>
+    //     {
+    //         new List<AllItemsEnum> { AllItemsEnum.StrikersFlail, AllItemsEnum.JeweledGauntlet, AllItemsEnum.GiantSlayer, AllItemsEnum.SpearofShojin },
+    //         new List<AllItemsEnum> { AllItemsEnum.BlueBuff, AllItemsEnum.NeedlesslyLargeRod, AllItemsEnum.JeweledGauntlet, AllItemsEnum.TearoftheGoddess },
+    //         new List<AllItemsEnum> { AllItemsEnum.RecurveBow, AllItemsEnum.BlueBuff, AllItemsEnum.JeweledGauntlet, AllItemsEnum.SpearofShojin },
+    //         new List<AllItemsEnum> { AllItemsEnum.RabadonsDeathcap, AllItemsEnum.JeweledGauntlet, AllItemsEnum.NeedlesslyLargeRod, AllItemsEnum.ThiefsGloves },
+    //         new List<AllItemsEnum> { AllItemsEnum.VoidStaff, AllItemsEnum.BFSword, AllItemsEnum.GuinsoosRageblade, AllItemsEnum.SpearofShojin }
+    //     };
 
-        Debug.Log("TEST THE API FUNC FOR CHAMPION ALT BUILDS");
-        List<ChampionResponse> response = await ApiClient.GetChampionAlternativeBuilds(testChampion, alternativeItemSets);
-        Debug.Log("REQUEST SUCCESSFULLY COMPLETED");
-        Debug.Log(response);
+    //     Debug.Log("TEST THE API FUNC FOR CHAMPION ALT BUILDS");
+    //     List<ChampionResponse> response = await ApiClient.GetChampionAlternativeBuilds(testChampion, alternativeItemSets);
+    //     Debug.Log("REQUEST SUCCESSFULLY COMPLETED");
+    //     Debug.Log(response);
 
-        foreach (var responseObject in response)
-        {
-            Debug.Log(responseObject.AveragePlacement);
-        }
+    //     foreach (var responseObject in response)
+    //     {
+    //         Debug.Log(responseObject.AveragePlacement);
+    //     }
 
-        return response;
-    }
+    //     return response;
+    // }
 
-    public static async UniTask<TeamResponse> TestTeamWinrate()
-    {
-        List<Champion> champions = new List<Champion>
-        {
-            new Champion(2, new UnitData { unitName = "Brand", cost = 4 }),
-            new Champion(2, new UnitData { unitName = "Neeko", cost = 4 }),
-            new Champion(1, new UnitData { unitName = "Samira", cost = 5 }),
-            new Champion(1, new UnitData { unitName = "Ziggs", cost = 4 }),
-            new Champion(1, new UnitData { unitName = "Kobuko", cost = 5 }),
-            new Champion(2, new UnitData { unitName = "Rengar", cost = 3 }),
-            new Champion(2, new UnitData { unitName = "Ekko", cost = 2 }),
-            new Champion(2, new UnitData { unitName = "DrMundo", cost = 1 }),
-            new Champion(2, new UnitData { unitName = "Zyra", cost = 1 })
-        };
-        Debug.Log("TEST THE API FUNC FOR TEAM WINRATE DATA");
-        TeamResponse response = await GetTeamWinrate(champions);
-        Debug.Log("REQUEST SUCCESSFULL COMPLETED");
-        Debug.Log(response.AveragePlacement);
-        foreach (var champion in response.Champions)
-        {
-            Debug.Log(champion.ChampionName);
-        }
-        return response;
-    }
+    // public static async UniTask<TeamResponse> TestTeamWinrate()
+    // {
+    //     List<Champion> champions = new List<Champion>
+    //     {
+    //         new Champion(2, new UnitData { UnitName = "Brand", Cost = 4 }),
+    //         new Champion(2, new UnitData { UnitName = "Neeko", Cost = 4 }),
+    //         new Champion(1, new UnitData { UnitName = "Samira", Cost = 5 }),
+    //         new Champion(1, new UnitData { UnitName = "Ziggs", Cost = 4 }),
+    //         new Champion(1, new UnitData { UnitName = "Kobuko", Cost = 5 }),
+    //         new Champion(2, new UnitData { UnitName = "Rengar", Cost = 3 }),
+    //         new Champion(2, new UnitData { UnitName = "Ekko", Cost = 2 }),
+    //         new Champion(2, new UnitData { UnitName = "DrMundo", Cost = 1 }),
+    //         new Champion(2, new UnitData { UnitName = "Zyra", Cost = 1 })
+    //     };
+    //     Debug.Log("TEST THE API FUNC FOR TEAM WINRATE DATA");
+    //     TeamResponse response = await GetTeamWinrate(champions);
+    //     Debug.Log("REQUEST SUCCESSFULL COMPLETED");
+    //     Debug.Log(response.AveragePlacement);
+    //     foreach (var champion in response.Champions)
+    //     {
+    //         Debug.Log(champion.ChampionName);
+    //     }
+    //     return response;
+    // }
 }

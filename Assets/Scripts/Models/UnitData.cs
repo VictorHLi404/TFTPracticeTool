@@ -5,28 +5,29 @@ using Unity.VisualScripting;
 public class UnitData
 { // a data class that holds all the necessary information needed for a given unit
     // A reference for the row number it holds in the DB
-    public int databaseID { get; set; }
+    public int DatabaseID { get; set; }
     // Name of the unit
-    public string unitName { get; set; }
+    public ChampionEnum? UnitName { get; set; }
     // The traits the champion holds
-    public List<string> unitTraits { get; set; }
+    public string DisplayName { get; set; }
+    public List<string> UnitTraits { get; set; }
     // How much the champion costs
-    public int cost { get; set; }
+    public int Cost { get; set; }
     // Reference to shop icon image name
-    public string shopIconName { get; set; } = "";
+    public string ShopIconName { get; set; } = "";
 
     // Reference to champion icon image name
-    public string championIconName { get; set; } = "";
+    public string ChampionIconName { get; set; } = "";
 
-    public UnitData(int _databaseID, string _unitName, List<string> _unitTraits, int _cost, string _shopIconName, string _championIconName)
+    public UnitData(int _databaseID, ChampionEnum _unitName, string _displayName, List<string> _unitTraits, int _cost, string _shopIconName, string _championIconName)
     {
-
-        this.unitName = _unitName;
-        this.databaseID = _databaseID;
-        this.unitTraits = _unitTraits;
-        this.cost = _cost;
-        this.shopIconName = _shopIconName;
-        this.championIconName = _championIconName;
+        this.UnitName = _unitName;
+        this.DatabaseID = _databaseID;
+        this.DisplayName = DisplayName;
+        this.UnitTraits = _unitTraits;
+        this.Cost = _cost;
+        this.ShopIconName = _shopIconName;
+        this.ChampionIconName = _championIconName;
     }
 
     public UnitData()
@@ -36,12 +37,12 @@ public class UnitData
 
     public UnitData(UnitData newUnitData)
     {
-        this.unitName = newUnitData.unitName;
-        this.databaseID = newUnitData.databaseID;
-        this.unitTraits = newUnitData.unitTraits;
-        this.cost = newUnitData.cost;
-        this.shopIconName = newUnitData.shopIconName;
-        this.championIconName = newUnitData.championIconName;
+        this.UnitName = newUnitData.UnitName;
+        this.DatabaseID = newUnitData.DatabaseID;
+        this.UnitTraits = newUnitData.UnitTraits;
+        this.Cost = newUnitData.Cost;
+        this.ShopIconName = newUnitData.ShopIconName;
+        this.ChampionIconName = newUnitData.ChampionIconName;
     }
 
     public bool isMatchingTrait(string trait)
@@ -49,7 +50,7 @@ public class UnitData
         /*
         Check if a unit contains the given trait.
         */
-        foreach (string unitTrait in unitTraits)
+        foreach (string unitTrait in UnitTraits)
         {
             if (trait == unitTrait)
             {
@@ -65,7 +66,7 @@ public class UnitData
         /*
         set the unit data to a blank value.
         */
-        unitName = null;
+        UnitName = null;
     }
 
     public bool isDummy()
@@ -73,48 +74,11 @@ public class UnitData
         /*
         If the unit data is a "dummy", e.g not an actual champion for the purposes of having an empty shop, return so
         */
-        return unitName == null;
+        return UnitName == null;
     }
 
     public override string ToString()
     {
-        return this.unitName + " is a " + this.cost.ToString() + " Unit.";
-    }
-
-    // Getters and Setters
-    public int DatabaseID
-    {
-        get { return databaseID; }
-        set { databaseID = value; }
-    }
-
-    public string UnitName
-    {
-        get { return unitName; }
-        set { unitName = value; }
-    }
-
-    public List<string> UnitTraits
-    {
-        get { return unitTraits; }
-        set { unitTraits = value; }
-    }
-
-    public int Cost
-    {
-        get { return cost; }
-        set { cost = value; }
-    }
-
-    public string ShopIconName
-    {
-        get { return shopIconName; }
-        set { shopIconName = value; }
-    }
-
-    public string ChampionIconName
-    {
-        get { return championIconName; }
-        set { championIconName = value; }
+        return this.UnitName + " is a " + this.Cost.ToString() + " Unit.";
     }
 }
