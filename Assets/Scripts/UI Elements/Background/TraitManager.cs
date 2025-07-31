@@ -134,7 +134,7 @@ public class TraitManager : MonoBehaviour
             else
             {
                 int index = 0;
-                while (trait.Value >= traitBreakpoints[index + 1])
+                while (index < traitBreakpoints.Count-1 && trait.Value >= traitBreakpoints[index + 1])
                 {
                     index += 1;
                 }

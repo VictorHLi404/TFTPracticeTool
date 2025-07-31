@@ -17,7 +17,7 @@ public class BenchManager : MonoBehaviour
     private List<GameObject> benchSlotObjects = new List<GameObject>();
     private List<(float x, float y)> benchSlotCoordinates = new List<(float x, float y)>();
 
-    private void Start()
+    private void Awake()
     {
         if (benchSlotPrefab == null)
         {
@@ -26,6 +26,11 @@ public class BenchManager : MonoBehaviour
         }
         this.bench = new Bench();
         GenerateBenchElements();
+    }
+
+    private void Start()
+    {
+
     }
 
     private void GenerateBenchElements()

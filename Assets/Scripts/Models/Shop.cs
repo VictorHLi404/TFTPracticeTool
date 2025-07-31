@@ -26,7 +26,22 @@ public class Shop
             championIDtoUnitData[champion.DatabaseID] = champion;
         }
         this.levelOdds = DatabaseAPI.getShopOdds();
-        this.playerData = new Player(6, 0, 200, 40, 4, 2, DatabaseAPI.getLevelMapping());
+        if (StartingResources.Instance != null)
+        {
+            this.playerData = new Player(StartingResources.Instance.initialLevel,
+            0,
+            StartingResources.Instance.initialGold,
+            StartingResources.Instance.initialTime,
+            4,
+            2,
+            DatabaseAPI.getLevelMapping()
+            );
+        }
+        else
+        {
+            this.playerData = new Player(6, 0, 200, 40, 4, 2, DatabaseAPI.getLevelMapping());
+        }
+        
     }
 
     /// <summary>
@@ -126,6 +141,11 @@ public class Shop
         return playerData.level;
     }
 
+    public Player GetPlayer()
+    {
+        return playerData;
+    }
+
     /// <summary>
     /// Return the player's current level and XP in a format that can be consumed by the shopUI.
     /// </summary>
@@ -174,6 +194,11 @@ public class Shop
         championBagSizes[champion.DatabaseID] += unitCount;
         // Debug.Log($"Returned {champion} to the pool. there are now {championBagSizes[champion.databaseID]}  instances.");
         return true;
+    }
+
+    public void RemoveChampionFromPool(Champion champion)
+    {
+        championBagSizes[champion.DatabaseID] -= 1;
     }
 
     private Dictionary<int, int> generateCurrentPool()

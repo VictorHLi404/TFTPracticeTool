@@ -30,13 +30,21 @@ public class ShopUI : MonoBehaviour
     public GameObject hexGridManager;
     public GameObject itemBench;
 
-    public void Start()
+    public void Awake()
     {
         shop = new Shop();
         shop.generateShop(true);
         GenerateButtons();
         GenerateDisplayElements();
         GenerateShopItems();
+    }
+
+    public void Start()
+    {
+        if (StartingResources.Instance.initialChampions != null && StartingResources.Instance.initialChampions.Count > 0)
+        {
+            GenerateInitialChampions(StartingResources.Instance.initialChampions);
+        }
     }
 
     public void Update()
@@ -225,6 +233,32 @@ public class ShopUI : MonoBehaviour
         bench.PlaceInBench(newChampion);
         UpdateDisplays();
         return true;
+    }
+
+    private void GenerateInitialChampions(List<Champion> champions)
+    {
+        BenchManager bench = benchManager.GetComponent<BenchManager>();
+        int index = 1;
+        foreach (var champion in champions)
+        {
+            if (!bench.CanUnitBePlaced())
+                break;
+            for (int i = 0; i < Math.Pow(3, champion.starLevel - 1); i++)
+            {
+                shop.RemoveChampionFromPool(champion);
+            }
+            bench.PlaceInBench(champion);
+        }
+        if (index < champions.Count)
+        {
+            HexGridManager manager = hexGridManager.GetComponent<HexGridManager>();
+            manager.PlaceInBoard(champions[index]);
+        }
+    }
+
+    public Player GetPlayer()
+    {
+        return shop.GetPlayer();
     }
 
     public void OnCollisionEnter2D(Collision2D collision)

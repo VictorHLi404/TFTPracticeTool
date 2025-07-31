@@ -6,7 +6,7 @@ public class GameSettingsInputField : MonoBehaviour
 {
 
     public TMP_InputField textObject;
-    
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -15,9 +15,14 @@ public class GameSettingsInputField : MonoBehaviour
         textObject.text = "50";
     }
 
-    public void SetValue(string value)
+    public void SetGoldValue(string value)
     {
         textObject.text = StartingResources.ValidateGold(value);
-    } 
+    }
+
+    public void SetTimeValue(string value)
+    {
+        textObject.text = StartingResources.ValidateTime(value);
+    }
 
 }

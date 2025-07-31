@@ -48,7 +48,7 @@ public class TraitDisplay : MonoBehaviour
         {
             traitIcon.GetComponent<TraitIcon>().UpdateTraitIcon(traitName, true);
             int index = 0;
-            while (unitCount >= traitBreakpoints[index + 1])
+            while (index < traitBreakpoints.Count-1 && unitCount >= traitBreakpoints[index + 1])
             {
                 index += 1;
             }

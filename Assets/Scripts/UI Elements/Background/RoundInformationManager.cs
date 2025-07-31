@@ -7,20 +7,20 @@ using UnityEngine;
 public class RoundInformationManager : MonoBehaviour
 {
     private Player player;
-    private GameObject roundDisplayField;
-    private GameObject timeDisplayField;
-    private GameObject timeBar;
+    private GameObject RoundDisplayField;
+    private GameObject TimeDisplayField;
+    private GameObject TimeBar;
+    public GameObject ShopUIReference;
 
-    private float currentTime;
+    private float CurrentTime;
 
-    public void Awake()
+    public void Start()
     {
-        this.roundDisplayField = transform.Find("RoundDisplayField").gameObject;
-        this.timeDisplayField = transform.Find("TimeDisplayField").gameObject;
-        this.timeBar = transform.Find("TimeBarFill").gameObject;
-        this.player = new Player(6, 0, 200, 30, 1, 2, DatabaseAPI.getLevelMapping());
-        Debug.Log("GET THAT HOE!");
-        currentTime = player.time;
+        this.RoundDisplayField = transform.Find("RoundDisplayField").gameObject;
+        this.TimeDisplayField = transform.Find("TimeDisplayField").gameObject;
+        this.TimeBar = transform.Find("TimeBarFill").gameObject;
+        this.player = ShopUIReference.GetComponent<ShopUI>().GetPlayer();
+        CurrentTime = player.time;
         InitializeDisplays();
     }
 
@@ -33,9 +33,9 @@ public class RoundInformationManager : MonoBehaviour
 
     public void Update()
     {
-        if (currentTime > 0)
+        if (CurrentTime > 0)
         {
-            currentTime -= Time.deltaTime;
+            CurrentTime -= Time.deltaTime;
             UpdateTimeDisplays();
         }
 
@@ -43,32 +43,32 @@ public class RoundInformationManager : MonoBehaviour
 
     public void InitializeDisplays()
     {
-        roundDisplayField.GetComponent<TextMeshPro>().text = $"{player.stage}-{player.round}";
-        timeDisplayField.GetComponent<TextMeshPro>().text = $"{player.time}";
+        RoundDisplayField.GetComponent<TextMeshPro>().text = $"{player.stage}-{player.round}";
+        TimeDisplayField.GetComponent<TextMeshPro>().text = $"{player.time}";
         float TimeBarMaxLength = transform.Find("TimeBarBackground").transform.localScale.x;
         float TimeBarDefaultX = transform.Find("TimeBarBackground").transform.localPosition.x - (TimeBarMaxLength / 2);
         float newTimeBarLength = TimeBarMaxLength;
-        timeBar.transform.localScale = new Vector3(newTimeBarLength, timeBar.transform.localScale.y, timeBar.transform.localScale.z);
-        timeBar.transform.localPosition = new Vector3(newTimeBarLength / 2 + TimeBarDefaultX, timeBar.transform.localPosition.y, timeBar.transform.localPosition.z);
+        TimeBar.transform.localScale = new Vector3(newTimeBarLength, TimeBar.transform.localScale.y, TimeBar.transform.localScale.z);
+        TimeBar.transform.localPosition = new Vector3(newTimeBarLength / 2 + TimeBarDefaultX, TimeBar.transform.localPosition.y, TimeBar.transform.localPosition.z);
     }
 
     public void UpdateTimeDisplays()
     {
-        if (currentTime > 0)
+        if (CurrentTime > 0)
         {
-            int newTime = (int)currentTime + 1;
-            timeDisplayField.GetComponent<TextMeshPro>().text = $"{newTime}";
+            int newTime = (int)CurrentTime + 1;
+            TimeDisplayField.GetComponent<TextMeshPro>().text = $"{newTime}";
         }
         else
         {
-            timeDisplayField.GetComponent<TextMeshPro>().text = $"0";
+            TimeDisplayField.GetComponent<TextMeshPro>().text = $"0";
         }
 
         float TimeBarMaxLength = transform.Find("TimeBarBackground").transform.localScale.x;
         float TimeBarDefaultX = transform.Find("TimeBarBackground").transform.localPosition.x + (TimeBarMaxLength / 2);
-        float newTimeBarLength = TimeBarMaxLength * (currentTime / player.time);
-        timeBar.transform.localScale = new Vector3(newTimeBarLength, timeBar.transform.localScale.y, timeBar.transform.localScale.z);
-        timeBar.transform.localPosition = new Vector3(TimeBarDefaultX - (newTimeBarLength / 2) , timeBar.transform.localPosition.y, timeBar.transform.localPosition.z);
+        float newTimeBarLength = TimeBarMaxLength * (CurrentTime / player.time);
+        TimeBar.transform.localScale = new Vector3(newTimeBarLength, TimeBar.transform.localScale.y, TimeBar.transform.localScale.z);
+        TimeBar.transform.localPosition = new Vector3(TimeBarDefaultX - (newTimeBarLength / 2) , TimeBar.transform.localPosition.y, TimeBar.transform.localPosition.z);
     }
 
 }

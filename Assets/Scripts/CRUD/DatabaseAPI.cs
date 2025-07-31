@@ -13,7 +13,7 @@ public static class DatabaseAPI
     // generates data objects (units, traits, etc) 
     private static string dbName = @"Data Source=Assets\Scripts\CRUD\BaseGameInformation.db";
 
-    public static UnitData getUnitData(string championName)
+    public static UnitData GetUnitData(ChampionEnum champion)
     {
         // given a champion name (MUST MATCH THAT FOUND INSIDE OF SQL DB STRICTLY), return a UnitData object of that champion.
         using (var connection = new SqliteConnection(dbName))
@@ -21,7 +21,7 @@ public static class DatabaseAPI
             connection.Open();
             using (var command = connection.CreateCommand())
             {
-                command.CommandText = "SELECT * FROM Champions WHERE ChampionName=" + "\'" + championName + "\'" + ";";
+                command.CommandText = "SELECT * FROM Champions WHERE ChampionEnum=" + "\'" + champion.ToString() + "\'" + ";";
                 using (IDataReader reader = command.ExecuteReader())
                 { // only 1 possible result given database structure, so just read once
                     reader.Read();

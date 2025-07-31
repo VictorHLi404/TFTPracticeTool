@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 public class DtosHelper
 {
@@ -7,8 +8,8 @@ public class DtosHelper
         var champions = new List<Champion>();
         foreach (var champion in response.Champions)
         {
-            var championName = champion.ChampionName.ToString();
-            var unitData = DatabaseAPI.getUnitData(championName);
+            var unitData = DatabaseAPI.GetUnitData(champion.ChampionName);
+            Debug.Log(unitData.UnitName);
             champions.Add(new Champion(champion.Level, unitData));
         }
         return (response.AveragePlacement, champions);

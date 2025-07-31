@@ -15,6 +15,7 @@ public class StartingResources : MonoBehaviour
     public List<Champion> initialChampions;
     public int initialLevel = 5;
     public int initialGold = 50;
+    public int initialTime = 30;
 
     private decimal expectedPlacement;
 
@@ -42,14 +43,15 @@ public class StartingResources : MonoBehaviour
         {
             Debug.LogError("Instance for StartingResources has not been set yet.");
         }
+
+        Instance.initialComponents = RandomizationHelper.GenerateRandomComponents();
+
+        var initialTeamResults = await ApiClient.GetPopularTeamComp(Instance.initialLevel);
+
+        (Instance.expectedPlacement, Instance.initialChampions) = DtosHelper.DeserializeTeamResponse(initialTeamResults);
+        RandomizationHelper.DelevelTeam(Instance.initialChampions);
+
         SceneManager.LoadScene("TestScene");
-        // Instance.initialComponents = RandomizationHelper.GenerateRandomComponents();
-
-        // var initialTeamResults = await ApiClient.GetPopularTeamComp(Instance.initialLevel);
-
-        // (Instance.expectedPlacement, Instance.initialChampions) = DtosHelper.DeserializeTeamResponse(initialTeamResults);
-        // RandomizationHelper.DelevelTeam(initialChampions);
-
 
     }
 
@@ -74,8 +76,6 @@ public class StartingResources : MonoBehaviour
             return;
         }
         Instance.initialLevel = level;
-        Debug.Log($"UPDATED DROPDOWN VALUE TO {level}");
-        Debug.Log(index);
     }
 
     public void UpdateGold(string value)
@@ -104,6 +104,36 @@ public class StartingResources : MonoBehaviour
         if (gold < 1 || gold > 99)
         {
             return Instance.initialGold.ToString();
+        }
+        return currentValue;
+    }
+
+    public void UpdateTime(string value)
+    {
+        int time;
+        if (!int.TryParse(value, out time))
+        {
+            Debug.LogWarning("A valid integer value was not passed in.");
+            return;
+        }
+        if (time < 15 || time > 99)
+        {
+            Debug.LogWarning("An invalid gold amount was passed. Needs to be between 5-10.");
+            return;
+        }
+        Instance.initialTime = time;
+    }
+
+    public static string ValidateTime(string currentValue)
+    {
+        int time;
+        if (!int.TryParse(currentValue, out time))
+        {
+            return Instance.initialTime.ToString();
+        }
+        if (time < 15 || time > 99)
+        {
+            return Instance.initialTime.ToString();
         }
         return currentValue;
     }

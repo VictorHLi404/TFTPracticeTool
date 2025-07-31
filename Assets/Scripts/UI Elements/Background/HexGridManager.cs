@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using NUnit.Framework.Constraints;
 using UnityEngine;
 
 public class HexGridManager : MonoBehaviour
@@ -15,7 +16,14 @@ public class HexGridManager : MonoBehaviour
     [Header("Tile Settings")]
     public GameObject tileToGenerate; // Prefab for the tile
 
+    [Header("Champion Settings")]
+    public GameObject championPrefab;
+    public GameObject ShopUIReference;
+
+
     private Board board;
+    private List<GameObject> hexGridObjects = new List<GameObject>();
+    private List<(float x, float y)> hexGridCoordinates = new List<(float x, float y)>();
     private void Start()
     {
         if (tileToGenerate == null)
@@ -40,8 +48,6 @@ public class HexGridManager : MonoBehaviour
         // Offset to center the grid
         float gridOriginX = transform.position.x;
         float gridOriginY = transform.position.y;
-        /*float gridOriginX = -gridWidth / 50f + (tileWidth / 50f);
-        float gridOriginY = -gridHeight / 50f + (tileHeight / 50f) + verticalShift;*/
 
         for (int row = 0; row < rows; row++)
         {
@@ -57,10 +63,10 @@ public class HexGridManager : MonoBehaviour
                     xPos -= xOffset / 2f; // Shift left for staggered rows
                 }
 
-                // Instantiate the tile at the calculated position
                 GameObject newTile = Instantiate(tileToGenerate, new Vector3(xPos, yPos, 0), Quaternion.identity, transform);
                 newTile.GetComponent<UnitSlot>().Initialize(board, false);
-                // Optionally, add customization (e.g., color) here
+                hexGridObjects.Add(newTile);
+                hexGridCoordinates.Add((xPos, yPos));
             }
         }
     }
@@ -83,6 +89,24 @@ public class HexGridManager : MonoBehaviour
         }
 
         return championList;
+    }
+
+    public bool PlaceInBoard(Champion newChampion)
+    {
+        for (int i = 0; i < hexGridObjects.Count; i++)
+        {
+            UnitSlot unitSlot = hexGridObjects[i].GetComponent<UnitSlot>();
+            if (unitSlot.isEmpty())
+            {
+                (float x, float y) = hexGridCoordinates[i];
+                GameObject newChampionInstance = Instantiate(championPrefab, transform);
+                newChampionInstance.GetComponent<ChampionEntity>().Initialize(newChampion, hexGridObjects[i], ShopUIReference);
+                newChampionInstance.transform.localPosition = new Vector3(x, y, -0.4f);
+                unitSlot.placeChampionInSlot(newChampionInstance.GetComponent<ChampionEntity>());
+            }
+        }
+        Debug.Log("BOARD IS FULL");
+        return false;
     }
 
     public void updateMaxUnitCount(int maxUnits)
