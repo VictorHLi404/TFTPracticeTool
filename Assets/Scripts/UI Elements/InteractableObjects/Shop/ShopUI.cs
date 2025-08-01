@@ -193,7 +193,7 @@ public class ShopUI : MonoBehaviour
                 }
             }
         }
-        itemBench.GetComponent<ItemManager>().returnItemsToBench(championEntity.champion.GetItems());
+        itemBench.GetComponent<ItemManager>().ReturnItemsToBench(championEntity.champion.GetItems());
     }
 
     /// <summary>
@@ -241,6 +241,7 @@ public class ShopUI : MonoBehaviour
         int index = 1;
         foreach (var champion in champions)
         {
+            index += 1;
             if (!bench.CanUnitBePlaced())
                 break;
             for (int i = 0; i < Math.Pow(3, champion.starLevel - 1); i++)
@@ -259,6 +260,11 @@ public class ShopUI : MonoBehaviour
     public Player GetPlayer()
     {
         return shop.GetPlayer();
+    }
+
+    public List<(UnitData unit, int occurences)> GetChampionOccurrences()
+    {
+        return shop.GetChampionOccurrences();
     }
 
     public void OnCollisionEnter2D(Collision2D collision)

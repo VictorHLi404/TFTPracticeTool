@@ -11,8 +11,11 @@ public class RoundInformationManager : MonoBehaviour
     private GameObject TimeDisplayField;
     private GameObject TimeBar;
     public GameObject ShopUIReference;
-
+    public GameObject BoardReference;
+    public GameObject UIBlocker;
+    public GameObject PostGameModal;
     private float CurrentTime;
+    private bool HasGameEnded { get; set; }
 
     public void Start()
     {
@@ -21,6 +24,7 @@ public class RoundInformationManager : MonoBehaviour
         this.TimeBar = transform.Find("TimeBarFill").gameObject;
         this.player = ShopUIReference.GetComponent<ShopUI>().GetPlayer();
         CurrentTime = player.time;
+        HasGameEnded = false;
         InitializeDisplays();
     }
 
@@ -37,6 +41,14 @@ public class RoundInformationManager : MonoBehaviour
         {
             CurrentTime -= Time.deltaTime;
             UpdateTimeDisplays();
+        }
+        else
+        {
+            if (!HasGameEnded)
+            {
+                // HasGameEnded = true;
+                // EndGame();
+            }
         }
 
     }
@@ -68,7 +80,21 @@ public class RoundInformationManager : MonoBehaviour
         float TimeBarDefaultX = transform.Find("TimeBarBackground").transform.localPosition.x + (TimeBarMaxLength / 2);
         float newTimeBarLength = TimeBarMaxLength * (CurrentTime / player.time);
         TimeBar.transform.localScale = new Vector3(newTimeBarLength, TimeBar.transform.localScale.y, TimeBar.transform.localScale.z);
-        TimeBar.transform.localPosition = new Vector3(TimeBarDefaultX - (newTimeBarLength / 2) , TimeBar.transform.localPosition.y, TimeBar.transform.localPosition.z);
+        TimeBar.transform.localPosition = new Vector3(TimeBarDefaultX - (newTimeBarLength / 2), TimeBar.transform.localPosition.y, TimeBar.transform.localPosition.z);
+    }
+
+    public void EndGame()
+    {
+        var board = BoardReference.GetComponent<HexGridManager>();
+        if (board == null)
+            Debug.LogError("Incorrectly assigned board in round information manager.");
+        var teamChampions = board.GetChampionEntities();
+        var shopUI = ShopUIReference.GetComponent<ShopUI>();
+        if (shopUI == null)
+            Debug.LogError("Incorrectly assigned shop in round information manager.");
+        var championOccurences = shopUI.GetChampionOccurrences();
+
+
     }
 
 }

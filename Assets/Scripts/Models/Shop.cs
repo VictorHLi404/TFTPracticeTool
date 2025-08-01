@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System;
 using NUnit.Framework;
 using Unity.VisualScripting;
+using NUnit.Framework.Constraints;
+using System.Linq;
 
 public class Shop
 {
@@ -10,6 +12,7 @@ public class Shop
     private List<UnitData> champions; // list of all possible champions
     private Dictionary<int, int> championBagSizes; // dictionary mapping from DATABASE ID to remaining elements within it
     private Dictionary<int, UnitData> championIDtoUnitData;
+    private Dictionary<int, int> championIDToOccurrences;
     private Dictionary<int, List<int>> levelOdds; // mapping of current level to relavent shop odds
 
     private Player playerData; // data object containing the information of the player
@@ -20,6 +23,7 @@ public class Shop
         this.champions = DatabaseAPI.getAllUnitData();
         this.championBagSizes = new Dictionary<int, int>();
         this.championIDtoUnitData = new Dictionary<int, UnitData>();
+        this.championIDToOccurrences = new Dictionary<int, int>();
         foreach (UnitData champion in champions)
         {
             championBagSizes[champion.DatabaseID] = DatabaseAPI.getBagSize(champion);
@@ -41,7 +45,7 @@ public class Shop
         {
             this.playerData = new Player(6, 0, 200, 40, 4, 2, DatabaseAPI.getLevelMapping());
         }
-        
+
     }
 
     /// <summary>
@@ -115,6 +119,7 @@ public class Shop
                         championBagSizes[champion.DatabaseID] -= 1;
                         currentPool[unitCost] -= 1;
                         newShop.Add(champion);
+                        TrackChampion(champion);
                         break;
                     }
                 }
@@ -218,6 +223,41 @@ public class Shop
             }
         }
         return currentPool;
+    }
+
+    private void TrackChampion(UnitData champion)
+    {
+        var databaseID = champion.DatabaseID;
+        if (championIDToOccurrences.ContainsKey(databaseID))
+        {
+            championIDToOccurrences[databaseID] += 1;
+        }
+        else
+        {
+            championIDToOccurrences[databaseID] = 1;
+        }
+    }
+
+    public List<(UnitData unit, int occurences)> GetChampionOccurrences()
+    {
+        var championOccurences = new Dictionary<int, (UnitData unit, int occurences)>();
+        // this code is really shitty, try to refactor later
+        foreach (KeyValuePair<int, int> KVP in championIDToOccurrences)
+        {
+
+            if (championOccurences.ContainsKey(KVP.Key))
+            {
+                (UnitData unit, int occurences) currentTuple = championOccurences[KVP.Key];
+                currentTuple.occurences += 1;
+                championOccurences[KVP.Key] = currentTuple;
+            }
+            else
+            {
+                var unit = championIDtoUnitData[KVP.Key];
+                championOccurences[KVP.Key] = (unit, 1);
+            }
+        }
+        return championOccurences.Select(x => x.Value).ToList();
     }
 
 

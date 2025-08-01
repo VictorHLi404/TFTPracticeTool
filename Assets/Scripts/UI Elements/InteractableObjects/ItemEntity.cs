@@ -1,5 +1,6 @@
 using System;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 /// <summary>
@@ -26,6 +27,7 @@ public class ItemEntity : DragAndDrop
         SpriteRenderer spriteRendererComponent = itemIcon.GetComponent<SpriteRenderer>();
         string itemName = item.getImageString();
         string file_path = $"ItemIcons/{itemName}";
+        //Debug.Log($"THIS IS THE FILE PATH THAT WE WANT TO CHECK {file_path}");
         spriteRendererComponent.sprite = Resources.Load<Sprite>(file_path);
 
         this.currentCollisionObject = itemSlot;
@@ -139,7 +141,7 @@ public class ItemEntity : DragAndDrop
         {
             ItemEntity otherItemEntity = currentCollisionObject.GetComponent<ItemEntity>();
             CompletedItem? newItemEnum = item.combineItem(otherItemEntity.item);
-
+            Debug.Log($"CREATED ITEM {newItemEnum}");
             if (newItemEnum == null)
             {
                 Debug.LogError("Something messed up when trying to combine items.");
@@ -159,7 +161,7 @@ public class ItemEntity : DragAndDrop
             newItemSlot.GetComponent<ItemSlot>().placeItemInSlot(newItemEntity.GetComponent<ItemEntity>());
             newItemSlot.GetComponent<ItemSlot>().callReshuffle();
 
-            Destroy(currentCollisionObject);
+            Destroy(otherItemEntity.gameObject);
             Destroy(this.gameObject);
         }
         else if (ValidateItemSwapLocation())

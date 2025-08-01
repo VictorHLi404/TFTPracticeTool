@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class ItemManager : MonoBehaviour
 {
     [Header("Item Bench Settings")]
-    public int itemSlots = 10;         // Number of bench slots
+    public int itemSlots = 20;         // Number of bench slots
     public float slotWidth = 1.25f;    // Width of each slot
     public float slotHeight = 1.25f;   // Height of each slot
     public float spacing = 0.375f;      // Spacing between bench slots
@@ -19,7 +19,7 @@ public class ItemManager : MonoBehaviour
 
     private List<(float x, float y)> itemSlotCoordinates = new List<(float x, float y)>();
 
-    private void Start()
+    private void Awake()
     {
         if (itemSlotPrefab == null)
         {
@@ -31,6 +31,16 @@ public class ItemManager : MonoBehaviour
         }
         this.itemBench = new ItemBench();
         GenerateBenchElements();
+    }
+
+    private void Start()
+    {
+        if (StartingResources.Instance == null)
+        {
+            Debug.LogError("Starting Resources instance not identified properly.");
+        }
+        var initialItems = StartingResources.Instance.initialComponents;
+        GenerateItems(initialItems);
         GenerateTestItems();
     }
 
@@ -38,7 +48,7 @@ public class ItemManager : MonoBehaviour
     /// When placing or removing an item from the bench, push all items to the top like a queue;
     /// Remove all items from the bench, then manually replace them. MAINTAIN ORDER!
     /// </summary>
-    public void reshuffleBench()
+    public void ReshuffleBench()
     {
         List<GameObject> itemsOnBench = new List<GameObject>();
         // re initialize all of the items, prolly ineffficnet but should be ok 
@@ -66,21 +76,32 @@ public class ItemManager : MonoBehaviour
     private void GenerateBenchElements()
     {
         float slotSpacing = slotHeight + spacing;
-
-        for (int i = 0; i < itemSlots; i++)
+        // needs a big refactor as well holy
+        for (int i = 0; i < itemSlots / 2; i++) // first row
         {
 
             float yPos = 4.75f + -i * slotSpacing;
 
             GameObject newItemSlot = Instantiate(itemSlotPrefab, transform);
             newItemSlot.GetComponent<ItemSlot>().Initialize(itemBench, this);
-            newItemSlot.transform.localPosition = new Vector3(-0.345f, yPos, 0);
+            newItemSlot.transform.localPosition = new Vector3(-0.75f, yPos, 0);
             itemSlotObjects.Add(newItemSlot);
-            itemSlotCoordinates.Add((-0.345f, yPos));
+            itemSlotCoordinates.Add((-0.75f, yPos));
         }
+        for (int i = 0; i < itemSlots / 2; i++)
+        {
+            float yPos = 4.75f + -i * slotSpacing;
+
+            GameObject newItemSlot = Instantiate(itemSlotPrefab, transform);
+            newItemSlot.GetComponent<ItemSlot>().Initialize(itemBench, this);
+            newItemSlot.transform.localPosition = new Vector3(0.6f, yPos, 0);
+            itemSlotObjects.Add(newItemSlot);
+            itemSlotCoordinates.Add((0.6f, yPos));
+        }
+        Debug.Log($"FINAL LIST LENGTH {itemSlotObjects.Count} + {itemSlotCoordinates.Count}");
     }
 
-    public void returnItemsToBench(List<Item> itemList)
+    public void ReturnItemsToBench(List<Item> itemList)
     {
         int index = 0;
         for (int i = 0; i < itemSlots; i++)
@@ -98,8 +119,8 @@ public class ItemManager : MonoBehaviour
             newItemEntity.transform.localPosition = new Vector3(itemSlotCoordinates[index].Item1, itemSlotCoordinates[index].Item2, -1);
             itemSlotObjects[index].GetComponent<ItemSlot>().placeItemInSlot(newItemEntity.GetComponent<ItemEntity>());
         }
-        reshuffleBench();
-    }  
+        ReshuffleBench();
+    }
     private void GenerateTestItems()
     {
         GameObject test1 = Instantiate(itemPrefab, transform);
@@ -116,5 +137,23 @@ public class ItemManager : MonoBehaviour
         test3.GetComponent<ItemEntity>().Initialize(new Item(Component.RecurveBow), itemSlotObjects[2]);
         test3.transform.localPosition = new Vector3(itemSlotCoordinates[2].Item1, itemSlotCoordinates[2].Item2, -1);
         itemSlotObjects[2].GetComponent<ItemSlot>().placeItemInSlot(test3.GetComponent<ItemEntity>());
+    }
+
+    private void GenerateItems(List<Component> items)
+    {
+        if (items.Count > itemSlots)
+        {
+            Debug.LogError(items.Count);
+            Debug.LogError(itemSlots);
+            Debug.LogError("Cannot generate a list of items of longer length than designated item count");
+        }
+        for (int i = 0; i < items.Count; i++) {
+            var item = items[i];
+            GameObject newItem = Instantiate(itemPrefab, transform);
+            newItem.GetComponent<ItemEntity>().Initialize(new Item(item), itemSlotObjects[i]);
+            newItem.transform.localPosition = new Vector3(itemSlotCoordinates[i].Item1, itemSlotCoordinates[i].Item2, -1);
+            itemSlotObjects[i].GetComponent<ItemSlot>().placeItemInSlot(newItem.GetComponent<ItemEntity>());
+
+        }
     }
 }

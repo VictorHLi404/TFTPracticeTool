@@ -50,6 +50,6 @@ public class ItemSlot : MonoBehaviour
 
     public void callReshuffle()
     {
-        itemManager.reshuffleBench();
+        itemManager.ReshuffleBench();
     }
 }
