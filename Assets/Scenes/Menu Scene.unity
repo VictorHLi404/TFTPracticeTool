@@ -1263,6 +1263,7 @@ MonoBehaviour:
   initialComponents: 
   initialLevel: 0
   initialGold: 0
+  initialTime: 30
   LevelDropdownSelection: {fileID: 0}
 --- !u!1 &863709233 stripped
 GameObject:
