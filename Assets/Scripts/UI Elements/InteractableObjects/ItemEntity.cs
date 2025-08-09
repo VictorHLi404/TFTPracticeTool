@@ -185,6 +185,7 @@ public class ItemEntity : DragAndDrop
         else if (ValidateChampionDropLocation())
         {
             previousCollisionObject.GetComponent<ItemSlot>().removeItemFromSlot();
+            previousCollisionObject.GetComponent<ItemSlot>().callReshuffle();
             ChampionEntity championEntity = currentCollisionObject.GetComponent<ChampionEntity>();
             championEntity.AddItem(this);
             Destroy(this.gameObject);

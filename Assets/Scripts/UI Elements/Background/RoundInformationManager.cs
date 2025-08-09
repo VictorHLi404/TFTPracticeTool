@@ -12,9 +12,11 @@ public class RoundInformationManager : MonoBehaviour
     private GameObject TimeBar;
     public GameObject ShopUIReference;
     public GameObject BoardReference;
+    public GameObject BenchReference;
     public GameObject ItemBenchReference;
     public GameObject UIBlocker;
     public GameObject PostGameModal;
+
     private float CurrentTime;
     private bool HasGameEnded { get; set; }
 
@@ -101,6 +103,11 @@ public class RoundInformationManager : MonoBehaviour
         var initialComponents = itemBench.GetStartingComponents();
         UIBlocker.SetActive(true);
         PostGameModal.SetActive(true);
+
+        BoardReference.SetActive(false);
+        ShopUIReference.SetActive(false);
+        ItemBenchReference.SetActive(false);
+        BenchReference.SetActive(false);
 
         PostGameModal.GetComponent<PostGameModal>().Initialize(teamChampions, championOccurences, initialComponents);
     }

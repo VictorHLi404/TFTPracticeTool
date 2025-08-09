@@ -13,13 +13,19 @@ public class RandomizationHelper
         for (int i = 1; i <= itemRounds; i++)
         {
             AddItemsToPool(initialPool);
-            int itemCountToTake = UnityEngine.Random.Range(5, 6);
+            int itemCountToTake = UnityEngine.Random.Range(4, 5);
             for (int j = 1; j <= itemCountToTake; j++)
             {
                 var itemIndexToTake = UnityEngine.Random.Range(0, initialPool.Count);
                 selectedComponents.Add(initialPool[itemIndexToTake]);
                 initialPool.RemoveAt(itemIndexToTake);
             }
+        }
+        if (selectedComponents.Count % 2 != 0)
+        {
+            var itemIndexToTake = UnityEngine.Random.Range(0, initialPool.Count);
+            selectedComponents.Add(initialPool[itemIndexToTake]);
+            initialPool.RemoveAt(itemIndexToTake);
         }
         return selectedComponents;
     }

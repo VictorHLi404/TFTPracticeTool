@@ -49,7 +49,7 @@ public class ShopUI : MonoBehaviour
 
     public void Update()
     {
-        hexGridManager.GetComponent<HexGridManager>().updateMaxUnitCount(shop.getPlayerLevel());
+        hexGridManager.GetComponent<HexGridManager>().UpdateMaxUnitCount(shop.getPlayerLevel());
         if (Input.anyKeyDown)
         {
             if (Input.GetKey(Settings.Instance.HotkeyBindings[HotkeyEnum.RerollHotkey]))
@@ -157,6 +157,7 @@ public class ShopUI : MonoBehaviour
             {
                 ShopItem slotData = shopItemArray[i].GetComponents<ShopItem>()[0];
                 slotData.updateChampion(shop.currentShop[i]);
+                hasBeenPurchased[i] = false;
             }
             UpdateDisplays();
         }
@@ -171,7 +172,7 @@ public class ShopUI : MonoBehaviour
         if (shop.BuyXP())
         {
             UpdateDisplays();
-            hexGridManager.GetComponent<HexGridManager>().updateMaxUnitCount(shop.getPlayerLevel());
+            hexGridManager.GetComponent<HexGridManager>().UpdateMaxUnitCount(shop.getPlayerLevel());
         }
     }
 
@@ -181,13 +182,7 @@ public class ShopUI : MonoBehaviour
         {
             UpdateDisplays();
             SellChampionInformation.GetComponent<SellChampionInformation>().disableDisplay();
-            for (int i = 0; i < shopItemArray.Length; i++)
-            {
-                if (!hasBeenPurchased[i])
-                {
-                    shopItemArray[i].GetComponent<ShopItem>().enableInteraction(true);
-                }
-            }
+            reenableShop();
         }
         itemBench.GetComponent<ItemManager>().ReturnItemsToBench(championEntity.champion.GetItems());
     }
@@ -202,7 +197,7 @@ public class ShopUI : MonoBehaviour
     public bool BuyChampion(UnitData champion, GameObject shopItem)
     {
         BenchManager bench = benchManager.GetComponent<BenchManager>();
-        if (!bench.CanUnitBePlaced())
+        if (!bench.CanUnitBePlacedFromShop())
         { // no space on bench
             return false;
         }
@@ -238,7 +233,7 @@ public class ShopUI : MonoBehaviour
         foreach (var champion in champions)
         {
             index += 1;
-            if (!bench.CanUnitBePlaced())
+            if (!bench.CanUnitBePlacedFromShop())
                 break;
             for (int i = 0; i < Math.Pow(3, champion.starLevel - 1); i++)
             {
@@ -283,12 +278,17 @@ public class ShopUI : MonoBehaviour
         if (collisionObject.GetComponent<ChampionEntity>() != null)
         {
             SellChampionInformation.GetComponent<SellChampionInformation>().disableDisplay();
-            for (int i = 0; i < shopItemArray.Length; i++)
+            reenableShop();
+        }
+    }
+
+    private void reenableShop()
+    {
+        for (int i = 0; i < shopItemArray.Length; i++)
+        {
+            if (!hasBeenPurchased[i])
             {
-                if (!hasBeenPurchased[i])
-                {
-                    shopItemArray[i].GetComponent<ShopItem>().enableInteraction(true);
-                }
+                shopItemArray[i].GetComponent<ShopItem>().enableInteraction(true);
             }
         }
     }

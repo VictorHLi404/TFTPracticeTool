@@ -108,7 +108,7 @@ public class HexGridManager : MonoBehaviour
         return false;
     }
 
-    public void updateMaxUnitCount(int maxUnits)
+    public void UpdateMaxUnitCount(int maxUnits)
     {
         board.maxUnitCount = maxUnits;
     }

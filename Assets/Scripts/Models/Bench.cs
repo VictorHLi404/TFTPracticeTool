@@ -23,8 +23,9 @@ public class Bench : UnitManager
         currentUnitCount--;
     }
 
-    public override bool CanUnitBePlaced()
+    public override bool CanUnitBePlaced(bool isOnSameManager)
     {
-        return currentUnitCount + 1 <= maxUnitCount;
+        var activeUnitCount = isOnSameManager ? currentUnitCount : currentUnitCount + 1;
+        return activeUnitCount <= maxUnitCount;
     }
 }

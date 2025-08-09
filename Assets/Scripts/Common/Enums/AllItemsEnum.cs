@@ -27,6 +27,7 @@ public enum AllItemsEnum
     SpiritVisage,
     HandofJustice,
     BrambleVest,
+    Evenshroud,
     GargoyleStoneplate,
     SunfireCape,
     SteadfastHeart,

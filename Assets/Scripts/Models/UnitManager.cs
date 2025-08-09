@@ -8,7 +8,7 @@ public abstract class UnitManager
     public int currentUnitCount = 0;
 
 
-    public abstract bool CanUnitBePlaced();
+    public abstract bool CanUnitBePlaced(bool isOnSameManager);
 
     public abstract void AddUnit();
 

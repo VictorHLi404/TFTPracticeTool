@@ -76,28 +76,9 @@ public class BenchManager : MonoBehaviour
         return championList;
     }
 
-    /// <summary>
-    /// A method that validates whether a champion can be added to the bench or not based off of the total count.
-    /// Called by the internal unit slot for drag and drop, and by ShopUI for spawnign in elements.
-    /// </summary>
-    /// <returns>Whether this action was done sucessfully or not.</returns>
-    public bool AddToBench()
+    public bool CanUnitBePlacedFromShop()
     {
-        if (bench.CanUnitBePlaced())
-        {
-            /// add to the internal list
-            bench.AddUnit();
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    public bool CanUnitBePlaced()
-    {
-        return bench.CanUnitBePlaced();
+        return bench.CanUnitBePlaced(false);
     }
 
     /// <summary>

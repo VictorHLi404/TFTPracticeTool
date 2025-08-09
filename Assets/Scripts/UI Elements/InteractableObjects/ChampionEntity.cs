@@ -207,11 +207,14 @@ public class ChampionEntity : DragAndDrop
         else
         {
             UnitManager parentManager = currentCollisionObject.GetComponent<UnitSlot>().parentManager;
-            if (!parentManager.CanUnitBePlaced())
+            var unitSlot = currentCollisionObject.GetComponent<UnitSlot>();
+            var sameParentManager = unitSlot.isBenchSlot == isOnBench;
+            if (!parentManager.CanUnitBePlaced(sameParentManager))
             {
+                Debug.Log("PARENT MANAGER SAYS THAT UNIT CANNOT BE PLACED");
                 return false;
             }
-            return currentCollisionObject.GetComponent<UnitSlot>().isEmpty();
+            return unitSlot.isEmpty();
         }
     }
 

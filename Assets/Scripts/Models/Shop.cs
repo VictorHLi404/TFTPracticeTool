@@ -236,24 +236,14 @@ public class Shop
 
     public List<(UnitData unit, int occurences)> GetChampionOccurrences()
     {
-        var championOccurences = new Dictionary<int, (UnitData unit, int occurences)>();
+        var championOccurences = new List<(UnitData unit, int occurences)>();
         // this code is really shitty, try to refactor later
         foreach (KeyValuePair<int, int> KVP in championIDToOccurrences)
         {
-
-            if (championOccurences.ContainsKey(KVP.Key))
-            {
-                (UnitData unit, int occurences) currentTuple = championOccurences[KVP.Key];
-                currentTuple.occurences += 1;
-                championOccurences[KVP.Key] = currentTuple;
-            }
-            else
-            {
-                var unit = championIDtoUnitData[KVP.Key];
-                championOccurences[KVP.Key] = (unit, 1);
-            }
+            var unitData = championIDtoUnitData[KVP.Key];
+            championOccurences.Add((unitData, KVP.Value));
         }
-        return championOccurences.Select(x => x.Value).ToList();
+        return championOccurences;
     }
 
 

@@ -419,6 +419,7 @@ MonoBehaviour:
   shopSlotPrefab: {fileID: 6330402162318352869, guid: 1055ce3e5741d0148907f45cdbcd856e, type: 3}
   benchManager: {fileID: 1617363791813450153, guid: ecafa48e59c3558468fb6d31deec71d4, type: 3}
   hexGridManager: {fileID: 6758030878113201010, guid: 37b1d17e2a09ccf4bb4f0b277d2d1d26, type: 3}
+  itemBench: {fileID: 0}
 --- !u!50 &4924238820633249304
 Rigidbody2D:
   serializedVersion: 5
@@ -2338,6 +2339,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90e8fdb038de6594fb7f83e0a9f92b34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  priceTextField: {fileID: 5998875127000093683}
+--- !u!114 &5998875127000093683 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3965729823437495943, guid: 17781a4ac164d134ea0d3b67de46bc45, type: 3}
+  m_PrefabInstance: {fileID: 7226398776220339572}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &7075592254980076134 stripped
