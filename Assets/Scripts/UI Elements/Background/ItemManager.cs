@@ -16,6 +16,7 @@ public class ItemManager : MonoBehaviour
     private ItemBench itemBench;
 
     private List<GameObject> itemSlotObjects = new List<GameObject>();
+    private List<Component> initialItems;
 
     private List<(float x, float y)> itemSlotCoordinates = new List<(float x, float y)>();
 
@@ -39,9 +40,8 @@ public class ItemManager : MonoBehaviour
         {
             Debug.LogError("Starting Resources instance not identified properly.");
         }
-        var initialItems = StartingResources.Instance.initialComponents;
+        initialItems = StartingResources.Instance.initialComponents;
         GenerateItems(initialItems);
-        GenerateTestItems();
     }
 
     /// <summary>
@@ -121,22 +121,10 @@ public class ItemManager : MonoBehaviour
         }
         ReshuffleBench();
     }
-    private void GenerateTestItems()
+
+    public List<Component> GetStartingComponents()
     {
-        GameObject test1 = Instantiate(itemPrefab, transform);
-        test1.GetComponent<ItemEntity>().Initialize(new Item(Component.BFSword), itemSlotObjects[0]);
-        test1.transform.localPosition = new Vector3(itemSlotCoordinates[0].Item1, itemSlotCoordinates[0].Item2, -1);
-        itemSlotObjects[0].GetComponent<ItemSlot>().placeItemInSlot(test1.GetComponent<ItemEntity>());
-
-        GameObject test2 = Instantiate(itemPrefab, transform);
-        test2.GetComponent<ItemEntity>().Initialize(new Item(Component.NeedlesslyLargeRod), itemSlotObjects[1]);
-        test2.transform.localPosition = new Vector3(itemSlotCoordinates[1].Item1, itemSlotCoordinates[1].Item2, -1);
-        itemSlotObjects[1].GetComponent<ItemSlot>().placeItemInSlot(test2.GetComponent<ItemEntity>());
-
-        GameObject test3 = Instantiate(itemPrefab, transform);
-        test3.GetComponent<ItemEntity>().Initialize(new Item(Component.RecurveBow), itemSlotObjects[2]);
-        test3.transform.localPosition = new Vector3(itemSlotCoordinates[2].Item1, itemSlotCoordinates[2].Item2, -1);
-        itemSlotObjects[2].GetComponent<ItemSlot>().placeItemInSlot(test3.GetComponent<ItemEntity>());
+        return initialItems;
     }
 
     private void GenerateItems(List<Component> items)
@@ -147,10 +135,12 @@ public class ItemManager : MonoBehaviour
             Debug.LogError(itemSlots);
             Debug.LogError("Cannot generate a list of items of longer length than designated item count");
         }
-        for (int i = 0; i < items.Count; i++) {
+        for (int i = 0; i < items.Count; i++)
+        {
             var item = items[i];
             GameObject newItem = Instantiate(itemPrefab, transform);
             newItem.GetComponent<ItemEntity>().Initialize(new Item(item), itemSlotObjects[i]);
+            Debug.Log($"THIS IS WHERE THE ITEM IS BEING SPAWNED: {itemSlotCoordinates[i].Item1} {itemSlotCoordinates[i].Item2}");
             newItem.transform.localPosition = new Vector3(itemSlotCoordinates[i].Item1, itemSlotCoordinates[i].Item2, -1);
             itemSlotObjects[i].GetComponent<ItemSlot>().placeItemInSlot(newItem.GetComponent<ItemEntity>());
 

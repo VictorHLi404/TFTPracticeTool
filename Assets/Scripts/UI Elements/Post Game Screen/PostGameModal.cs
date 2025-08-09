@@ -10,8 +10,10 @@ public class PostGameModal : MonoBehaviour
     public GameObject SecondChampion;
     public GameObject Team;
 
-    public void Initialize(List<Champion> champions)
+    public void Initialize(List<ChampionEntity> teamChampions,
+                            List<(UnitData unit, int occurences)> shopChampions,
+                            List<Component> initialChampions)
     {
-        
+        Debug.Log("GOT HERE!");
     }
 }

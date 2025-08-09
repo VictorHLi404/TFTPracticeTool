@@ -105,7 +105,6 @@ public class HexGridManager : MonoBehaviour
                 unitSlot.placeChampionInSlot(newChampionInstance.GetComponent<ChampionEntity>());
             }
         }
-        Debug.Log("BOARD IS FULL");
         return false;
     }
 

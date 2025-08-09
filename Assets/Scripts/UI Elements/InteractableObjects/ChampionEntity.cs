@@ -303,8 +303,6 @@ public class ChampionEntity : DragAndDrop
 
     protected void SellSelf()
     {
-        Debug.Log("DOES THIS SHIT EVEN EXIST?");
-        Debug.Log(ShopUIReference.GetComponent<ShopUI>());
         ShopUIReference.GetComponent<ShopUI>().SellChampion(this);
         previousCollisionObject.GetComponent<UnitSlot>().removeChampionFromSlot();
         Destroy(gameObject);

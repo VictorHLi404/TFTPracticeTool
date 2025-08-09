@@ -87,9 +87,5 @@ public class Champion : UnitData
                 items.Add(newItem);
             }
         }
-        foreach (Item item in items)
-        {
-            Debug.Log(item.isComponent);
-        }
     }
 }

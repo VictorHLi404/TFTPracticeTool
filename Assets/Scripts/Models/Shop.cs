@@ -85,7 +85,6 @@ public class Shop
                 if (!previousShopChampion.isDummy())
                 {
                     championBagSizes[previousShopChampion.DatabaseID] += 1;
-                    Debug.Log($"Putting {previousShopChampion} back in the bag...");
                 }
             }
         }
@@ -172,7 +171,6 @@ public class Shop
         {
             return false;
         }
-        Debug.Log($"Purchasing {champion.UnitName}...");
         playerData.gold -= champion.Cost;
         for (int i = 0; i < currentShop.Count; i++)
         {
@@ -182,7 +180,6 @@ public class Shop
                 return true;
             }
         }
-        Debug.LogError("Purchased an impossible champion.");
         return false;
     }
 
@@ -197,7 +194,6 @@ public class Shop
         playerData.gold += champion.getSellPrice();
         int unitCount = (int)Math.Pow(3, champion.starLevel - 1);
         championBagSizes[champion.DatabaseID] += unitCount;
-        // Debug.Log($"Returned {champion} to the pool. there are now {championBagSizes[champion.databaseID]}  instances.");
         return true;
     }
 

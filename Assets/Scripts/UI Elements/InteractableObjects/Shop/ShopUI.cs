@@ -187,10 +187,6 @@ public class ShopUI : MonoBehaviour
                 {
                     shopItemArray[i].GetComponent<ShopItem>().enableInteraction(true);
                 }
-                else
-                {
-                    Debug.Log($"SLOT {i} HAS BEEN PURCHASED");
-                }
             }
         }
         itemBench.GetComponent<ItemManager>().ReturnItemsToBench(championEntity.champion.GetItems());

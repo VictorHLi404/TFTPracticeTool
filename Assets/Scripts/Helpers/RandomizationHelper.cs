@@ -13,7 +13,7 @@ public class RandomizationHelper
         for (int i = 1; i <= itemRounds; i++)
         {
             AddItemsToPool(initialPool);
-            int itemCountToTake = UnityEngine.Random.Range(3, 5);
+            int itemCountToTake = UnityEngine.Random.Range(5, 6);
             for (int j = 1; j <= itemCountToTake; j++)
             {
                 var itemIndexToTake = UnityEngine.Random.Range(0, initialPool.Count);

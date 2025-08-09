@@ -120,7 +120,6 @@ public class BenchManager : MonoBehaviour
                 return true;
             }
         }
-        Debug.Log("BENCH IS FULL");
         return false;
     }
 

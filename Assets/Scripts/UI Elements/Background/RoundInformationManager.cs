@@ -12,6 +12,7 @@ public class RoundInformationManager : MonoBehaviour
     private GameObject TimeBar;
     public GameObject ShopUIReference;
     public GameObject BoardReference;
+    public GameObject ItemBenchReference;
     public GameObject UIBlocker;
     public GameObject PostGameModal;
     private float CurrentTime;
@@ -46,8 +47,8 @@ public class RoundInformationManager : MonoBehaviour
         {
             if (!HasGameEnded)
             {
-                // HasGameEnded = true;
-                // EndGame();
+                HasGameEnded = true;
+                EndGame();
             }
         }
 
@@ -94,7 +95,14 @@ public class RoundInformationManager : MonoBehaviour
             Debug.LogError("Incorrectly assigned shop in round information manager.");
         var championOccurences = shopUI.GetChampionOccurrences();
 
+        var itemBench = ItemBenchReference.GetComponent<ItemManager>();
+        if (itemBench == null)
+            Debug.LogError("Incorrectly assigned item bench in round information maanger");
+        var initialComponents = itemBench.GetStartingComponents();
+        UIBlocker.SetActive(true);
+        PostGameModal.SetActive(true);
 
+        PostGameModal.GetComponent<PostGameModal>().Initialize(teamChampions, championOccurences, initialComponents);
     }
 
 }

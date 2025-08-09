@@ -9,7 +9,6 @@ public class DtosHelper
         foreach (var champion in response.Champions)
         {
             var unitData = DatabaseAPI.GetUnitData(champion.ChampionName);
-            Debug.Log(unitData.UnitName);
             champions.Add(new Champion(champion.Level, unitData));
         }
         return (response.AveragePlacement, champions);

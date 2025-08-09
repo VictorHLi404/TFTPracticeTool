@@ -118,7 +118,7 @@ public class StartingResources : MonoBehaviour
         }
         if (time < 15 || time > 99)
         {
-            Debug.LogWarning("An invalid gold amount was passed. Needs to be between 5-10.");
+            Debug.LogWarning($"An invalid time amount was passed. Needs to be between 15-99. : {time}");
             return;
         }
         Instance.initialTime = time;
