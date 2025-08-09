@@ -98,7 +98,6 @@ public class ItemManager : MonoBehaviour
             itemSlotObjects.Add(newItemSlot);
             itemSlotCoordinates.Add((0.6f, yPos));
         }
-        Debug.Log($"FINAL LIST LENGTH {itemSlotObjects.Count} + {itemSlotCoordinates.Count}");
     }
 
     public void ReturnItemsToBench(List<Item> itemList)
@@ -131,8 +130,6 @@ public class ItemManager : MonoBehaviour
     {
         if (items.Count > itemSlots)
         {
-            Debug.LogError(items.Count);
-            Debug.LogError(itemSlots);
             Debug.LogError("Cannot generate a list of items of longer length than designated item count");
         }
         for (int i = 0; i < items.Count; i++)
@@ -140,7 +137,6 @@ public class ItemManager : MonoBehaviour
             var item = items[i];
             GameObject newItem = Instantiate(itemPrefab, transform);
             newItem.GetComponent<ItemEntity>().Initialize(new Item(item), itemSlotObjects[i]);
-            Debug.Log($"THIS IS WHERE THE ITEM IS BEING SPAWNED: {itemSlotCoordinates[i].Item1} {itemSlotCoordinates[i].Item2}");
             newItem.transform.localPosition = new Vector3(itemSlotCoordinates[i].Item1, itemSlotCoordinates[i].Item2, -1);
             itemSlotObjects[i].GetComponent<ItemSlot>().placeItemInSlot(newItem.GetComponent<ItemEntity>());
 

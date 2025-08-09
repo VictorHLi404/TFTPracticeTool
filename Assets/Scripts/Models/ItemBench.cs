@@ -16,13 +16,11 @@ public class ItemBench
     public void AddItem()
     {
         currentItemCount++;
-        Debug.Log($"THIS IS THE CURRENT ITEM BENCH COUNT {currentItemCount}");
     }
 
     public void RemoveItem()
     {
         currentItemCount--;
-        Debug.Log($"THIS IS THE CURRENT ITEM BENCH COUNT {currentItemCount}");
     }
 
     public bool CanItemBePlaced()
