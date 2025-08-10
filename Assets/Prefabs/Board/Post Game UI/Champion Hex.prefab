@@ -155,6 +155,7 @@ GameObject:
   - component: {fileID: 3571873599404934588}
   - component: {fileID: 1245228153094383607}
   - component: {fileID: 8301648659598829157}
+  - component: {fileID: 4445398506440904267}
   m_Layer: 5
   m_Name: ChampionIcon
   m_TagString: Untagged
@@ -179,7 +180,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -52.4, y: -5.5}
-  m_SizeDelta: {x: 138, y: 11}
+  m_SizeDelta: {x: 138, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5737951652740287775
 CanvasRenderer:
@@ -244,6 +245,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf7390bae1dae694a97694ef1e065f0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4445398506440904267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6487665508656191824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AspectMode: 1
+  m_AspectRatio: 2
 --- !u!1 &8500874682752487114
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,13 +8,15 @@ public class ChampionDisplayHex : MonoBehaviour
     public GameObject championIcon;
     public GameObject border;
 
-    public void UpdateVisuals(Champion champion)
+    public void UpdateVisuals(Champion champion, bool isSmall = false)
     {
         Image championImage = championIcon.GetComponent<Image>();
-
+        RectTransform championIconRect = championIcon.GetComponent<RectTransform>();
         championIcon.GetComponent<ChampionIcon>().UpdateCanvasChampionImage(champion);
 
-        championImage.sprite = CropSprite(championImage.sprite);
+        // championImage.sprite = CropSprite(championImage.sprite);
+        if (isSmall)
+            championIconRect.anchoredPosition = new Vector3(championIconRect.anchoredPosition.x + 5f, championIconRect.anchoredPosition.y - 20f);
 
         int starLevel = champion.starLevel;
         Image borderImage = border.GetComponent<Image>();

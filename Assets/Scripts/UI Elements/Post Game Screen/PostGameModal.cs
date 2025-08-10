@@ -46,6 +46,9 @@ public class PostGameModal : MonoBehaviour
         var teamWinrate = await ApiClient.GetTeamWinrate(team);
         var alternativeTeamComps = await ApiClient.GetTeamAlternativeComps(team, relaventChampions);
 
+        var teamDisplay = TeamDisplayReference.GetComponent<TeamDisplay>();
+        teamDisplay.Initialize(team, teamWinrate, alternativeTeamComps);
+
         Debug.Log($"POSSIBLE ITEM SETS: {possibleItemSets.Count}");
         Debug.Log($"RELAVENT CHAMPIONS: {relaventChampions.Count}");
         Debug.Log($"ALTERNATIVE TEAM COMPS LISTING: {alternativeTeamComps.Count}");

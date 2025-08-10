@@ -13,10 +13,10 @@ public class StartingResources : MonoBehaviour
     public static StartingResources Instance { get; set; }
     public List<Component> initialComponents;
     public List<Champion> initialChampions;
+    public TeamResponse initialTeamStatistics;
     public int initialLevel = 5;
     public int initialGold = 50;
     public int initialTime = 30;
-
     private decimal expectedPlacement;
 
     public TMP_Dropdown LevelDropdownSelection;
@@ -46,9 +46,9 @@ public class StartingResources : MonoBehaviour
 
         Instance.initialComponents = RandomizationHelper.GenerateRandomComponents();
 
-        var initialTeamResults = await ApiClient.GetPopularTeamComp(Instance.initialLevel);
+        Instance.initialTeamStatistics = await ApiClient.GetPopularTeamComp(Instance.initialLevel);
 
-        (Instance.expectedPlacement, Instance.initialChampions) = DtosHelper.DeserializeTeamResponse(initialTeamResults);
+        (Instance.expectedPlacement, Instance.initialChampions) = DtosHelper.DeserializeTeamResponse(Instance.initialTeamStatistics);
         RandomizationHelper.DelevelTeam(Instance.initialChampions);
 
         SceneManager.LoadScene("TestScene");
