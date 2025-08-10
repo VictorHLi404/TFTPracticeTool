@@ -1,3 +1,4 @@
+using UnityEngine.UI;
 using UnityEngine;
 
 public class ChampionIcon : MonoBehaviour
@@ -12,6 +13,14 @@ public class ChampionIcon : MonoBehaviour
         string unitName = champion.UnitName.ToString().Replace(".", "");
         string file_path = $"ChampionShopIcons/TFT15_{unitName}.TFT_Set15";
         spriteRendererComponent.sprite = Resources.Load<Sprite>(file_path);
+    }
+
+    public void UpdateCanvasChampionImage(UnitData champion)
+    {
+        Image imageComponent = gameObject.GetComponent<Image>();
+        string unitName = champion.UnitName.ToString().Replace(".", "");
+        string file_path = $"ChampionShopIcons/TFT15_{unitName}.TFT_Set15";
+        imageComponent.sprite = Resources.Load<Sprite>(file_path);
     }
 
 }

@@ -7,9 +7,9 @@ public class PostGameModal : MonoBehaviour
     private bool isLoading;
 
     [Header("Reference Fields")]
-    public GameObject FirstChampion;
-    public GameObject SecondChampion;
-    public GameObject Team;
+    public GameObject FirstChampionDisplayReference;
+    public GameObject SecondChampionDisplayReference;
+    public GameObject TeamDisplayReference;
 
     private bool requestsHaveBeenMade;
 
@@ -25,10 +25,22 @@ public class PostGameModal : MonoBehaviour
             team.Add(championEntity.champion);
         }
         (var firstChampion, var secondChampion) = ProcessingHelper.GetMostRelaventChampions(teamChampions);
-        var firstChampionWinrate = await ApiClient.GetChampionWinrate(firstChampion);
-        var secondChampionWinrate = await ApiClient.GetChampionWinrate(secondChampion);
-        var firstChampionAlternativeBuilds = await ApiClient.GetChampionAlternativeBuilds(firstChampion, possibleItemSets);
-        var secondChampionAlternativeBuilds = await ApiClient.GetChampionAlternativeBuilds(secondChampion, possibleItemSets);
+        if (firstChampion != null)
+        {
+            var firstChampionWinrate = await ApiClient.GetChampionWinrate(firstChampion);
+            var firstChampionAlternativeBuilds = await ApiClient.GetChampionAlternativeBuilds(firstChampion, possibleItemSets);
+            var firstChampionDisplay = FirstChampionDisplayReference.GetComponent<ChampionInformationDisplay>();
+            firstChampionDisplay.Initialize(firstChampionWinrate, firstChampionAlternativeBuilds);
+        }
+
+        if (secondChampion != null)
+        {
+            var secondChampionWinrate = await ApiClient.GetChampionWinrate(secondChampion);
+            var secondChampionAlternativeBuilds = await ApiClient.GetChampionAlternativeBuilds(secondChampion, possibleItemSets);
+            var secondChampionDisplay = SecondChampionDisplayReference.GetComponent<ChampionInformationDisplay>();
+            secondChampionDisplay.Initialize(secondChampionWinrate, secondChampionAlternativeBuilds);
+        }
+
         var teamWinrate = await ApiClient.GetTeamWinrate(team);
         var alternativeTeamComps = await ApiClient.GetTeamAlternativeComps(team, relaventChampions);
 
@@ -36,6 +48,7 @@ public class PostGameModal : MonoBehaviour
         Debug.Log($"RELAVENT CHAMPIONS: {relaventChampions.Count}");
         Debug.Log($"ALTERNATIVE TEAM COMPS LISTING: {alternativeTeamComps.Count}");
         Debug.Log("GOT HERE!");
+
     }
 
 

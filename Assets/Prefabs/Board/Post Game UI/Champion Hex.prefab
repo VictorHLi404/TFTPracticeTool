@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7295224791907616340}
   - component: {fileID: -5998102668819203912}
   - component: {fileID: 5614263232213882997}
+  - component: {fileID: 528848232694109872}
   m_Layer: 5
   m_Name: Champion Hex
   m_TagString: Untagged
@@ -127,6 +128,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AspectMode: 1
   m_AspectRatio: 1
+--- !u!114 &528848232694109872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3744221396747962262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 081260afc6207144a93d3ce1fd724ace, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  championIcon: {fileID: 6487665508656191824}
+  border: {fileID: 9004183219469071376}
 --- !u!1 &6487665508656191824
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,6 +154,7 @@ GameObject:
   - component: {fileID: 5737951652740287775}
   - component: {fileID: 3571873599404934588}
   - component: {fileID: 1245228153094383607}
+  - component: {fileID: 8301648659598829157}
   m_Layer: 5
   m_Name: ChampionIcon
   m_TagString: Untagged
@@ -216,6 +232,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 1
+--- !u!114 &8301648659598829157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6487665508656191824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf7390bae1dae694a97694ef1e065f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8500874682752487114
 GameObject:
   m_ObjectHideFlags: 0

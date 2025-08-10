@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 
@@ -50,7 +52,7 @@ public class RoundInformationManager : MonoBehaviour
             if (!HasGameEnded)
             {
                 HasGameEnded = true;
-                EndGame();
+                EndGame().Forget();
             }
         }
 
@@ -86,7 +88,7 @@ public class RoundInformationManager : MonoBehaviour
         TimeBar.transform.localPosition = new Vector3(TimeBarDefaultX - (newTimeBarLength / 2), TimeBar.transform.localPosition.y, TimeBar.transform.localPosition.z);
     }
 
-    public void EndGame()
+    public async UniTask EndGame()
     {
         var board = BoardReference.GetComponent<HexGridManager>();
         if (board == null)
@@ -101,6 +103,17 @@ public class RoundInformationManager : MonoBehaviour
         if (itemBench == null)
             Debug.LogError("Incorrectly assigned item bench in round information maanger");
         var initialComponents = itemBench.GetStartingComponents();
+
+        if (teamChampions.Count < shopUI.GetPlayer().level)
+        {
+            var bench = BenchReference.GetComponent<BenchManager>();
+            var benchedChampions = bench.GetChampionEntities();
+            while (teamChampions.Count < shopUI.GetPlayer().level && benchedChampions.Count > 0)
+            {
+                teamChampions.Add(benchedChampions[0]);
+                benchedChampions.RemoveAt(0);
+            }
+        }
         UIBlocker.SetActive(true);
         PostGameModal.SetActive(true);
 
@@ -109,7 +122,7 @@ public class RoundInformationManager : MonoBehaviour
         ItemBenchReference.SetActive(false);
         BenchReference.SetActive(false);
 
-        PostGameModal.GetComponent<PostGameModal>().Initialize(teamChampions, championOccurences, initialComponents);
+        await PostGameModal.GetComponent<PostGameModal>().Initialize(teamChampions, championOccurences, initialComponents);
     }
 
 }

@@ -128,6 +128,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 2999204809193487803}
     m_Modifications:
     - target: {fileID: 4285647903691900793, guid: 37b1d17e2a09ccf4bb4f0b277d2d1d26, type: 3}
+      propertyPath: spacing
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285647903691900793, guid: 37b1d17e2a09ccf4bb4f0b277d2d1d26, type: 3}
       propertyPath: championPrefab
       value: 
       objectReference: {fileID: 706143008092661224, guid: fb5934cc5ab26f74085715ac7e08be42, type: 3}

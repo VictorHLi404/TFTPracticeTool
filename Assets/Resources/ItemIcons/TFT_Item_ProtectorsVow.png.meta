@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: df47dbcfbc5e27d4c88477fc53dc93df
+guid: 705da765e4e71cf40bcb21531fa3b187
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8827533238054992129
-    second: TFT_Item_FrozenHeart_0
+      213: 8074037869860419461
+    second: TFT_Item_ProtectorsVow_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TFT_Item_FrozenHeart_0
+      name: TFT_Item_ProtectorsVow_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ff647ce4a4d4e7580800000000000000
-      internalID: -8827533238054992129
+      spriteID: 587f4102aaebc0070800000000000000
+      internalID: 8074037869860419461
       vertices: []
       indices: 
       edges: []

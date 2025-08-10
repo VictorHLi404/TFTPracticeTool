@@ -145,13 +145,18 @@ public class ProcessingHelper
         return relaventChampions;
     }
 
-    public static (Champion firstChampion, Champion secondChampion) GetMostRelaventChampions(List<ChampionEntity> championEntities)
+    public static (Champion? firstChampion, Champion? secondChampion) GetMostRelaventChampions(List<ChampionEntity> championEntities)
     {
         var sortedChampions = championEntities
             .Select(x => x.champion)
             .OrderByDescending(x => x.GetItems().Count)
             .ThenByDescending(x => x.starLevel * x.Cost)
             .ToList();
+        if (sortedChampions.Count < 1)
+            return (null, null);
+        if (sortedChampions.Count < 2)
+            return (sortedChampions[0], null);
+        
         return (sortedChampions[0], sortedChampions[1]);
     }
 }
