@@ -73,7 +73,7 @@ public class TraitDisplay : MonoBehaviour
             Destroy(traitCountField);
             traitNameField.GetComponent<TextMeshPro>().text = traitName;
             traitLevelsField.GetComponent<TextMeshPro>().text = $"{unitCount} / {traitBreakpoints[0]}";
-            traitNameField.transform.localPosition = new Vector3(17.5f, 5f, 0f);
+            traitNameField.transform.localPosition = new Vector3(33.5f, 5f, 0f);
             traitLevelsField.transform.localPosition = new Vector3(17.5f, -3f, 0f);
 
         }
