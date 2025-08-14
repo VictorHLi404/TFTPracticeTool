@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT15_Gnar.TFT_Set15_0: 8594495539345538558
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

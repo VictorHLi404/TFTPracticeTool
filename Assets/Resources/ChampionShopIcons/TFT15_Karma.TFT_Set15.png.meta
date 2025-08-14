@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT15_Karma.TFT_Set15_0: 463785004772236093
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

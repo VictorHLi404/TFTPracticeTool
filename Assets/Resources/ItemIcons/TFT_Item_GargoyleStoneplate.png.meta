@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT_Item_GargoyleStoneplate_0: 968858718176795531
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

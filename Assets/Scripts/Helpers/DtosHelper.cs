@@ -5,6 +5,7 @@ public class DtosHelper
 {
     public static (decimal expectedPlacement, List<Champion> champions) DeserializeTeamResponse(TeamResponse response)
     {
+        Debug.Log("TRYING TO DESERIALIZE TEAM RESPONSE");
         var champions = new List<Champion>();
         foreach (var champion in response.Champions)
         {

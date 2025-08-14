@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT_Item_Morellonomicon_0: -4363544524358143542
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

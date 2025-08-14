@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT_Item_HandOfJustice_0: 3126518252746010877
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

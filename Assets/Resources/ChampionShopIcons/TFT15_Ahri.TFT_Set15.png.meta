@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT15_Ahri.TFT_Set15_0: 5269212135742914554
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

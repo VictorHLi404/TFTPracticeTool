@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT_Item_EdgeOfNight_0: 8532659590313305169
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

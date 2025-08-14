@@ -20,16 +20,16 @@ public class Shop
 
     public Shop()
     {
-        this.champions = DatabaseAPI.getAllUnitData();
+        this.champions = DatabaseAPI.GetAllUnitData();
         this.championBagSizes = new Dictionary<int, int>();
         this.championIDtoUnitData = new Dictionary<int, UnitData>();
         this.championIDToOccurrences = new Dictionary<int, int>();
         foreach (UnitData champion in champions)
         {
-            championBagSizes[champion.DatabaseID] = DatabaseAPI.getBagSize(champion);
+            championBagSizes[champion.DatabaseID] = DatabaseAPI.GetBagSize(champion);
             championIDtoUnitData[champion.DatabaseID] = champion;
         }
-        this.levelOdds = DatabaseAPI.getShopOdds();
+        this.levelOdds = DatabaseAPI.GetShopOdds();
         if (StartingResources.Instance != null)
         {
             this.playerData = new Player(StartingResources.Instance.initialLevel,
@@ -38,12 +38,12 @@ public class Shop
             StartingResources.Instance.initialTime,
             4,
             2,
-            DatabaseAPI.getLevelMapping()
+            DatabaseAPI.GetLevelMapping()
             );
         }
         else
         {
-            this.playerData = new Player(6, 0, 200, 40, 4, 2, DatabaseAPI.getLevelMapping());
+            this.playerData = new Player(6, 0, 200, 40, 4, 2, DatabaseAPI.GetLevelMapping());
         }
 
     }

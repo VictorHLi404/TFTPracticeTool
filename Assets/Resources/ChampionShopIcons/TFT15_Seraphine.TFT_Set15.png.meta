@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT15_Seraphine.TFT_Set15_0: -2933202110273195357
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

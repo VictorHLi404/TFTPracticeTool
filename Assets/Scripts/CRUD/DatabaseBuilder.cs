@@ -3,17 +3,18 @@ using CsvHelper;
 
 using System.IO;
 using System.Globalization;
-using Mono.Data.Sqlite;
 using System.Linq;
+using SQLite;
 using System;
 using System.Collections.Generic;
+using UnityEditor.MemoryProfiler;
 public static class DatabaseBuilder
 {
     // A collection of functions that build sqlite tables from csv files
     // contains the functionality needed to build the champion database, shop odds, bag sizes, and trait levels + names
     // all game related stuff located in 
 
-    private static string dbName = @"Data Source=Assets\Scripts\CRUD\BaseGameInformation.db";
+    private static string dbName = @"Assets\Scripts\CRUD\BaseGameInformation.db";
     private static string championCSVFile = @"Assets\Scripts\CRUD\CSVFiles\ChampionDataSheet.csv";
     private static string shopOddsCSVFile = @"Assets\Scripts\CRUD\CSVFiles\ShopOdds.csv";
     private static string defaultBagSizesCSVFile = @"Assets\Scripts\CRUD\CSVFiles\DefaultBagSizes.csv";
@@ -24,9 +25,16 @@ public static class DatabaseBuilder
 
     public static void generateNewDatabase()
     { // generate a brand new database if one does not exist yet
-        using (var connection = new SqliteConnection(dbName))
+        using (var connection = new SQLiteConnection(dbName))
         {
-            connection.Open();
+            connection.CreateTable<ChampionDatabaseEntity>();
+            connection.CreateTable<ShopOddsDatabaseEntity>();
+            connection.CreateTable<DefaultBagSizesDatabaseEntity>();
+            connection.CreateTable<TraitLevelsDatabaseEntity>();
+            connection.CreateTable<TraitColorsDatabaseEntity>();
+            connection.CreateTable<XPLevelsDatabaseEntity>();
+            connection.CreateTable<ItemDatabaseEntity>();
+ 
             connection.Close();
         }
     }
@@ -35,206 +43,185 @@ public static class DatabaseBuilder
     {
         generateNewDatabase();
         Debug.Log("Database built!");
-        buildChampionTable();
+        BuildChampionTable();
         Debug.Log("Champion Table generated!");
-        buildShopOdds();
+        BuildShopOdds();
         Debug.Log("Shop Odds generated!");
-        buildDefaultBagSizes();
+        BuildDefaultBagSizes();
         Debug.Log("Default Bag Sizes generated!");
-        buildTraitLevels();
+        BuildTraitLevels();
         Debug.Log("Trait Levels generated!");
-        buildTraitColors();
+        BuildTraitColors();
         Debug.Log("Trait Colors generated");
-        buildXPLevels();
+        BuildXPLevels();
         Debug.Log("XP levels built!");
-        buildItems();
+        BuildItems();
         Debug.Log("Items built!");
     }
 
-    public static void buildChampionTable()
+    public static void BuildChampionTable()
     { // a function to generate a new champion table based off of a csv file
-        List<List<string>> dataPackage = convertCSVFileTo2DList(championCSVFile); // generate 2d list from csv file
-        using (var connection = new SqliteConnection(dbName))
-        { // add to champion table
-            connection.Open();
-            using (var command = connection.CreateCommand())
-            { // generate the champion table
-                command.CommandText = "CREATE TABLE IF NOT EXISTS Champions (DatabaseID VARCHAR (20), ChampionEnum VARCHAR(20), ChampionName VARCHAR (20), Cost VARCHAR (20), Trait1 VARCHAR (20), Trait2 VARCHAR (20), Trait3 VARCHAR (20), ShopIconName VARCHAR(20), ChampionIconName VARCHAR(20));";
-                command.ExecuteNonQuery();
-            }
-            foreach (List<string> championData in dataPackage)
-            {
-                using (var command = connection.CreateCommand())
-                {
-                    string formattedValue = generateFormattedValueForSQL(championData);
-                    command.CommandText = "INSERT INTO Champions (DatabaseID, ChampionEnum, ChampionName, Cost, Trait1, Trait2, Trait3, ShopIconName, ChampionIconName) VALUES " + formattedValue;
-                    command.ExecuteNonQuery();
-                }
-            }
-            connection.Close();
-        }
-    }
+        List<List<string>> dataPackage = ConvertCSVFileTo2DList(championCSVFile); // generate 2d list from csv file
 
-    public static void buildShopOdds()
-    {
-        List<List<string>> dataPackage = convertCSVFileTo2DList(shopOddsCSVFile); // generate 2d list from csv file
-        using (var connection = new SqliteConnection(dbName))
-        { // add to champion table
-            connection.Open();
-            using (var command = connection.CreateCommand())
-            { // generate the champion table
-                command.CommandText = "CREATE TABLE IF NOT EXISTS ShopOdds (Levels VARCHAR (20), [1Cost] VARCHAR (20), [2Cost] VARCHAR (20), [3Cost] VARCHAR (20), [4Cost] VARCHAR (20), [5Cost] VARCHAR (20));";
-                command.ExecuteNonQuery();
-            }
-            foreach (List<string> levelData in dataPackage)
-            {
-                using (var command = connection.CreateCommand())
-                {
-                    string formattedValue = generateFormattedValueForSQL(levelData);
-                    command.CommandText = "INSERT INTO ShopOdds (Levels, [1Cost], [2Cost], [3Cost], [4Cost], [5Cost]) VALUES " + formattedValue;
-                    command.ExecuteNonQuery();
-                }
-            }
-            connection.Close();
-        }
-    }
-    public static void buildDefaultBagSizes()
-    {
-        List<List<string>> dataPackage = convertCSVFileTo2DList(defaultBagSizesCSVFile); // generate 2d list from csv file
-        using (var connection = new SqliteConnection(dbName))
-        { // add to champion table
-            connection.Open();
-            using (var command = connection.CreateCommand())
-            { // generate the champion table
-                command.CommandText = "CREATE TABLE IF NOT EXISTS DefaultBagSizes (Cost VARCHAR (20), BagSize VARCHAR (20));";
-                command.ExecuteNonQuery();
-            }
-            foreach (List<string> bagData in dataPackage)
-            {
-                using (var command = connection.CreateCommand())
-                {
-                    string formattedValue = generateFormattedValueForSQL(bagData);
-                    command.CommandText = "INSERT INTO DefaultBagSizes (Cost, BagSize) VALUES " + formattedValue;
-                    command.ExecuteNonQuery();
-                }
-            }
-            connection.Close();
-        }
-    }
-
-    public static void buildTraitLevels()
-    {
-        List<List<string>> dataPackage = convertCSVFileTo2DList(traitLevelsCSVFile); // generate 2d list from csv file
-        using (var connection = new SqliteConnection(dbName))
-        { // add to champion table
-            connection.Open();
-            using (var command = connection.CreateCommand())
-            { // generate the champion table
-                command.CommandText = "CREATE TABLE IF NOT EXISTS TraitLevels (TraitName VARCHAR (20), Tier1 VARCHAR (20), Tier2 VARCHAR (20), Tier3 VARCHAR (20), Tier4 VARCHAR (20), Tier5 VARCHAR (20), Tier6 VARCHAR (20), Tier7 VARCHAR (20), Tier8 VARCHAR (20), Tier9 VARCHAR (20), Tier10 VARCHAR (20));";
-                command.ExecuteNonQuery();
-            }
-            foreach (List<string> traitData in dataPackage)
-            {
-                using (var command = connection.CreateCommand())
-                {
-                    string formattedValue = generateFormattedValueForSQL(traitData);
-                    command.CommandText = "INSERT INTO TraitLevels (TraitName, Tier1, Tier2, Tier3, Tier4, Tier5, Tier6, Tier7, Tier8, Tier9, Tier10) VALUES " + formattedValue;
-                    command.ExecuteNonQuery();
-                }
-            }
-            connection.Close();
-        }
-    }
-
-    public static void buildTraitColors()
-    {
-        List<List<string>> dataPackage = convertCSVFileTo2DList(traitColorsCSVFile);
-        using (var connection = new SqliteConnection(dbName))
+        using (var connection = new SQLiteConnection(dbName))
         {
-            connection.Open();
-            using (var command = connection.CreateCommand())
+            var databaseId = 1;
+            foreach (var championCSVData in dataPackage)
             {
-                command.CommandText = "CREATE TABLE IF NOT EXISTS TraitColors (TraitName VARCHAR (20), Tier1 VARCHAR (20), Tier2 VARCHAR (20), Tier3 VARCHAR (20), Tier4 VARCHAR (20), Tier5 VARCHAR (20), Tier6 VARCHAR (20), Tier7 VARCHAR (20), Tier8 VARCHAR (20), Tier9 VARCHAR (20), Tier10 VARCHAR (20));";
-                command.ExecuteNonQuery();
-            }
-            foreach (List<string> traitData in dataPackage)
-            {
-                using (var command = connection.CreateCommand())
+                ChampionEnum championEnum;
+                if (!Enum.TryParse(championCSVData[1], out championEnum))
+                    Debug.LogError($"Failed to parse {championCSVData[1]} into a ChampionEnum.");
+
+                var championEntity = new ChampionDatabaseEntity
                 {
-                    string formattedValue = generateFormattedValueForSQL(traitData);
-                    command.CommandText = "INSERT INTO TraitColors (TraitName, Tier1, Tier2, Tier3, Tier4, Tier5, Tier6, Tier7, Tier8, Tier9, Tier10) VALUES " + formattedValue;
-                    command.ExecuteNonQuery();
-                }
+                    ChampionEnum = championEnum,
+                    DatabaseId = databaseId,
+                    ChampionName = championCSVData[2],
+                    Cost = int.TryParse(championCSVData[3], out var v) ? v : throw new Exception($"failed to parse Cost {championCSVData[3]}"),
+                    Trait1 = championCSVData[4],
+                    Trait2 = championCSVData[5],
+                    Trait3 = championCSVData[6],
+                    ShopIconName = championCSVData[7],
+                    ChampionIconName = championCSVData[8]
+                };
+                connection.Insert(championEntity);
+                databaseId++;
             }
             connection.Close();
         }
     }
 
-    public static void buildXPLevels()
+    public static void BuildShopOdds()
     {
-        List<List<string>> dataPackage = convertCSVFileTo2DList(XPLevelsCSVFile); // generate 2d list from csv file
-        using (var connection = new SqliteConnection(dbName))
-        { // add to champion table
-            connection.Open();
-            using (var command = connection.CreateCommand())
-            { // generate the champion table
-                command.CommandText = "CREATE TABLE IF NOT EXISTS XPLevels (Level VARCHAR(20), XPRequirement VARCHAR(20));";
-                command.ExecuteNonQuery();
-            }
-            foreach (List<string> XPData in dataPackage)
-            {
-                using (var command = connection.CreateCommand())
-                {
-                    string formattedValue = generateFormattedValueForSQL(XPData);
-                    command.CommandText = "INSERT INTO XPLevels (Level, XPRequirement) VALUES " + formattedValue;
-                    command.ExecuteNonQuery();
-                }
-            }
-            connection.Close();
-        }
-    }
-
-    public static void buildItems()
-    {
-        List<List<string>> dataPackage = convertCSVFileTo2DList(itemsFile); // generate 2d list from csv file
-        using (var connection = new SqliteConnection(dbName))
-        { // add to champion table
-            connection.Open();
-            using (var command = connection.CreateCommand())
-            { // generate the champion table
-                command.CommandText = "CREATE TABLE IF NOT EXISTS Items (Component1 VARCHAR(20), Component2 VARCHAR(20), CompletedItem VARCHAR(20));";
-                command.ExecuteNonQuery();
-            }
-            foreach (List<string> itemData in dataPackage)
-            {
-                using (var command = connection.CreateCommand())
-                {
-                    string formattedValue = generateFormattedValueForSQL(itemData);
-                    command.CommandText = "INSERT INTO Items (Component1, Component2, CompletedItem) VALUES " + formattedValue;
-                    command.ExecuteNonQuery();
-                }
-            }
-            connection.Close();
-        }
-    }
-
-    private static string generateFormattedValueForSQL(List<string> rowData)
-    { // generate a usable INSERT INTO SQL command from a list of values,
-        if (rowData.Count < 1)
+        List<List<string>> dataPackage = ConvertCSVFileTo2DList(shopOddsCSVFile); // generate 2d list from csv file
+        using (var connection = new SQLiteConnection(dbName))
         {
-            throw new ArgumentException("Rowdata must contain at least one element");
+            foreach (var shopOddsCSVData in dataPackage)
+            {
+                var shopOddsEntity = new ShopOddsDatabaseEntity
+                {
+                    Level = int.TryParse(shopOddsCSVData[0], out var level) ? level : throw new Exception($"Failed to parse {shopOddsCSVData[0]} as Level."),
+                    OneCostOdds = int.TryParse(shopOddsCSVData[1], out var oneCostOdds) ? oneCostOdds : throw new Exception($"Failed to parse {shopOddsCSVData[1]} as OneCostOdds."),
+                    TwoCostOdds = int.TryParse(shopOddsCSVData[2], out var twoCostOdds) ? twoCostOdds : throw new Exception($"Failed to parse {shopOddsCSVData[2]} as TwoCostOdds."),
+                    ThreeCostOdds = int.TryParse(shopOddsCSVData[3], out var threeCostOdds) ? threeCostOdds : throw new Exception($"Failed to parse {shopOddsCSVData[3]} as ThreeCostOdds."),
+                    FourCostOdds = int.TryParse(shopOddsCSVData[4], out var fourCostOdds) ? fourCostOdds : throw new Exception($"Failed to parse {shopOddsCSVData[4]} as FourCostOdds."),
+                    FiveCostOdds = int.TryParse(shopOddsCSVData[5], out var fiveCostOdds) ? fiveCostOdds : throw new Exception($"Failed to parse {shopOddsCSVData[5]} as FiveCostOdds.")
+                };
+                connection.Insert(shopOddsEntity);
+            }
+            connection.Close();
         }
-        // NOTE: function must assume that rowData is at least of length 1, look into safeguarding for later
-        string formattedValue = "(\'";
-        for (int i = 0; i < rowData.Count() - 1; i++)
-        { // TAKE EVERY VALUE EXCEPT FOR THE LAST ONE, AS LAST ONE HAS SPECIAL ENDING
-            formattedValue += rowData[i] + "\', \'";
-        }
-        formattedValue += rowData[rowData.Count() - 1] + "\')";
-        return formattedValue;
-
     }
-    private static List<List<string>> convertCSVFileTo2DList(string csvFileLocation)
+    public static void BuildDefaultBagSizes()
+    {
+        List<List<string>> dataPackage = ConvertCSVFileTo2DList(defaultBagSizesCSVFile); // generate 2d list from csv file
+        using (var connection = new SQLiteConnection(dbName))
+        {
+            foreach (var defaultBagSizeCSVData in dataPackage)
+            {
+                var defaultBagSizeEntity = new DefaultBagSizesDatabaseEntity
+                {
+                    ChampionCost = int.TryParse(defaultBagSizeCSVData[0], out var championCost) ? championCost : throw new Exception($"Failed to parse {defaultBagSizeCSVData[0]} as ChampionCost."),
+                    BagSize = int.TryParse(defaultBagSizeCSVData[1], out var bagSize) ? bagSize : throw new Exception($"Failed to parse {defaultBagSizeCSVData[1]} as BagSize."),
+                };
+                connection.Insert(defaultBagSizeEntity);
+            }
+            connection.Close();
+        }
+    }
+
+    public static void BuildTraitLevels()
+    {
+        List<List<string>> dataPackage = ConvertCSVFileTo2DList(traitLevelsCSVFile); // generate 2d list from csv file
+        using (var connection = new SQLiteConnection(dbName))
+        {
+            foreach (var traitLevelCSVData in dataPackage)
+            {
+                var traitLevelsEntity = new TraitLevelsDatabaseEntity
+                {
+                    TraitName = traitLevelCSVData[0],
+                    TierOne = int.TryParse(traitLevelCSVData[1], out var tierOne) ? tierOne : null,
+                    TierTwo = int.TryParse(traitLevelCSVData[2], out var tierTwo) ? tierTwo : null,
+                    TierThree = int.TryParse(traitLevelCSVData[3], out var tierThree) ? tierThree : null,
+                    TierFour = int.TryParse(traitLevelCSVData[4], out var tierFour) ? tierFour : null,
+                    TierFive = int.TryParse(traitLevelCSVData[5], out var tierFive) ? tierFive : null,
+                    TierSix = int.TryParse(traitLevelCSVData[6], out var tierSix) ? tierSix : null,
+                    TierSeven = int.TryParse(traitLevelCSVData[7], out var tierSeven) ? tierSeven : null,
+                    TierEight = int.TryParse(traitLevelCSVData[8], out var tierEight) ? tierEight : null,
+                    TierNine = int.TryParse(traitLevelCSVData[9], out var tierNine) ? tierNine : null,
+                    TierTen = int.TryParse(traitLevelCSVData[10], out var tierTen) ? tierTen : null,
+                };
+                connection.Insert(traitLevelsEntity);
+            }
+            connection.Close();
+        }
+    }
+
+    public static void BuildTraitColors()
+    {
+        List<List<string>> dataPackage = ConvertCSVFileTo2DList(traitColorsCSVFile);
+        using (var connection = new SQLiteConnection(dbName))
+        {
+            foreach (var traitColorsCSVData in dataPackage)
+            {
+                var traitColorsEntity = new TraitColorsDatabaseEntity
+                {
+                    TraitName = traitColorsCSVData[0],
+                    TierOne = int.TryParse(traitColorsCSVData[1], out var tierOne) ? tierOne : null,
+                    TierTwo = int.TryParse(traitColorsCSVData[2], out var tierTwo) ? tierTwo : null,
+                    TierThree = int.TryParse(traitColorsCSVData[3], out var tierThree) ? tierThree : null,
+                    TierFour = int.TryParse(traitColorsCSVData[4], out var tierFour) ? tierFour : null,
+                    TierFive = int.TryParse(traitColorsCSVData[5], out var tierFive) ? tierFive : null,
+                    TierSix = int.TryParse(traitColorsCSVData[6], out var tierSix) ? tierSix : null,
+                    TierSeven = int.TryParse(traitColorsCSVData[7], out var tierSeven) ? tierSeven : null,
+                    TierEight = int.TryParse(traitColorsCSVData[8], out var tierEight) ? tierEight : null,
+                    TierNine = int.TryParse(traitColorsCSVData[9], out var tierNine) ? tierNine : null,
+                    TierTen = int.TryParse(traitColorsCSVData[10], out var tierTen) ? tierTen : null,
+                };
+                connection.Insert(traitColorsEntity);
+            }
+            connection.Close();
+        }
+    }
+
+    public static void BuildXPLevels()
+    {
+        List<List<string>> dataPackage = ConvertCSVFileTo2DList(XPLevelsCSVFile); // generate 2d list from csv file
+        using (var connection = new SQLiteConnection(dbName))
+        {
+            foreach (var XPLevelsCSVData in dataPackage)
+            {
+                var XPLevelsEntity = new XPLevelsDatabaseEntity
+                {
+                    Level = int.TryParse(XPLevelsCSVData[0], out var level) ? level : throw new Exception($"Failed to parse {XPLevelsCSVData[0]} as Level"),
+                    XPRequirement = int.TryParse(XPLevelsCSVData[1], out var xpRequirement) ? xpRequirement : throw new Exception($"Failed to parse {XPLevelsCSVData[1]} as XPRequirement")
+                };
+                connection.Insert(XPLevelsEntity);
+            }
+            connection.Close();
+        }
+    }
+
+    public static void BuildItems()
+    {
+        List<List<string>> dataPackage = ConvertCSVFileTo2DList(itemsFile); // generate 2d list from csv file
+        using (var connection = new SQLiteConnection(dbName))
+        {
+            foreach (var itemCSVData in dataPackage)
+            {
+                var itemEntity = new ItemDatabaseEntity
+                {
+                    ComponentOne = itemCSVData[0],
+                    ComponentTwo = itemCSVData[1],
+                    CompletedItem = itemCSVData[2]
+                };
+                connection.Insert(itemEntity);
+            }
+            connection.Close();
+        }
+    }
+
+    private static List<List<string>> ConvertCSVFileTo2DList(string csvFileLocation)
     {
         List<List<string>> dataPackage = new List<List<string>>();
         using (var streamReader = new StreamReader(csvFileLocation))
@@ -246,7 +233,7 @@ public static class DatabaseBuilder
                 string[] headerRow = csvReader.HeaderRecord;
                 while (csvReader.Read())
                 {
-                    List<string> rowData = convertRowToList(csvReader, headerRow);
+                    List<string> rowData = ConvertRowToList(csvReader, headerRow);
                     dataPackage.Add(rowData);
                 }
             }
@@ -254,7 +241,7 @@ public static class DatabaseBuilder
         return dataPackage;
     }
 
-    private static List<string> convertRowToList(CsvReader csvReader, string[] headers)
+    private static List<string> ConvertRowToList(CsvReader csvReader, string[] headers)
     { // helper function to generate list of strings from csv row
         List<string> currentList = new List<string>();
         foreach (string header in headers)

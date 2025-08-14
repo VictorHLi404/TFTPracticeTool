@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT15_Kayle.TFT_Set15_0: 736610741603485322
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

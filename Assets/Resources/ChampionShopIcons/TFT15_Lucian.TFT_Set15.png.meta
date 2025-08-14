@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT15_Lucian.TFT_Set15_0: 2142768731178564292
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

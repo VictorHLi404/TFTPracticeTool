@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT_Item_NashorsTooth_0: -6642096098719645528
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

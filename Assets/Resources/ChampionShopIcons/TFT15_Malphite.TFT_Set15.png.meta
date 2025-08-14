@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT15_Malphite.TFT_Set15_0: 363340045484100998
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

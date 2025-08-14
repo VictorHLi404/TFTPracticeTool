@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT15_Malzahar.TFT_Set15_0: -5651826575778778013
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

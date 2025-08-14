@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT15_KSante.TFT_Set15_0: -5383481703148264094
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

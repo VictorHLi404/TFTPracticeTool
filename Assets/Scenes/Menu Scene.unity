@@ -976,7 +976,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1969640597453265936, guid: db3c2d4cc362bd5478febfb94ae3310f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -40.11
+      value: -40.110016
       objectReference: {fileID: 0}
     - target: {fileID: 2202986360564432763, guid: db3c2d4cc362bd5478febfb94ae3310f, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1550,7 +1550,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -8379148457301347364, guid: caaecda6e50787047b54ad6de01934a4, type: 3}
-  m_Color: {r: 0.10980393, g: 0.13725491, b: 0.14117648, a: 1}
+  m_Color: {r: 0.2932983, g: 0.35859624, b: 0.3679245, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1982,7 +1982,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 769974609819250543, guid: b47667a0d51659c4a9d19baf28d2eefa, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -189.5085
+      value: -189.50848
       objectReference: {fileID: 0}
     - target: {fileID: 805225183821827414, guid: b47667a0d51659c4a9d19baf28d2eefa, type: 3}
       propertyPath: UIBlocker

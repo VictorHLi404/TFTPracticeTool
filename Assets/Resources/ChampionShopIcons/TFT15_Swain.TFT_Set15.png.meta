@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT15_Swain.TFT_Set15_0: 3930841419844835384
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

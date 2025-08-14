@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT_Item_SunfireCape_0: -7003942722755307044
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT15_Ashe.TFT_Set15_0: -6961675538075964670
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

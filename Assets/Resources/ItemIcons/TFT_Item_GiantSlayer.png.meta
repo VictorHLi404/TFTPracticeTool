@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT_Item_GiantSlayer_0: -7225172600869843991
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

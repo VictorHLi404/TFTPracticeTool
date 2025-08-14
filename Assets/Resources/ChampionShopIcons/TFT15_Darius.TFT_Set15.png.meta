@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT15_Darius.TFT_Set15_0: 2061810995668767461
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

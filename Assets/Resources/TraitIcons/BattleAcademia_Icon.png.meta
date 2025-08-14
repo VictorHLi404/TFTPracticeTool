@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      BattleAcademia_Icon_0: 7387764004976389853
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

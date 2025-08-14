@@ -1,10 +1,6 @@
-using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks; // Required for UniTask
-using NUnit.Framework.Interfaces;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

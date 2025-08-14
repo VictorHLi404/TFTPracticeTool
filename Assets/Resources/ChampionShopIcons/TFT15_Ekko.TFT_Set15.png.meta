@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT15_Ekko.TFT_Set15_0: 1995553117290970027
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

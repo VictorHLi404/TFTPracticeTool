@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT15_Rammus.TFT_Set15_0: 4827952754236571924
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

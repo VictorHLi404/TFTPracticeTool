@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT15_Gangplank.TFT_Set15_0: 8574677322846492882
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT15_Janna.TFT_Set15_0: -1651284375019533792
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

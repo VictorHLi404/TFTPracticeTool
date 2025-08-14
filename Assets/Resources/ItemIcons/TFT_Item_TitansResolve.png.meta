@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT_Item_TitansResolve_0: -8988292080001873415
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

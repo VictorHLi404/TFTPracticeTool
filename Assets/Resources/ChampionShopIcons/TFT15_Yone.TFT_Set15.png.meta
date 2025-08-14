@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT15_Yone.TFT_Set15_0: 1055932008226055599
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

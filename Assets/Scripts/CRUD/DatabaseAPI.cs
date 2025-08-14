@@ -1,148 +1,107 @@
-using Mono.Data.Sqlite;
+using SQLite;
 using System.Collections.Generic;
-using System.Data;
 using UnityEngine;
 using System;
+
 /// <summary>
 /// A class that reads from the BaseGameInformation.db to provide basic game data (levels, shop odds, etc.)
 /// Provides them in model format.
 /// </summary>
 public static class DatabaseAPI
 {
-    // class that reads from databases to provide data as needed.
-    // generates data objects (units, traits, etc) 
-    private static string dbName = @"Data Source=Assets\Scripts\CRUD\BaseGameInformation.db";
+    private static string dbName = @"Assets\Scripts\CRUD\BaseGameInformation.db";
 
     public static UnitData GetUnitData(ChampionEnum champion)
     {
-        // given a champion name (MUST MATCH THAT FOUND INSIDE OF SQL DB STRICTLY), return a UnitData object of that champion.
-        using (var connection = new SqliteConnection(dbName))
+        using (var connection = new SQLiteConnection(dbName))
         {
-            connection.Open();
-            using (var command = connection.CreateCommand())
-            {
-                command.CommandText = "SELECT * FROM Champions WHERE ChampionEnum=" + "\'" + champion.ToString() + "\'" + ";";
-                using (IDataReader reader = command.ExecuteReader())
-                { // only 1 possible result given database structure, so just read once
-                    reader.Read();
-                    List<string> traitList = new List<string>();
-                    // compile all traits into a list, ignore if empty
-                    for (int i = 1; i <= 3; i++)
-                    {
-                        string currentHeader = "Trait" + i.ToString(); // sweep the row from Trait1 to Trait3
-                        if ((string)reader[currentHeader] != "")
-                        { // if the trait spot is non-null
-                            traitList.Add((string)reader[currentHeader]);
-                        }
-                    } // shitty typecasting
+            var championEntities = connection.Table<ChampionDatabaseEntity>().ToList();
+            var championEnumString = champion.ToString();
+            var championDatabaseEntity = connection.Table<ChampionDatabaseEntity>().Where(p => p.ChampionEnumString == championEnumString).FirstOrDefault();
+            if (championDatabaseEntity == null)
+                throw new Exception($"Failed to identify {champion} in the database.");
 
-                    ChampionEnum championEnum;
-                    if (!Enum.TryParse((string)reader["ChampionEnum"], out championEnum))
-                        Debug.LogError("Could not parse champion enum from the CSV file.");
-                    
-                    return new UnitData(int.Parse((string)reader["DatabaseID"]),
-                                        championEnum,
-                                        (string)reader["ChampionName"],
-                                        traitList,
-                                        int.Parse((string)reader["Cost"]),
-                                        (string)reader["ShopIconName"],
-                                        (string)reader["ChampionIconName"]);
-                }
-            }
+            return new UnitData(championDatabaseEntity.DatabaseId,
+                championDatabaseEntity.ChampionEnum,
+                championDatabaseEntity.ChampionName,
+                GetTraitList(championDatabaseEntity),
+                championDatabaseEntity.Cost,
+                championDatabaseEntity.ShopIconName,
+                championDatabaseEntity.ChampionIconName);
         }
     }
 
-    public static List<UnitData> getAllUnitData()
+    public static List<UnitData> GetAllUnitData()
     {
         /*
         Return a list of all possible UnitDatas found in the database. Open a connection to the database, execute SQL query,
         and create new instances of unitdata.
         */
         List<UnitData> unitDataList = new List<UnitData>();
-        using (var connection = new SqliteConnection(dbName))
+        using (var connection = new SQLiteConnection(dbName))
         {
-            connection.Open();
-            using (var command = connection.CreateCommand())
+            var allUnits = connection.Table<ChampionDatabaseEntity>().ToList();
+            foreach (var unit in allUnits)
             {
-                command.CommandText = "SELECT * FROM Champions;";
-                SqliteDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    List<string> traitList = new List<string>();
-                    // compile all traits into a list, ignore if empty
-                    for (int i = 1; i <= 3; i++)
-                    {
-                        string currentHeader = "Trait" + i.ToString(); // sweep the row from Trait1 to Trait3
-                        if ((string)reader[currentHeader] != "")
-                        { // if the trait spot is non-null
-                            traitList.Add((string)reader[currentHeader]);
-                        }
-                    } // shitty typecasting
-                    ChampionEnum championEnum;
-                    if (!Enum.TryParse((string)reader["ChampionEnum"], out championEnum))
-                        Debug.LogError("Could not parse champion enum from the CSV file.");
-                    unitDataList.Add(new UnitData(int.Parse((string)reader["DatabaseID"]),
-                                                    championEnum,
-                                                    (string)reader["ChampionName"],
-                                                    traitList,
-                                                    int.Parse((string)reader["Cost"]),
-                                                    (string)reader["ShopIconName"],
-                                                    (string)reader["ChampionIconName"]));
-                }
-                reader.Close();
+                unitDataList.Add(new UnitData(unit.DatabaseId,
+                unit.ChampionEnum,
+                unit.ChampionName,
+                GetTraitList(unit),
+                unit.Cost,
+                unit.ShopIconName,
+                unit.ChampionIconName));
             }
             connection.Close();
         }
         return unitDataList;
     }
 
-    public static int getBagSize(UnitData champion)
+    private static List<string> GetTraitList(ChampionDatabaseEntity champion)
+    {
+        var traitList = new List<string>();
+
+        if (!string.IsNullOrEmpty(champion.Trait1))
+            traitList.Add(champion.Trait1);
+        if (!string.IsNullOrEmpty(champion.Trait2))
+            traitList.Add(champion.Trait2);
+        if (!string.IsNullOrEmpty(champion.Trait3))
+            traitList.Add(champion.Trait3);
+
+        return traitList;
+    }
+
+    public static int GetBagSize(UnitData champion)
     {
         /*
         Given a UnitData object, extract the cost of the unit and check its shop odds.
         */
-        using (var connection = new SqliteConnection(dbName))
+        using (var connection = new SQLiteConnection(dbName))
         {
-            connection.Open();
-            using (var command = connection.CreateCommand())
-            {
-                command.CommandText = $"SELECT BagSize FROM DefaultBagSizes WHERE Cost={champion.Cost}";
-                using (SqliteDataReader reader = command.ExecuteReader())
-                { // only 1 possible result given database structure, so just read once
-                    reader.Read();
-                    return int.Parse((string)reader["BagSize"]);
-                }
-            }
+            var bagSizeEntity = connection.Table<DefaultBagSizesDatabaseEntity>().Where(x => x.ChampionCost == champion.Cost).FirstOrDefault();
+            if (bagSizeEntity == null)
+                Debug.Log($"Failed to find bag size for cost {champion.Cost}");
+            return bagSizeEntity.BagSize;
         }
     }
 
-    public static Dictionary<int, List<int>> getShopOdds()
+    public static Dictionary<int, List<int>> GetShopOdds()
     {
         /*
         Get all shop odds for all levels. Return a dictionary mapping from the level to a list of the odds.
         */
         Dictionary<int, List<int>> shopOddsDictionary = new Dictionary<int, List<int>>();
-        using (var connection = new SqliteConnection(dbName))
+
+        using (var connection = new SQLiteConnection(dbName))
         {
-            connection.Open();
-            using (var command = connection.CreateCommand())
+            var shopOddsEntities = connection.Table<ShopOddsDatabaseEntity>().ToList();
+            foreach (var shopOddsEntity in shopOddsEntities)
             {
-                command.CommandText = $"SELECT * FROM ShopOdds";
-                SqliteDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    List<int> levelOdds = new List<int>();
-                    for (int i = 1; i <= 5; i++)
-                    {
-                        string currentHeader = i.ToString() + "Cost";
-                        levelOdds.Add(int.Parse((string)reader[currentHeader]));
-                    }
-                    shopOddsDictionary[int.Parse((string)reader["Levels"])] = levelOdds;
-                }
-                reader.Close();
+                var levelOdds = new List<int> { shopOddsEntity.OneCostOdds, shopOddsEntity.TwoCostOdds, shopOddsEntity.ThreeCostOdds, shopOddsEntity.FourCostOdds, shopOddsEntity.FiveCostOdds };
+                shopOddsDictionary[shopOddsEntity.Level] = levelOdds;
             }
-            return shopOddsDictionary;
+            connection.Close();
         }
+        return shopOddsDictionary;
     }
 
     /// <summary>
@@ -151,20 +110,16 @@ public static class DatabaseAPI
     /// <returns>
     /// A dictionary mapping levels to XP requirement for that level.
     /// </returns>
-    public static Dictionary<int, int> getLevelMapping()
+    public static Dictionary<int, int> GetLevelMapping()
     {
         Dictionary<int, int> levelMapping = new Dictionary<int, int>();
-        using (var connection = new SqliteConnection(dbName))
+
+        using (var connection = new SQLiteConnection(dbName))
         {
-            connection.Open();
-            using (var command = connection.CreateCommand())
+            var XPLevelsEntities = connection.Table<XPLevelsDatabaseEntity>().ToList();
+            foreach (var XPLevelEntity in XPLevelsEntities)
             {
-                command.CommandText = $"SELECT * FROM XPLevels";
-                SqliteDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    levelMapping.Add(int.Parse(reader.GetString(0)), int.Parse(reader.GetString(1)));
-                }
+                levelMapping.Add(XPLevelEntity.Level, XPLevelEntity.XPRequirement);
             }
         }
         return levelMapping;
@@ -179,47 +134,64 @@ public static class DatabaseAPI
         Dictionary<string, (List<int>, List<TraitRarities>)> traitMapping = new Dictionary<string, (List<int>, List<TraitRarities>)>();
         Dictionary<string, List<int>> traitToLevels = new Dictionary<string, List<int>>();
         Dictionary<string, List<TraitRarities>> traitToRarities = new Dictionary<string, List<TraitRarities>>();
-        using (var connection = new SqliteConnection(dbName))
+
+        using (var connection = new SQLiteConnection(dbName))
         {
-            connection.Open();
-            using (var command = connection.CreateCommand())
+            var traitLevelEntities = connection.Table<TraitLevelsDatabaseEntity>().ToList();
+            foreach (var traitLevelEntity in traitLevelEntities)
             {
-                command.CommandText = $"SELECT * FROM TraitLevels";
-                SqliteDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    List<int> levels = new List<int>();
-                    for (int i = 1; i <= 7; i++) // TODO: MAKE MORE ROBUST FOR FUTURE VERSIONS?
-                    {
-                        int traitLevel = getTraitLevel(reader, $"Tier{i}");
-                        if (traitLevel != 0)
-                        {
-                            levels.Add(traitLevel);
-                        }
-                    }
-                    string traitName = reader.GetString(reader.GetOrdinal("TraitName"));
-                    traitToLevels[traitName] = levels;
-                }
+                var levels = new List<int>();
+
+                if (traitLevelEntity.TierOne != null && traitLevelEntity.TierOne != 0)
+                    levels.Add(traitLevelEntity.TierOne.Value);
+                if (traitLevelEntity.TierTwo != null)
+                    levels.Add(traitLevelEntity.TierTwo.Value);
+                if (traitLevelEntity.TierThree != null)
+                    levels.Add(traitLevelEntity.TierThree.Value);
+                if (traitLevelEntity.TierFour != null)
+                    levels.Add(traitLevelEntity.TierFour.Value);
+                if (traitLevelEntity.TierFive != null)
+                    levels.Add(traitLevelEntity.TierFive.Value);
+                if (traitLevelEntity.TierSix != null)
+                    levels.Add(traitLevelEntity.TierSix.Value);
+                if (traitLevelEntity.TierSeven != null)
+                    levels.Add(traitLevelEntity.TierSeven.Value);
+                if (traitLevelEntity.TierEight != null)
+                    levels.Add(traitLevelEntity.TierEight.Value);
+                if (traitLevelEntity.TierNine != null)
+                    levels.Add(traitLevelEntity.TierNine.Value);
+                if (traitLevelEntity.TierTen != null)
+                    levels.Add(traitLevelEntity.TierTen.Value);
+
+                traitToLevels[traitLevelEntity.TraitName] = levels;
             }
-            using (var command = connection.CreateCommand())
+            var traitColorsEntities = connection.Table<TraitColorsDatabaseEntity>().ToList();
+            foreach (var traitColorEntity in traitColorsEntities)
             {
-                command.CommandText = $"SELECT * FROM TraitColors";
-                SqliteDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    List<TraitRarities> rarities = new List<TraitRarities>();
-                    for (int i = 1; i <= 7; i++) // TODO: MAKE MORE ROBUST FOR FUTURE VERSIONS?
-                    {
-                        int traitRarity = getTraitLevel(reader, $"Tier{i}");
-                        if (traitRarity != 0)
-                        {
-                            TraitRarities enumValue = (TraitRarities)traitRarity;
-                            rarities.Add(enumValue);
-                        }
-                    }
-                    string traitName = reader.GetString(reader.GetOrdinal("TraitName"));
-                    traitToRarities[traitName] = rarities;
-                }
+                var rarities = new List<TraitRarities>();
+
+                if (traitColorEntity.TierOne != null && traitColorEntity.TierOne != 0)
+                    rarities.Add((TraitRarities)traitColorEntity.TierOne.Value);
+                if (traitColorEntity.TierTwo != null)
+                    rarities.Add((TraitRarities)traitColorEntity.TierTwo.Value);
+                if (traitColorEntity.TierThree != null)
+                    rarities.Add((TraitRarities)traitColorEntity.TierThree.Value);
+                if (traitColorEntity.TierFour != null)
+                    rarities.Add((TraitRarities)traitColorEntity.TierFour.Value);
+                if (traitColorEntity.TierFive != null)
+                    rarities.Add((TraitRarities)traitColorEntity.TierFive.Value);
+                if (traitColorEntity.TierSix != null)
+                    rarities.Add((TraitRarities)traitColorEntity.TierSix.Value);
+                if (traitColorEntity.TierSeven != null)
+                    rarities.Add((TraitRarities)traitColorEntity.TierSeven.Value);
+                if (traitColorEntity.TierEight != null)
+                    rarities.Add((TraitRarities)traitColorEntity.TierEight.Value);
+                if (traitColorEntity.TierNine != null)
+                    rarities.Add((TraitRarities)traitColorEntity.TierNine.Value);
+                if (traitColorEntity.TierTen != null)
+                    rarities.Add((TraitRarities)traitColorEntity.TierTen.Value);
+
+                traitToRarities[traitColorEntity.TraitName] = rarities;
             }
         }
         foreach (string traitName in traitToLevels.Keys)
@@ -229,38 +201,19 @@ public static class DatabaseAPI
         return traitMapping;
     }
 
-    private static int getTraitLevel(SqliteDataReader reader, string traitTier)
-    {
-        // current assumption is that all values in the table are nonnull; "null" values are just empty strings
-
-        string traitLevelString = reader.GetString(reader.GetOrdinal(traitTier));
-        if (traitLevelString != "")
-        {
-            return int.Parse(traitLevelString);
-        }
-        else
-        {
-            return 0;
-        }
-    }
-
     public static Dictionary<(Component, Component), CompletedItem> getItemMapping()
     {
         Dictionary<(Component, Component), CompletedItem> itemMapping = new Dictionary<(Component, Component), CompletedItem>();
-        using (var connection = new SqliteConnection(dbName))
+
+        using (var connection = new SQLiteConnection(dbName))
         {
-            connection.Open();
-            using (var command = connection.CreateCommand())
+            var itemDatabaseEntities = connection.Table<ItemDatabaseEntity>().ToList();
+            foreach (var itemEntity in itemDatabaseEntities)
             {
-                command.CommandText = $"SELECT * FROM Items";
-                SqliteDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    Component component1 = (Component)Enum.Parse(typeof(Component), reader.GetString(reader.GetOrdinal("Component1")).Replace(".", "").Replace(" ", ""));
-                    Component component2 = (Component)Enum.Parse(typeof(Component), reader.GetString(reader.GetOrdinal("Component2")).Replace(".", "").Replace(" ", ""));
-                    CompletedItem item = (CompletedItem)Enum.Parse(typeof(CompletedItem), reader.GetString(reader.GetOrdinal("CompletedItem")).Replace(".", "").Replace(" ", ""));
-                    itemMapping[(component1, component2)] = item;
-                }
+                Component component1 = (Component)Enum.Parse(typeof(Component), itemEntity.ComponentOne.Replace(".", "").Replace(" ", ""));
+                Component component2 = (Component)Enum.Parse(typeof(Component), itemEntity.ComponentTwo.Replace(".", "").Replace(" ", ""));
+                CompletedItem item = (CompletedItem)Enum.Parse(typeof(CompletedItem), itemEntity.CompletedItem.Replace(".", "").Replace(" ", ""));
+                itemMapping[(component1, component2)] = item;
             }
         }
         return itemMapping;

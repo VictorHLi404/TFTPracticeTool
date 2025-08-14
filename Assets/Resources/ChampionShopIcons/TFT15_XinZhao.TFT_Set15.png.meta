@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT15_XinZhao.TFT_Set15_0: -3850176954623145082
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

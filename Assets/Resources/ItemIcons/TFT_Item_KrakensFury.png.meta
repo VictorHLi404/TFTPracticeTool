@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT_Item_KrakensFury_0: 3896131224958321897
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

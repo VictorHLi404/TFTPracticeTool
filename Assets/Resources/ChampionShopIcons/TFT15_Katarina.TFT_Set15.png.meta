@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TFT15_Katarina.TFT_Set15_0: -8028467964374885567
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
