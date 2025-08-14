@@ -42,7 +42,17 @@ public class RandomizationHelper
     {
         foreach (var champion in champions)
         {
-            if (champion.starLevel == 2 && champion.Cost >= 3)
+            if (champion.starLevel == 5)
+            {
+                champion.starLevel = 1;
+            }
+            else if (champion.starLevel == 2 && champion.Cost >= 4)
+            {
+                bool delevel = UnityEngine.Random.Range(0, 100) <= 90;
+                if (delevel)
+                    champion.starLevel = 1;
+            }
+            else if (champion.starLevel == 2 && champion.Cost >= 3)
             {
                 bool delevel = UnityEngine.Random.Range(0, 100) <= 40;
                 if (delevel)

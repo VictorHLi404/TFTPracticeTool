@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 
 /// <summary>
@@ -73,13 +74,13 @@ public class TraitManager : MonoBehaviour
         }
 
         traitCountMapping = newTraitMapping;
-        createTraitDisplays();
+        CreateTraitDisplays();
     }
 
     /// <summary>
     /// Destroys all previous existing trait displays, and regenerates new ones based off of traitCountMapping.
     /// </summary>
-    private void createTraitDisplays()
+    private void CreateTraitDisplays()
     {
         if (transform.childCount > 0)
         {
@@ -98,10 +99,13 @@ public class TraitManager : MonoBehaviour
         }
         float yPosition = 0;
 
-        List<(string, int)> sortedTraits = getSortedTraits();
+        List<(string, int)> sortedTraits = GetSortedTraits();
 
-        foreach ((string, int) traitData in sortedTraits)
+        var maxTraits = 7;
+
+        for (int i = 0; i < Math.Min(sortedTraits.Count, maxTraits); i++)
         {
+            (string, int) traitData = sortedTraits[i];
             GameObject newTraitDisplay = Instantiate(traitTemplate, transform);
             newTraitDisplay.transform.localPosition = new Vector3(0, yPosition, 0);
             newTraitDisplay.transform.localScale = new Vector3(0.005f, 0.005f, 0.005f);
@@ -109,6 +113,18 @@ public class TraitManager : MonoBehaviour
 
             yPosition -= 0.12f;
         }
+
+        // foreach ((string, int) traitData in sortedTraits)
+        // {
+        //     if (index >= maxTraits)
+        //         break;
+        //     GameObject newTraitDisplay = Instantiate(traitTemplate, transform);
+        //     newTraitDisplay.transform.localPosition = new Vector3(0, yPosition, 0);
+        //     newTraitDisplay.transform.localScale = new Vector3(0.005f, 0.005f, 0.005f);
+        //     newTraitDisplay.GetComponent<TraitDisplay>().Initialize(traitData.Item1, traitData.Item2, traitDataMapping[traitData.Item1].Item1, traitDataMapping[traitData.Item1].Item2);
+
+        //     yPosition -= 0.12f;
+        // }
     }
 
 
@@ -119,7 +135,7 @@ public class TraitManager : MonoBehaviour
     /// 
     /// </summary>
     /// <returns></returns>
-    private List<(string, int)> getSortedTraits()
+    private List<(string, int)> GetSortedTraits()
     {
         List<(string, int, int)> isActiveTraits = new List<(string, int, int)>();
         List<(string, int, int)> isInactiveTraits = new List<(string, int, int)>();

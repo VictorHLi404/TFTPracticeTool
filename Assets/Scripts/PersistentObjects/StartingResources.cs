@@ -55,6 +55,17 @@ public class StartingResources : MonoBehaviour
 
     }
 
+    public void EndGame()
+    {
+        Instance.initialLevel = 5;
+        Instance.initialGold = 50;
+        Instance.initialTime = 30;
+        Instance.initialComponents.Clear();
+        Instance.initialChampions.Clear();
+        Instance.initialTeamStatistics = default;
+        SceneManager.LoadScene("Menu Scene");
+    }
+
     public void UpdateLevel(int index)
     {
         if (LevelDropdownSelection == null)

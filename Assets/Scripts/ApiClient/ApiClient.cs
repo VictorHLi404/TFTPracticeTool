@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json.Converters;
 public class ApiClient
 {
-    public static readonly string baseUrl = "http://localhost:5000";
+    public static readonly string baseUrl = "https://uxmula91nd.execute-api.us-east-1.amazonaws.com/dev";
     public static readonly string ChampionWinratePath = "/Champion/ChampionWinrate";
     public static readonly string ChampionItemsPath = "/Champion/ChampionItems";
     public static readonly string TeamWinratePath = "/Team/TeamWinrate";
