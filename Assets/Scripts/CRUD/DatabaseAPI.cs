@@ -9,26 +9,24 @@ using System;
 /// </summary>
 public static class DatabaseAPI
 {
-    private static string dbName = @"Assets\Scripts\CRUD\BaseGameInformation.db";
+    private static string dbName = @":memory:";
 
     public static UnitData GetUnitData(ChampionEnum champion)
     {
-        using (var connection = new SQLiteConnection(dbName))
-        {
-            var championEntities = connection.Table<ChampionDatabaseEntity>().ToList();
-            var championEnumString = champion.ToString();
-            var championDatabaseEntity = connection.Table<ChampionDatabaseEntity>().Where(p => p.ChampionEnumString == championEnumString).FirstOrDefault();
-            if (championDatabaseEntity == null)
-                throw new Exception($"Failed to identify {champion} in the database.");
+        var connection = DatabaseBuilder.connection;
+        var championEntities = connection.Table<ChampionDatabaseEntity>().ToList();
+        var championEnumString = champion.ToString();
+        var championDatabaseEntity = connection.Table<ChampionDatabaseEntity>().Where(p => p.ChampionEnumString == championEnumString).FirstOrDefault();
+        if (championDatabaseEntity == null)
+            throw new Exception($"Failed to identify {champion} in the database.");
 
-            return new UnitData(championDatabaseEntity.DatabaseId,
-                championDatabaseEntity.ChampionEnum,
-                championDatabaseEntity.ChampionName,
-                GetTraitList(championDatabaseEntity),
-                championDatabaseEntity.Cost,
-                championDatabaseEntity.ShopIconName,
-                championDatabaseEntity.ChampionIconName);
-        }
+        return new UnitData(championDatabaseEntity.DatabaseId,
+            championDatabaseEntity.ChampionEnum,
+            championDatabaseEntity.ChampionName,
+            GetTraitList(championDatabaseEntity),
+            championDatabaseEntity.Cost,
+            championDatabaseEntity.ShopIconName,
+            championDatabaseEntity.ChampionIconName);
     }
 
     public static List<UnitData> GetAllUnitData()
@@ -38,20 +36,17 @@ public static class DatabaseAPI
         and create new instances of unitdata.
         */
         List<UnitData> unitDataList = new List<UnitData>();
-        using (var connection = new SQLiteConnection(dbName))
+        var connection = DatabaseBuilder.connection;
+        var allUnits = connection.Table<ChampionDatabaseEntity>().ToList();
+        foreach (var unit in allUnits)
         {
-            var allUnits = connection.Table<ChampionDatabaseEntity>().ToList();
-            foreach (var unit in allUnits)
-            {
-                unitDataList.Add(new UnitData(unit.DatabaseId,
-                unit.ChampionEnum,
-                unit.ChampionName,
-                GetTraitList(unit),
-                unit.Cost,
-                unit.ShopIconName,
-                unit.ChampionIconName));
-            }
-            connection.Close();
+            unitDataList.Add(new UnitData(unit.DatabaseId,
+            unit.ChampionEnum,
+            unit.ChampionName,
+            GetTraitList(unit),
+            unit.Cost,
+            unit.ShopIconName,
+            unit.ChampionIconName));
         }
         return unitDataList;
     }
@@ -75,13 +70,11 @@ public static class DatabaseAPI
         /*
         Given a UnitData object, extract the cost of the unit and check its shop odds.
         */
-        using (var connection = new SQLiteConnection(dbName))
-        {
-            var bagSizeEntity = connection.Table<DefaultBagSizesDatabaseEntity>().Where(x => x.ChampionCost == champion.Cost).FirstOrDefault();
-            if (bagSizeEntity == null)
-                Debug.Log($"Failed to find bag size for cost {champion.Cost}");
-            return bagSizeEntity.BagSize;
-        }
+        var connection = DatabaseBuilder.connection;
+        var bagSizeEntity = connection.Table<DefaultBagSizesDatabaseEntity>().Where(x => x.ChampionCost == champion.Cost).FirstOrDefault();
+        if (bagSizeEntity == null)
+            Debug.Log($"Failed to find bag size for cost {champion.Cost}");
+        return bagSizeEntity.BagSize;
     }
 
     public static Dictionary<int, List<int>> GetShopOdds()
@@ -90,16 +83,12 @@ public static class DatabaseAPI
         Get all shop odds for all levels. Return a dictionary mapping from the level to a list of the odds.
         */
         Dictionary<int, List<int>> shopOddsDictionary = new Dictionary<int, List<int>>();
-
-        using (var connection = new SQLiteConnection(dbName))
+        var connection = DatabaseBuilder.connection;
+        var shopOddsEntities = connection.Table<ShopOddsDatabaseEntity>().ToList();
+        foreach (var shopOddsEntity in shopOddsEntities)
         {
-            var shopOddsEntities = connection.Table<ShopOddsDatabaseEntity>().ToList();
-            foreach (var shopOddsEntity in shopOddsEntities)
-            {
-                var levelOdds = new List<int> { shopOddsEntity.OneCostOdds, shopOddsEntity.TwoCostOdds, shopOddsEntity.ThreeCostOdds, shopOddsEntity.FourCostOdds, shopOddsEntity.FiveCostOdds };
-                shopOddsDictionary[shopOddsEntity.Level] = levelOdds;
-            }
-            connection.Close();
+            var levelOdds = new List<int> { shopOddsEntity.OneCostOdds, shopOddsEntity.TwoCostOdds, shopOddsEntity.ThreeCostOdds, shopOddsEntity.FourCostOdds, shopOddsEntity.FiveCostOdds };
+            shopOddsDictionary[shopOddsEntity.Level] = levelOdds;
         }
         return shopOddsDictionary;
     }
@@ -113,14 +102,11 @@ public static class DatabaseAPI
     public static Dictionary<int, int> GetLevelMapping()
     {
         Dictionary<int, int> levelMapping = new Dictionary<int, int>();
-
-        using (var connection = new SQLiteConnection(dbName))
+        var connection = DatabaseBuilder.connection;
+        var XPLevelsEntities = connection.Table<XPLevelsDatabaseEntity>().ToList();
+        foreach (var XPLevelEntity in XPLevelsEntities)
         {
-            var XPLevelsEntities = connection.Table<XPLevelsDatabaseEntity>().ToList();
-            foreach (var XPLevelEntity in XPLevelsEntities)
-            {
-                levelMapping.Add(XPLevelEntity.Level, XPLevelEntity.XPRequirement);
-            }
+            levelMapping.Add(XPLevelEntity.Level, XPLevelEntity.XPRequirement);
         }
         return levelMapping;
     }
@@ -135,65 +121,65 @@ public static class DatabaseAPI
         Dictionary<string, List<int>> traitToLevels = new Dictionary<string, List<int>>();
         Dictionary<string, List<TraitRarities>> traitToRarities = new Dictionary<string, List<TraitRarities>>();
 
-        using (var connection = new SQLiteConnection(dbName))
+        var connection = DatabaseBuilder.connection;
+
+        var traitLevelEntities = connection.Table<TraitLevelsDatabaseEntity>().ToList();
+        foreach (var traitLevelEntity in traitLevelEntities)
         {
-            var traitLevelEntities = connection.Table<TraitLevelsDatabaseEntity>().ToList();
-            foreach (var traitLevelEntity in traitLevelEntities)
-            {
-                var levels = new List<int>();
+            var levels = new List<int>();
 
-                if (traitLevelEntity.TierOne != null && traitLevelEntity.TierOne != 0)
-                    levels.Add(traitLevelEntity.TierOne.Value);
-                if (traitLevelEntity.TierTwo != null)
-                    levels.Add(traitLevelEntity.TierTwo.Value);
-                if (traitLevelEntity.TierThree != null)
-                    levels.Add(traitLevelEntity.TierThree.Value);
-                if (traitLevelEntity.TierFour != null)
-                    levels.Add(traitLevelEntity.TierFour.Value);
-                if (traitLevelEntity.TierFive != null)
-                    levels.Add(traitLevelEntity.TierFive.Value);
-                if (traitLevelEntity.TierSix != null)
-                    levels.Add(traitLevelEntity.TierSix.Value);
-                if (traitLevelEntity.TierSeven != null)
-                    levels.Add(traitLevelEntity.TierSeven.Value);
-                if (traitLevelEntity.TierEight != null)
-                    levels.Add(traitLevelEntity.TierEight.Value);
-                if (traitLevelEntity.TierNine != null)
-                    levels.Add(traitLevelEntity.TierNine.Value);
-                if (traitLevelEntity.TierTen != null)
-                    levels.Add(traitLevelEntity.TierTen.Value);
+            if (traitLevelEntity.TierOne != null && traitLevelEntity.TierOne != 0)
+                levels.Add(traitLevelEntity.TierOne.Value);
+            if (traitLevelEntity.TierTwo != null)
+                levels.Add(traitLevelEntity.TierTwo.Value);
+            if (traitLevelEntity.TierThree != null)
+                levels.Add(traitLevelEntity.TierThree.Value);
+            if (traitLevelEntity.TierFour != null)
+                levels.Add(traitLevelEntity.TierFour.Value);
+            if (traitLevelEntity.TierFive != null)
+                levels.Add(traitLevelEntity.TierFive.Value);
+            if (traitLevelEntity.TierSix != null)
+                levels.Add(traitLevelEntity.TierSix.Value);
+            if (traitLevelEntity.TierSeven != null)
+                levels.Add(traitLevelEntity.TierSeven.Value);
+            if (traitLevelEntity.TierEight != null)
+                levels.Add(traitLevelEntity.TierEight.Value);
+            if (traitLevelEntity.TierNine != null)
+                levels.Add(traitLevelEntity.TierNine.Value);
+            if (traitLevelEntity.TierTen != null)
+                levels.Add(traitLevelEntity.TierTen.Value);
 
-                traitToLevels[traitLevelEntity.TraitName] = levels;
-            }
-            var traitColorsEntities = connection.Table<TraitColorsDatabaseEntity>().ToList();
-            foreach (var traitColorEntity in traitColorsEntities)
-            {
-                var rarities = new List<TraitRarities>();
-
-                if (traitColorEntity.TierOne != null && traitColorEntity.TierOne != 0)
-                    rarities.Add((TraitRarities)traitColorEntity.TierOne.Value);
-                if (traitColorEntity.TierTwo != null)
-                    rarities.Add((TraitRarities)traitColorEntity.TierTwo.Value);
-                if (traitColorEntity.TierThree != null)
-                    rarities.Add((TraitRarities)traitColorEntity.TierThree.Value);
-                if (traitColorEntity.TierFour != null)
-                    rarities.Add((TraitRarities)traitColorEntity.TierFour.Value);
-                if (traitColorEntity.TierFive != null)
-                    rarities.Add((TraitRarities)traitColorEntity.TierFive.Value);
-                if (traitColorEntity.TierSix != null)
-                    rarities.Add((TraitRarities)traitColorEntity.TierSix.Value);
-                if (traitColorEntity.TierSeven != null)
-                    rarities.Add((TraitRarities)traitColorEntity.TierSeven.Value);
-                if (traitColorEntity.TierEight != null)
-                    rarities.Add((TraitRarities)traitColorEntity.TierEight.Value);
-                if (traitColorEntity.TierNine != null)
-                    rarities.Add((TraitRarities)traitColorEntity.TierNine.Value);
-                if (traitColorEntity.TierTen != null)
-                    rarities.Add((TraitRarities)traitColorEntity.TierTen.Value);
-
-                traitToRarities[traitColorEntity.TraitName] = rarities;
-            }
+            traitToLevels[traitLevelEntity.TraitName] = levels;
         }
+        var traitColorsEntities = connection.Table<TraitColorsDatabaseEntity>().ToList();
+        foreach (var traitColorEntity in traitColorsEntities)
+        {
+            var rarities = new List<TraitRarities>();
+
+            if (traitColorEntity.TierOne != null && traitColorEntity.TierOne != 0)
+                rarities.Add((TraitRarities)traitColorEntity.TierOne.Value);
+            if (traitColorEntity.TierTwo != null)
+                rarities.Add((TraitRarities)traitColorEntity.TierTwo.Value);
+            if (traitColorEntity.TierThree != null)
+                rarities.Add((TraitRarities)traitColorEntity.TierThree.Value);
+            if (traitColorEntity.TierFour != null)
+                rarities.Add((TraitRarities)traitColorEntity.TierFour.Value);
+            if (traitColorEntity.TierFive != null)
+                rarities.Add((TraitRarities)traitColorEntity.TierFive.Value);
+            if (traitColorEntity.TierSix != null)
+                rarities.Add((TraitRarities)traitColorEntity.TierSix.Value);
+            if (traitColorEntity.TierSeven != null)
+                rarities.Add((TraitRarities)traitColorEntity.TierSeven.Value);
+            if (traitColorEntity.TierEight != null)
+                rarities.Add((TraitRarities)traitColorEntity.TierEight.Value);
+            if (traitColorEntity.TierNine != null)
+                rarities.Add((TraitRarities)traitColorEntity.TierNine.Value);
+            if (traitColorEntity.TierTen != null)
+                rarities.Add((TraitRarities)traitColorEntity.TierTen.Value);
+
+            traitToRarities[traitColorEntity.TraitName] = rarities;
+        }
+
         foreach (string traitName in traitToLevels.Keys)
         {
             traitMapping[traitName] = (traitToLevels[traitName], traitToRarities[traitName]);
@@ -204,17 +190,14 @@ public static class DatabaseAPI
     public static Dictionary<(Component, Component), CompletedItem> getItemMapping()
     {
         Dictionary<(Component, Component), CompletedItem> itemMapping = new Dictionary<(Component, Component), CompletedItem>();
-
-        using (var connection = new SQLiteConnection(dbName))
+        var connection = DatabaseBuilder.connection;
+        var itemDatabaseEntities = connection.Table<ItemDatabaseEntity>().ToList();
+        foreach (var itemEntity in itemDatabaseEntities)
         {
-            var itemDatabaseEntities = connection.Table<ItemDatabaseEntity>().ToList();
-            foreach (var itemEntity in itemDatabaseEntities)
-            {
-                Component component1 = (Component)Enum.Parse(typeof(Component), itemEntity.ComponentOne.Replace(".", "").Replace(" ", ""));
-                Component component2 = (Component)Enum.Parse(typeof(Component), itemEntity.ComponentTwo.Replace(".", "").Replace(" ", ""));
-                CompletedItem item = (CompletedItem)Enum.Parse(typeof(CompletedItem), itemEntity.CompletedItem.Replace(".", "").Replace(" ", ""));
-                itemMapping[(component1, component2)] = item;
-            }
+            Component component1 = (Component)Enum.Parse(typeof(Component), itemEntity.ComponentOne.Replace(".", "").Replace(" ", ""));
+            Component component2 = (Component)Enum.Parse(typeof(Component), itemEntity.ComponentTwo.Replace(".", "").Replace(" ", ""));
+            CompletedItem item = (CompletedItem)Enum.Parse(typeof(CompletedItem), itemEntity.CompletedItem.Replace(".", "").Replace(" ", ""));
+            itemMapping[(component1, component2)] = item;
         }
         return itemMapping;
     }
