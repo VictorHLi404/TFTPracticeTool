@@ -1,11 +1,12 @@
 using UnityEngine;
 using CsvHelper;
-
+using Cysharp.Threading.Tasks;
 using System.IO;
 using System.Globalization;
 using SQLite;
 using System;
 using System.Collections.Generic;
+using UnityEngine.Networking;
 
 public static class DatabaseBuilder
 {
@@ -15,13 +16,13 @@ public static class DatabaseBuilder
 
     private static string dbName = @":memory:";
     public static SQLiteConnection connection;
-    private static string championCSVFile = @"Assets\Scripts\CRUD\CSVFiles\ChampionDataSheet.csv";
-    private static string shopOddsCSVFile = @"Assets\Scripts\CRUD\CSVFiles\ShopOdds.csv";
-    private static string defaultBagSizesCSVFile = @"Assets\Scripts\CRUD\CSVFiles\DefaultBagSizes.csv";
-    private static string traitLevelsCSVFile = @"Assets\Scripts\CRUD\CSVFiles\TraitLevels.csv";
-    private static string traitColorsCSVFile = @"Assets\Scripts\CRUD\CSVFiles\TraitColors.csv";
-    private static string XPLevelsCSVFile = @"Assets\Scripts\CRUD\CSVFiles\XPLevels.csv";
-    private static string itemsFile = @"Assets\Scripts\CRUD\CSVFiles\Items.csv";
+    private static string championCSVFile = @"CSVFiles\ChampionDataSheet.csv";
+    private static string shopOddsCSVFile = @"CSVFiles\ShopOdds.csv";
+    private static string defaultBagSizesCSVFile = @"CSVFiles\DefaultBagSizes.csv";
+    private static string traitLevelsCSVFile = @"CSVFiles\TraitLevels.csv";
+    private static string traitColorsCSVFile = @"CSVFiles\TraitColors.csv";
+    private static string XPLevelsCSVFile = @"CSVFiles\XPLevels.csv";
+    private static string itemsFile = @"CSVFiles\Items.csv";
 
     public static void generateNewDatabase()
     { // generate a brand new database if one does not exist yet
@@ -35,29 +36,29 @@ public static class DatabaseBuilder
         connection.CreateTable<ItemDatabaseEntity>();
     }
 
-    public static void initializeDatabase()
+    public static async UniTask initializeDatabase()
     {
         generateNewDatabase();
         Debug.Log("Database built!");
-        BuildChampionTable();
+        await BuildChampionTable();
         Debug.Log("Champion Table generated!");
-        BuildShopOdds();
+        await BuildShopOdds();
         Debug.Log("Shop Odds generated!");
-        BuildDefaultBagSizes();
+        await BuildDefaultBagSizes();
         Debug.Log("Default Bag Sizes generated!");
-        BuildTraitLevels();
+        await BuildTraitLevels();
         Debug.Log("Trait Levels generated!");
-        BuildTraitColors();
+        await BuildTraitColors();
         Debug.Log("Trait Colors generated");
-        BuildXPLevels();
+        await BuildXPLevels();
         Debug.Log("XP levels built!");
-        BuildItems();
+        await BuildItems();
         Debug.Log("Items built!");
     }
 
-    public static void BuildChampionTable()
+    public static async UniTask BuildChampionTable()
     { // a function to generate a new champion table based off of a csv file
-        List<List<string>> dataPackage = ConvertCSVFileTo2DList(championCSVFile); // generate 2d list from csv file
+        List<List<string>> dataPackage = await ConvertCSVFileTo2DList(championCSVFile); // generate 2d list from csv file
         var connection = DatabaseBuilder.connection;
         var databaseId = 1;
         foreach (var championCSVData in dataPackage)
@@ -83,10 +84,10 @@ public static class DatabaseBuilder
         }
     }
 
-    public static void BuildShopOdds()
+    public static async UniTask BuildShopOdds()
     {
         var connection = DatabaseBuilder.connection;
-        List<List<string>> dataPackage = ConvertCSVFileTo2DList(shopOddsCSVFile); // generate 2d list from csv file
+        List<List<string>> dataPackage = await ConvertCSVFileTo2DList(shopOddsCSVFile); // generate 2d list from csv file
         foreach (var shopOddsCSVData in dataPackage)
         {
             var shopOddsEntity = new ShopOddsDatabaseEntity
@@ -101,10 +102,10 @@ public static class DatabaseBuilder
             connection.Insert(shopOddsEntity);
         }
     }
-    public static void BuildDefaultBagSizes()
+    public static async UniTask BuildDefaultBagSizes()
     {
         var connection = DatabaseBuilder.connection;
-        List<List<string>> dataPackage = ConvertCSVFileTo2DList(defaultBagSizesCSVFile); // generate 2d list from csv file
+        List<List<string>> dataPackage = await ConvertCSVFileTo2DList(defaultBagSizesCSVFile); // generate 2d list from csv file
         foreach (var defaultBagSizeCSVData in dataPackage)
         {
             var defaultBagSizeEntity = new DefaultBagSizesDatabaseEntity
@@ -116,10 +117,10 @@ public static class DatabaseBuilder
         }
     }
 
-    public static void BuildTraitLevels()
+    public static async UniTask BuildTraitLevels()
     {
         var connection = DatabaseBuilder.connection;
-        List<List<string>> dataPackage = ConvertCSVFileTo2DList(traitLevelsCSVFile); // generate 2d list from csv file
+        List<List<string>> dataPackage = await ConvertCSVFileTo2DList(traitLevelsCSVFile); // generate 2d list from csv file
         foreach (var traitLevelCSVData in dataPackage)
         {
             var traitLevelsEntity = new TraitLevelsDatabaseEntity
@@ -140,10 +141,10 @@ public static class DatabaseBuilder
         }
     }
 
-    public static void BuildTraitColors()
+    public static async UniTask BuildTraitColors()
     {
         var connection = DatabaseBuilder.connection;
-        List<List<string>> dataPackage = ConvertCSVFileTo2DList(traitColorsCSVFile);
+        List<List<string>> dataPackage = await ConvertCSVFileTo2DList(traitColorsCSVFile);
         foreach (var traitColorsCSVData in dataPackage)
         {
             var traitColorsEntity = new TraitColorsDatabaseEntity
@@ -164,10 +165,10 @@ public static class DatabaseBuilder
         }
     }
 
-    public static void BuildXPLevels()
+    public static async UniTask BuildXPLevels()
     {
         var connection = DatabaseBuilder.connection;
-        List<List<string>> dataPackage = ConvertCSVFileTo2DList(XPLevelsCSVFile); // generate 2d list from csv file
+        List<List<string>> dataPackage = await ConvertCSVFileTo2DList(XPLevelsCSVFile); // generate 2d list from csv file
         foreach (var XPLevelsCSVData in dataPackage)
         {
             var XPLevelsEntity = new XPLevelsDatabaseEntity
@@ -179,10 +180,10 @@ public static class DatabaseBuilder
         }
     }
 
-    public static void BuildItems()
+    public static async UniTask BuildItems()
     {
         var connection = DatabaseBuilder.connection;
-        List<List<string>> dataPackage = ConvertCSVFileTo2DList(itemsFile); // generate 2d list from csv file
+        List<List<string>> dataPackage = await ConvertCSVFileTo2DList(itemsFile); // generate 2d list from csv file
         foreach (var itemCSVData in dataPackage)
         {
             var itemEntity = new ItemDatabaseEntity
@@ -195,10 +196,10 @@ public static class DatabaseBuilder
         }
     }
 
-    private static List<List<string>> ConvertCSVFileTo2DList(string csvFileLocation)
+    private static async UniTask<List<List<string>>> ConvertCSVFileTo2DList(string csvFileLocation)
     {
         List<List<string>> dataPackage = new List<List<string>>();
-        using (var streamReader = new StreamReader(csvFileLocation))
+        using (var streamReader = new StringReader(await LoadCsvFile(csvFileLocation)))
         { // read csv File
             using (var csvReader = new CsvReader(streamReader, CultureInfo.InvariantCulture))
             {
@@ -231,5 +232,20 @@ public static class DatabaseBuilder
             }
         }
         return currentList;
+    }
+
+    private static async UniTask<string> LoadCsvFile(string fileName)
+    {
+        string filePath = Path.Combine(Application.streamingAssetsPath, fileName);
+        UnityWebRequest request = UnityWebRequest.Get(filePath);
+        await request.SendWebRequest();
+
+        if (request.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError("Failed to load CSV: " + request.error);
+        }
+
+        string csvData = request.downloadHandler.text;
+        return csvData;
     }
 }
