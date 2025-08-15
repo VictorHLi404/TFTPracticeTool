@@ -9,8 +9,6 @@ using System;
 /// </summary>
 public static class DatabaseAPI
 {
-    private static string dbName = @":memory:";
-
     public static UnitData GetUnitData(ChampionEnum champion)
     {
         var connection = DatabaseBuilder.connection;

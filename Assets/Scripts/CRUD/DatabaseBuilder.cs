@@ -16,6 +16,7 @@ public static class DatabaseBuilder
 
     private static string dbName = @":memory:";
     public static SQLiteConnection connection;
+    public static bool databaseHasBeenBuilt = false;
     private static string championCSVFile = @"CSVFiles\ChampionDataSheet.csv";
     private static string shopOddsCSVFile = @"CSVFiles\ShopOdds.csv";
     private static string defaultBagSizesCSVFile = @"CSVFiles\DefaultBagSizes.csv";
@@ -38,28 +39,34 @@ public static class DatabaseBuilder
 
     public static async UniTask initializeDatabase()
     {
-        generateNewDatabase();
-        Debug.Log("Database built!");
-        await BuildChampionTable();
-        Debug.Log("Champion Table generated!");
-        await BuildShopOdds();
-        Debug.Log("Shop Odds generated!");
-        await BuildDefaultBagSizes();
-        Debug.Log("Default Bag Sizes generated!");
-        await BuildTraitLevels();
-        Debug.Log("Trait Levels generated!");
-        await BuildTraitColors();
-        Debug.Log("Trait Colors generated");
-        await BuildXPLevels();
-        Debug.Log("XP levels built!");
-        await BuildItems();
-        Debug.Log("Items built!");
+        if (!databaseHasBeenBuilt)
+        {
+            Debug.Log("Starting to build database...");
+            generateNewDatabase();
+            Debug.Log("Database built!");
+            await BuildChampionTable();
+            Debug.Log("Champion Table generated!");
+            await BuildShopOdds();
+            Debug.Log("Shop Odds generated!");
+            await BuildDefaultBagSizes();
+            Debug.Log("Default Bag Sizes generated!");
+            await BuildTraitLevels();
+            Debug.Log("Trait Levels generated!");
+            await BuildTraitColors();
+            Debug.Log("Trait Colors generated");
+            await BuildXPLevels();
+            Debug.Log("XP levels built!");
+            await BuildItems();
+            Debug.Log("Items built!");
+            databaseHasBeenBuilt = true;
+        }
     }
 
     public static async UniTask BuildChampionTable()
     { // a function to generate a new champion table based off of a csv file
-        List<List<string>> dataPackage = await ConvertCSVFileTo2DList(championCSVFile); // generate 2d list from csv file
         var connection = DatabaseBuilder.connection;
+        List<List<string>> dataPackage = await ConvertCSVFileTo2DList(championCSVFile); // generate 2d list from csv file
+
         var databaseId = 1;
         foreach (var championCSVData in dataPackage)
         {

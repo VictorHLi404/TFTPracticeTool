@@ -274,6 +274,7 @@ GameObject:
   - component: {fileID: 5630912105429599071}
   - component: {fileID: 2621341724843011347}
   - component: {fileID: 3384079909035674836}
+  - component: {fileID: 2322723392573695600}
   m_Layer: 0
   m_Name: Play Button
   m_TagString: Untagged
@@ -358,3 +359,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIBlocker: {fileID: 0}
   Modal: {fileID: 0}
+--- !u!114 &2322723392573695600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7140100825254217506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab15130bc3f1b3c4891b3eed8d2c4b98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
