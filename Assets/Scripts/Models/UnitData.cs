@@ -23,7 +23,7 @@ public class UnitData
     {
         this.UnitName = _unitName;
         this.DatabaseID = _databaseID;
-        this.DisplayName = DisplayName;
+        this.DisplayName = _displayName;
         this.UnitTraits = _unitTraits;
         this.Cost = _cost;
         this.ShopIconName = _shopIconName;

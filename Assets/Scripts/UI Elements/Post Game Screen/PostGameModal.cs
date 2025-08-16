@@ -58,7 +58,6 @@ public class PostGameModal : MonoBehaviour
         Debug.Log("GOT HERE!");
         LoadingScreenReference.SetActive(false);
         LoadedContentReference.SetActive(true);
-
     }
 
 

@@ -35,7 +35,7 @@ public class ChampionInformationDisplay : MonoBehaviour
 
             if (championStats.ItemizationAveragePlacement < championStats.ChampionAveragePlacement)
                 AveragePlacementReference.color = Color.green;
-            else
+            else if (championStats.ItemizationAveragePlacement > championStats.ChampionAveragePlacement)
                 AveragePlacementReference.color = Color.red;
         }
         else
@@ -60,9 +60,11 @@ public class ChampionInformationDisplay : MonoBehaviour
 
     public static string GetItemizationDifferenceString(decimal itemizationAveragePlacement, decimal championAveragePlacement)
     {
-        if (itemizationAveragePlacement <= championAveragePlacement)
-            return $"{(Math.Truncate(itemizationAveragePlacement * 100) / 100).ToString()} (-{(Math.Truncate(Math.Abs(itemizationAveragePlacement - championAveragePlacement) * 100) / 100).ToString()})";
+        if (itemizationAveragePlacement < championAveragePlacement)
+            return $"{(Math.Truncate(itemizationAveragePlacement * 100) / 100):0.00} (-{(Math.Truncate(Math.Abs(itemizationAveragePlacement - championAveragePlacement) * 100) / 100):0.00})";
+        else if (itemizationAveragePlacement > championAveragePlacement)
+            return $"{(Math.Truncate(itemizationAveragePlacement * 100) / 100):0.00} (+{(Math.Truncate(Math.Abs(championAveragePlacement - itemizationAveragePlacement) * 100) / 100):0.00})";
         else
-            return $"{(Math.Truncate(itemizationAveragePlacement * 100) / 100).ToString()} (+{(Math.Truncate(Math.Abs(championAveragePlacement - itemizationAveragePlacement) * 100) / 100).ToString()})";
+            return $"{(Math.Truncate(itemizationAveragePlacement * 100) / 100):0.00}";
     }
 }

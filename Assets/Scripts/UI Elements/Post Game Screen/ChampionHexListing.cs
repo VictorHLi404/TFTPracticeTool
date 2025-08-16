@@ -14,7 +14,7 @@ public class ChampionHexListing : MonoBehaviour
         var sortedChampions = SortChampionsForDisplay(champions);
         foreach (var champion in sortedChampions)
         {
-            var championHex = ChampionHexReferences[index].GetComponent<ChampionDisplayHex>();
+            var championHex = ChampionHexReferences[index].GetComponent<ChampionSmallInformationDisplay>();
             championHex.UpdateVisuals(champion, true);
             index++;
         }

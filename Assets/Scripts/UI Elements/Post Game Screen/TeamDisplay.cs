@@ -16,13 +16,13 @@ public class TeamDisplay : MonoBehaviour
         var initialTeamStatistics = StartingResources.Instance.initialTeamStatistics;
         var championHexListing = ChampionHexListingReference.GetComponent<ChampionHexListing>();
         championHexListing.Initialize(team);
-        if (teamStatistics != null)
+        if (teamStatistics != null && teamStatistics.AveragePlacement != 0 && teamStatistics.Champions.Count != 0)
         {
             Debug.Log(initialTeamStatistics);
             AveragePlacementReference.text = GetWinrateDifferenceString(teamStatistics.AveragePlacement, initialTeamStatistics.AveragePlacement);
             if (teamStatistics.AveragePlacement < initialTeamStatistics.AveragePlacement)
                 AveragePlacementReference.color = Color.green;
-            else
+            else if (teamStatistics.AveragePlacement > initialTeamStatistics.AveragePlacement)
                 AveragePlacementReference.color = Color.red;
         }
         else
@@ -46,16 +46,11 @@ public class TeamDisplay : MonoBehaviour
     }
     public static string GetWinrateDifferenceString(decimal teamAveragePlacement, decimal expectedAveragePlacement)
     {
-        if (teamAveragePlacement <= expectedAveragePlacement)
-            return $"{(Math.Truncate(teamAveragePlacement * 100) / 100).ToString()} (-{(Math.Truncate(Math.Abs(teamAveragePlacement - expectedAveragePlacement) * 100) / 100).ToString()})";
+        if (teamAveragePlacement < expectedAveragePlacement)
+            return $"{(Math.Truncate(teamAveragePlacement * 100) / 100):0.00} (-{(Math.Truncate(Math.Abs(teamAveragePlacement - expectedAveragePlacement) * 100) / 100):0.00})";
+        else if (teamAveragePlacement > expectedAveragePlacement)
+            return $"{(Math.Truncate(teamAveragePlacement * 100) / 100):0.00} (+{(Math.Truncate(Math.Abs(expectedAveragePlacement - teamAveragePlacement) * 100) / 100):0.00})";
         else
-            return $"{(Math.Truncate(teamAveragePlacement * 100) / 100).ToString()} (+{(Math.Truncate(Math.Abs(expectedAveragePlacement - teamAveragePlacement) * 100) / 100).ToString()})";
-    }
-    public static string GetWinrateDifferenceStringWithNewLine(decimal teamAveragePlacement, decimal expectedAveragePlacement)
-    {
-        if (teamAveragePlacement <= expectedAveragePlacement)
-            return $"{(Math.Truncate(teamAveragePlacement * 100) / 100).ToString()}\n(-{(Math.Truncate(Math.Abs(teamAveragePlacement - expectedAveragePlacement) * 100) / 100).ToString()})";
-        else
-            return $"{(Math.Truncate(teamAveragePlacement * 100) / 100).ToString()}\n(+{(Math.Truncate(Math.Abs(expectedAveragePlacement - teamAveragePlacement) * 100) / 100).ToString()})";
+            return $"{(Math.Truncate(teamAveragePlacement * 100) / 100):0.00}";
     }
 }

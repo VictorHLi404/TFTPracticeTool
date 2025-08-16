@@ -11,7 +11,7 @@ public class TeamSuggestion : MonoBehaviour
     public void Initialize(TeamResponse teamStatistics)
     {
         var initialTeamStatistics = StartingResources.Instance.initialTeamStatistics;
-        AveragePlacementReference.text = TeamDisplay.GetWinrateDifferenceStringWithNewLine(teamStatistics.AveragePlacement, initialTeamStatistics.AveragePlacement);
+        AveragePlacementReference.text = TeamDisplay.GetWinrateDifferenceString(teamStatistics.AveragePlacement, initialTeamStatistics.AveragePlacement);
         if (teamStatistics.AveragePlacement < initialTeamStatistics.AveragePlacement)
             AveragePlacementReference.color = Color.green;
         else
