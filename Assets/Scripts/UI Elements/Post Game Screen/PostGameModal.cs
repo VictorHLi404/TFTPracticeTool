@@ -10,13 +10,16 @@ public class PostGameModal : MonoBehaviour
     public GameObject FirstChampionDisplayReference;
     public GameObject SecondChampionDisplayReference;
     public GameObject TeamDisplayReference;
-
+    public GameObject LoadingScreenReference;
+    public GameObject LoadedContentReference;
     private bool requestsHaveBeenMade;
 
     public async UniTask Initialize(List<ChampionEntity> teamChampions,
                             List<(UnitData unit, int occurences)> shopChampions,
                             List<Component> initialComponents)
     {
+        LoadedContentReference.SetActive(false);
+        LoadingScreenReference.SetActive(true);
         var relaventChampions = ProcessingHelper.GetRelaventPossibleChampions(shopChampions);
         var possibleItemSets = ProcessingHelper.GeneratePossibleItemSets(initialComponents);
         var team = new List<Champion>();
@@ -53,6 +56,8 @@ public class PostGameModal : MonoBehaviour
         Debug.Log($"RELAVENT CHAMPIONS: {relaventChampions.Count}");
         Debug.Log($"ALTERNATIVE TEAM COMPS LISTING: {alternativeTeamComps.Count}");
         Debug.Log("GOT HERE!");
+        LoadingScreenReference.SetActive(false);
+        LoadedContentReference.SetActive(true);
 
     }
 
