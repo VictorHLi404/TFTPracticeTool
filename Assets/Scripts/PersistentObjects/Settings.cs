@@ -10,8 +10,8 @@ public class Settings : MonoBehaviour
 
     public Dictionary<HotkeyEnum, KeyCode> HotkeyBindings = new Dictionary<HotkeyEnum, KeyCode>
     {
-        {HotkeyEnum.BuyXPHotkey, KeyCode.B},
-        {HotkeyEnum.RerollHotkey, KeyCode.R},
+        {HotkeyEnum.BuyXPHotkey, KeyCode.F},
+        {HotkeyEnum.RerollHotkey, KeyCode.D},
         {HotkeyEnum.SellChampionHotkey, KeyCode.E}
     };
     void Awake()
