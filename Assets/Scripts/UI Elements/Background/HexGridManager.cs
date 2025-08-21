@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using NUnit.Framework.Constraints;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class HexGridManager : MonoBehaviour
@@ -24,7 +25,7 @@ public class HexGridManager : MonoBehaviour
     private Board board;
     private List<GameObject> hexGridObjects = new List<GameObject>();
     private List<(float x, float y)> hexGridCoordinates = new List<(float x, float y)>();
-    private void Start()
+    private void Awake()
     {
         if (tileToGenerate == null)
         {
@@ -106,6 +107,11 @@ public class HexGridManager : MonoBehaviour
             }
         }
         return false;
+    }
+
+    public (int currentChampionCount, int maxChampionCount) GetDisplayInformation()
+    {
+        return (board.currentUnitCount, board.maxUnitCount);
     }
 
     public void UpdateMaxUnitCount(int maxUnits)

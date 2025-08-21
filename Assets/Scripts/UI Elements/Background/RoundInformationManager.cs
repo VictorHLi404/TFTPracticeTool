@@ -16,6 +16,8 @@ public class RoundInformationManager : MonoBehaviour
     public GameObject BoardReference;
     public GameObject BenchReference;
     public GameObject ItemBenchReference;
+    public GameObject TraitManagerReference;
+    public GameObject BoardDisplayCountReference;
     public GameObject UIBlocker;
     public GameObject PostGameModal;
 
@@ -121,6 +123,8 @@ public class RoundInformationManager : MonoBehaviour
         ShopUIReference.SetActive(false);
         ItemBenchReference.SetActive(false);
         BenchReference.SetActive(false);
+        TraitManagerReference.SetActive(false);
+        BoardDisplayCountReference.SetActive(false);
 
         await PostGameModal.GetComponent<PostGameModal>().Initialize(teamChampions, championOccurences, initialComponents);
     }
