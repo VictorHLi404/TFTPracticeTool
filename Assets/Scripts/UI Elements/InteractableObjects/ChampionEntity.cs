@@ -79,9 +79,9 @@ public class ChampionEntity : DragAndDrop
         Sprite croppedSprite = Sprite.Create(
             originalTexture,
         new Rect(
-            x: originalTexture.width * 2 / 5, // Start at middle
+            x: originalTexture.width * 2.5f / 5f, // Start at middle
             y: 0,                 // From bottom
-            width: originalTexture.width * 3 / 5,
+            width: originalTexture.width * 2.5f / 5,
             height: originalTexture.height
         ),
             new Vector2(0.2f, 0.5f), // Pivot
@@ -211,7 +211,6 @@ public class ChampionEntity : DragAndDrop
             var sameParentManager = unitSlot.isBenchSlot == isOnBench;
             if (!parentManager.CanUnitBePlaced(sameParentManager))
             {
-                Debug.Log("PARENT MANAGER SAYS THAT UNIT CANNOT BE PLACED");
                 return false;
             }
             return unitSlot.isEmpty();

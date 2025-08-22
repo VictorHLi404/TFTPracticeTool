@@ -33,9 +33,11 @@ public class DragAndDrop : MonoBehaviour
     protected void OnMouseDrag()
     { // if champion is within a valid grid position, drop it down at that spot, if not, then reset back to previous location
         Vector3 position = getMouseWorldPosition(mousePosition.ReadValue<UnityEngine.Vector2>());
-        position.z -= 75;
+        position.z -= 0.10f;
         this.transform.position = position; // set the position of the object to the current mouse position
+        this.transform.localPosition = new Vector3(this.transform.localPosition.x, this.transform.localPosition.y, this.transform.localPosition.z - 0.45f);
     }
+
 
     protected virtual void OnMouseUp()
     {

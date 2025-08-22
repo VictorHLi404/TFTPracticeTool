@@ -18,8 +18,6 @@ public class ProcessingHelper
 
         GeneratePairingsRecursive(indexList, new List<(int, int)>(), possibleSets);
 
-        Debug.Log(possibleSets.Count);
-
         var itemSets = new List<List<AllItemsEnum>>();
 
         var allItemEnumValues = Enum.GetValues(typeof(AllItemsEnum));

@@ -12,7 +12,6 @@ public class ModalButton : MonoBehaviour
         if (UIBlocker.activeInHierarchy)
             return;
 
-        Debug.Log("CLICKED A MODAL BUTTON!");
         UIBlocker.SetActive(true);
         Modal.SetActive(true);
     }

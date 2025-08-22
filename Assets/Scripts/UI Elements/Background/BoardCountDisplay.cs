@@ -31,8 +31,6 @@ public class BoardCountDisplay : MonoBehaviour
 
     public void UpdateDisplay(int championsOnBoard, int maxChampionsOnBoard)
     {
-        Debug.Log(championsOnBoard);
-        Debug.Log(maxChampionsOnBoard);
         textField.text = $"{championsOnBoard} / {maxChampionsOnBoard}";
         if (championsOnBoard == maxChampionsOnBoard)
         {

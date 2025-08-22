@@ -6,7 +6,6 @@ public class DatabaseInitializer : MonoBehaviour
     // assign to a random button to rebuild the database from given csv files
     public void Awake()
     {
-        Debug.Log("WAKE UP THE DATABASE");
         DatabaseBuilder.initializeDatabase().Forget();
     }
 }

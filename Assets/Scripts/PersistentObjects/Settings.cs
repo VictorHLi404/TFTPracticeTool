@@ -21,10 +21,6 @@ public class Settings : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        else
-        {
-            Debug.Log("Instance accessing settings.");
-        }
     }
 
     private static bool CheckDuplicateHotkeys(string newValue)
