@@ -39,6 +39,16 @@ public class ChampionEntity : DragAndDrop
         UpdatePickupCoords(previousCollisionObject.transform.position);
     }
 
+    public void OnMouseEnter()
+    {
+        championIcon.GetComponent<ChampionIcon>().EnableHoveringIndication();
+    }
+
+    public void OnMouseExit()
+    {
+        championIcon.GetComponent<ChampionIcon>().DisableHoveringIndication();
+    }
+
     public void UpdateVisuals()
     {
         championIcon.GetComponent<ChampionIcon>().updateChampionImage(champion);

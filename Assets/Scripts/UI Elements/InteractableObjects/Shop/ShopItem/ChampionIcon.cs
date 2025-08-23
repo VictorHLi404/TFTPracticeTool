@@ -23,4 +23,15 @@ public class ChampionIcon : MonoBehaviour
         imageComponent.sprite = Resources.Load<Sprite>(filePath);
     }
 
+    public void EnableHoveringIndication()
+    {
+        SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        spriteRenderer.color = new Color(1f, 1f, 0.2f, 0.95f);
+    }
+
+    public void DisableHoveringIndication()
+    {
+        SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
+    }
 }

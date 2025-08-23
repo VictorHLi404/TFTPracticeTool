@@ -192,7 +192,6 @@ public class ApiClient
                 else // Success
                 {
                     string jsonResponse = webRequest.downloadHandler.text;
-                    Debug.Log($"Received POST response from {path}: {jsonResponse}");
 
                     // 4. Deserialize the response
                     if (string.IsNullOrEmpty(jsonResponse))
