@@ -15,27 +15,45 @@ public class TraitDisplay : MonoBehaviour
     private string traitName;
     private List<int> traitBreakpoints;
     private List<TraitRarities> traitRarities;
-    private GameObject traitIcon;
-    private GameObject traitColor;
-    private GameObject traitNameField;
-    private GameObject traitCountField;
-    private GameObject traitCountBackground;
-    private GameObject traitLevelsField;
+    public GameObject traitIcon;
+    public GameObject traitColor;
+    public GameObject traitNameField;
+    public GameObject traitCountField;
+    public GameObject traitCountBackground;
+    public GameObject traitLevelsField;
 
-    public void Initialize(string traitName, int unitCount, List<int> traitBreakpoints, List<TraitRarities> traitRarities)
+    public void Initialize(string traitName, int unitCount, List<int> traitBreakpoints, List<TraitRarities> traitRarities, bool? isCanvas = false)
     {
-        traitIcon = transform.Find("TraitIcon").gameObject;
-        traitColor = transform.Find("TraitColor").gameObject;
-        traitNameField = transform.Find("TraitNameField").gameObject;
-        traitCountField = transform.Find("TraitCountField").gameObject;
-        traitCountBackground = transform.Find("TraitCountBackground").gameObject;
-        traitLevelsField = transform.Find("TraitLevelsField").gameObject;
         this.traitName = traitName;
         this.unitCount = unitCount;
         this.traitBreakpoints = traitBreakpoints;
         this.traitRarities = traitRarities;
-        UpdateDisplays();
+        if (isCanvas == true)
+            UpdateDisplaysCanvas();
+        else
+            UpdateDisplays();
 
+    }
+
+    public void UpdateDisplaysCanvas()
+    {
+        // the assumption is that only active traits are displayed on canvas.
+        if (traitBreakpoints.Count < 1 || traitRarities.Count < 1)
+        {
+            Debug.LogError("Trait breakpoints or trait rarities list formatted incorrectly.");
+        }
+        if (unitCount >= traitBreakpoints[0]) // trait is active
+        {
+            traitIcon.GetComponent<TraitIcon>().UpdateTraitIconCanvas(traitName, true);
+            int index = 0;
+            while (index < traitBreakpoints.Count - 1 && unitCount >= traitBreakpoints[index + 1])
+            {
+                index += 1;
+            }
+            TraitRarities rarity = traitRarities[index];
+            traitColor.GetComponent<TraitColor>().UpdateTraitColorCanvas(rarity);
+            traitCountField.GetComponent<TMP_Text>().text = $"{unitCount}";
+        }
     }
 
     private void UpdateDisplays()
@@ -48,7 +66,7 @@ public class TraitDisplay : MonoBehaviour
         {
             traitIcon.GetComponent<TraitIcon>().UpdateTraitIcon(traitName, true);
             int index = 0;
-            while (index < traitBreakpoints.Count-1 && unitCount >= traitBreakpoints[index + 1])
+            while (index < traitBreakpoints.Count - 1 && unitCount >= traitBreakpoints[index + 1])
             {
                 index += 1;
             }

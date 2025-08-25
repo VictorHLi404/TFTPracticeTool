@@ -326,8 +326,8 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 3
-  m_Spacing: -105
+  m_ChildAlignment: 0
+  m_Spacing: -85
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
@@ -348,6 +348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ChampionHexListingReference: {fileID: 6879244380733601242}
+  TraitListingReference: {fileID: 2802804599238807822}
   AveragePlacementReference: {fileID: 1161509712784042582}
 --- !u!1001 &1517725828723290462
 PrefabInstance:
@@ -2324,5 +2325,10 @@ PrefabInstance:
 --- !u!224 &2761328133911495225 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5390893866014824371, guid: 32fb6550f59c1394885f2f7ff7d5c5aa, type: 3}
+  m_PrefabInstance: {fileID: 7818944009613809034}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2802804599238807822 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5361526322252661892, guid: 32fb6550f59c1394885f2f7ff7d5c5aa, type: 3}
   m_PrefabInstance: {fileID: 7818944009613809034}
   m_PrefabAsset: {fileID: 0}

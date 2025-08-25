@@ -2448,6 +2448,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1190169791030821713, guid: fc316ed30353ceb4f976e47dbda5092e, type: 3}
+      propertyPath: m_fontSize
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1190169791030821713, guid: fc316ed30353ceb4f976e47dbda5092e, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 1278358893810651454, guid: fc316ed30353ceb4f976e47dbda5092e, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
@@ -5848,6 +5856,14 @@ PrefabInstance:
       propertyPath: m_text
       value: 'AVERAGE PLACEMENT:'
       objectReference: {fileID: 0}
+    - target: {fileID: 5957557900025933515, guid: fc316ed30353ceb4f976e47dbda5092e, type: 3}
+      propertyPath: m_fontSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 5957557900025933515, guid: fc316ed30353ceb4f976e47dbda5092e, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 24
+      objectReference: {fileID: 0}
     - target: {fileID: 5964754977735868033, guid: fc316ed30353ceb4f976e47dbda5092e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -8021,7 +8037,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 6
+  m_ChildAlignment: 4
   m_Spacing: 10
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0

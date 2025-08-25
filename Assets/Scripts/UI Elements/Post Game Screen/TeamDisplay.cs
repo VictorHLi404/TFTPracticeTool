@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class TeamDisplay : MonoBehaviour
 {
     [Header("Reference Fields")]
     public GameObject ChampionHexListingReference;
+    public GameObject TraitListingReference;
     public TMP_Text AveragePlacementReference;
     public List<GameObject> AlternativeTeamDisplayReferences;
 
@@ -16,6 +16,8 @@ public class TeamDisplay : MonoBehaviour
         var initialTeamStatistics = StartingResources.Instance.initialTeamStatistics;
         var championHexListing = ChampionHexListingReference.GetComponent<ChampionHexListing>();
         championHexListing.Initialize(team);
+        var traitListing = TraitListingReference.GetComponent<TraitListing>();
+        traitListing.Initialize(team);
         if (teamStatistics != null && teamStatistics.AveragePlacement != 0 && teamStatistics.Champions.Count != 0)
         {
             Debug.Log(initialTeamStatistics);
@@ -28,7 +30,7 @@ public class TeamDisplay : MonoBehaviour
         else
         {
             AveragePlacementReference.text = "We could not find statistics for this team.";
-            AveragePlacementReference.fontSize = 20;
+            AveragePlacementReference.fontSize = 24;
         }
         var teamSuggestionsCount = Math.Min(alternativeTeams.Count, 3);
         for (int i = 0; i < teamSuggestionsCount; i++)

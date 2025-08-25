@@ -590,6 +590,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cde4d57c54293614b8cd0704c54ced2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  traitIcon: {fileID: 642520118260495887}
+  traitColor: {fileID: 8166451200302178583}
+  traitNameField: {fileID: 6628273201783996747}
+  traitCountField: {fileID: 3819401441099031604}
+  traitCountBackground: {fileID: 2000927661926818740}
+  traitLevelsField: {fileID: 1702379255649410941}
 --- !u!1 &6628273201783996747
 GameObject:
   m_ObjectHideFlags: 0

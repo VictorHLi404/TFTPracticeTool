@@ -200,7 +200,6 @@ GameObject:
   - component: {fileID: 2569066487009989964}
   - component: {fileID: 4850707540165167809}
   - component: {fileID: 4002718097403195974}
-  - component: {fileID: 1149107143169955560}
   m_Layer: 5
   m_Name: TeamInfo
   m_TagString: Untagged
@@ -279,41 +278,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ChampionHexListingReference: {fileID: 3249648777252247248}
+  TraitListingReference: {fileID: 964467010110425281}
   AveragePlacementReference: {fileID: 1190169791030821713}
   AlternativeTeamDisplayReferences:
   - {fileID: 2437056704087806093}
   - {fileID: 8159896307578418246}
   - {fileID: 7850978611269210125}
---- !u!114 &1149107143169955560
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 299066224616014891}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.2264151, g: 0.2264151, b: 0.2264151, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &1042181961747923291
 GameObject:
   m_ObjectHideFlags: 0
@@ -6722,6 +6692,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32fb6550f59c1394885f2f7ff7d5c5aa, type: 3}
+--- !u!1 &964467010110425281 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5361526322252661892, guid: 32fb6550f59c1394885f2f7ff7d5c5aa, type: 3}
+  m_PrefabInstance: {fileID: 5117653138248158277}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &996917308529351670 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5390893866014824371, guid: 32fb6550f59c1394885f2f7ff7d5c5aa, type: 3}

@@ -115,6 +115,7 @@ GameObject:
   - component: {fileID: 5443884468361849278}
   - component: {fileID: 1129985622230272940}
   - component: {fileID: 3492821298317309191}
+  - component: {fileID: 3555338606191603255}
   m_Layer: 5
   m_Name: Trait Display
   m_TagString: Untagged
@@ -181,6 +182,24 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3555338606191603255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3744221396747962262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cde4d57c54293614b8cd0704c54ced2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  traitIcon: {fileID: 5907392958294098597}
+  traitColor: {fileID: 8213896824554357659}
+  traitNameField: {fileID: 0}
+  traitCountField: {fileID: 8312833052248848340}
+  traitCountBackground: {fileID: 0}
+  traitLevelsField: {fileID: 0}
 --- !u!1 &4174021892631752423
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,6 +363,7 @@ GameObject:
   - component: {fileID: 4139921413632752813}
   - component: {fileID: 7122645671485233364}
   - component: {fileID: 1416458722697263864}
+  - component: {fileID: 3627218151052719314}
   m_Layer: 5
   m_Name: TraitSymbol
   m_TagString: Untagged
@@ -408,6 +428,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3627218151052719314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5907392958294098597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cdf289405390ce49926e99c78407bb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8213896824554357659
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,6 +451,7 @@ GameObject:
   - component: {fileID: 3000282846431689160}
   - component: {fileID: 6512079974143068080}
   - component: {fileID: 6269828617049999545}
+  - component: {fileID: 1130780588651142340}
   m_Layer: 5
   m_Name: TraitBacking
   m_TagString: Untagged
@@ -483,6 +516,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1130780588651142340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8213896824554357659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 646bd115763481347beef32e677d4c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8312833052248848340
 GameObject:
   m_ObjectHideFlags: 0

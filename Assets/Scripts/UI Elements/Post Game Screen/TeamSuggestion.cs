@@ -6,6 +6,7 @@ public class TeamSuggestion : MonoBehaviour
 {
     [Header("Reference Fields")]
     public GameObject ChampionHexListingReference;
+    public GameObject TraitListingReference;
     public TMP_Text AveragePlacementReference;
 
     public void Initialize(TeamResponse teamStatistics)
@@ -19,6 +20,8 @@ public class TeamSuggestion : MonoBehaviour
         var champions = GenerateChampionsFromResponse(teamStatistics.Champions);
         var championHexListing = ChampionHexListingReference.GetComponent<ChampionHexListing>();
         championHexListing.Initialize(champions);
+        var traitListing = TraitListingReference.GetComponent<TraitListing>();
+        traitListing.Initialize(champions);
     }
 
     private List<Champion> GenerateChampionsFromResponse(List<ChampionResponse> championResponses)
