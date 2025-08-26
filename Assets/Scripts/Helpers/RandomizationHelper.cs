@@ -65,7 +65,10 @@ public class RandomizationHelper
             }
         }
         champions = champions.OrderByDescending(x => x.Cost * x.starLevel).ToList();
-        champions.RemoveAt(0);
+        if (champions.Count > 0)
+        {
+            champions.RemoveAt(0);
+        }
         return champions;
     }
 }
