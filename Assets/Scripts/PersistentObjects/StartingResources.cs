@@ -45,7 +45,7 @@ public class StartingResources : MonoBehaviour
         Instance.initialTeamStatistics = await ApiClient.GetPopularTeamComp(Instance.initialLevel);
 
         (Instance.expectedPlacement, Instance.initialChampions) = DtosHelper.DeserializeTeamResponse(Instance.initialTeamStatistics);
-        RandomizationHelper.DelevelTeam(Instance.initialChampions);
+        Instance.initialChampions = RandomizationHelper.DelevelTeam(Instance.initialChampions);
 
         SceneManager.LoadScene("TestScene");
 

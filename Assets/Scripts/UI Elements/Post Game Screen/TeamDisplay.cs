@@ -29,7 +29,7 @@ public class TeamDisplay : MonoBehaviour
         }
         else
         {
-            AveragePlacementReference.text = "We could not find statistics for this team.";
+            AveragePlacementReference.text = "Could not find statistics.";
             AveragePlacementReference.fontSize = 24;
         }
         var teamSuggestionsCount = Math.Min(alternativeTeams.Count, 3);

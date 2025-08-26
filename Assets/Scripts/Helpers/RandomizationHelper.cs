@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 public class RandomizationHelper
 {
@@ -38,7 +39,7 @@ public class RandomizationHelper
         }
     }
 
-    public static void DelevelTeam(List<Champion> champions)
+    public static List<Champion> DelevelTeam(List<Champion> champions)
     {
         foreach (var champion in champions)
         {
@@ -48,7 +49,7 @@ public class RandomizationHelper
             }
             else if (champion.starLevel == 2 && champion.Cost >= 4)
             {
-                bool delevel = UnityEngine.Random.Range(0, 100) <= 90;
+                bool delevel = UnityEngine.Random.Range(0, 100) <= 95;
                 if (delevel)
                     champion.starLevel = 1;
             }
@@ -63,5 +64,8 @@ public class RandomizationHelper
                 champion.starLevel -= 1;
             }
         }
+        champions = champions.OrderByDescending(x => x.Cost * x.starLevel).ToList();
+        champions.RemoveAt(0);
+        return champions;
     }
 }
